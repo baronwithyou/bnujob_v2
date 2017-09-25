@@ -10,9 +10,12 @@
     <title>Document</title>
 </head>
 <body>
-    @include('partial.navbar')
-    @include('partial.banner')
+    <div id="input-id"></div>
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/all.js') }}"></script>
+<script src="{{ asset('js/star-rating.min.js') }}"></script>
+<script>
+    $("#input-id").rating();
+</script>
 </html>

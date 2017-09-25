@@ -21,9 +21,9 @@
             {!! Form::text('mobile-verify', null, ['class' => 'form-control', 'placeholder' => '短信验证码']) !!}
         </div>
         <div class="form-group">
-            {!! Form::text('password', null, ['class' => 'form-control', 'placeholder' => '密码(不少于六位)']) !!}
+            {!! Form::password('password', null, ['class' => 'form-control', 'placeholder' => '密码(不少于六位)']) !!}
         </div>
-        <span>已有账号？<a href="">立即登录</a></span>
+        <span>已有账号？<a href="#auth-check" data-toggle="modal">立即登录</a></span>
             {!! Form::submit('注册', ['class' => 'btn btn-register pull-right']) !!}
         {!! Form::close() !!}
     </div>

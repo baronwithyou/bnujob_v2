@@ -59,8 +59,8 @@
                             <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
                         </div>
                         <div class="store-right">
-                            <span class="h4">Github 专卖店</span>
-                            <p>GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.</p>
+                            <span class="h4">Github 专卖店</span><span class="h4" style="float: right; margin: 0; padding: 5px 10px;"><small>地址：广东省珠海市</small></span>
+                            <p>GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contr to over 29 million projects.</p>
                         </div>
                     </a>
                 </div>
@@ -77,7 +77,6 @@
             <hr style="margin-top: 5px;">
         </div>
     </div>
-    {!! Form::button('click me!', ['class' => 'btn btn-info btn-lg', 'style' => 'display: block; margin: 500px auto;']) !!}
 @stop
 
 @section('javascripts')
@@ -85,26 +84,26 @@
     <script>
         $(function () {
             $('.glyphicon-remove-circle').click(function () {
-                $('.welcome-banner').hide();
+                $('.welcome-banner').hide('normal');
             });
-            $('button').click(function () {
-                Notification.create(
-                    // 消息通知框的标题
-                    "Notification title",
-                    // 消息通知框的内容
-                    "Long text Long text Long text Long text.",
-                    // 图片
-                    "{{ asset('images/user.png') }}",
-                    // 效果
-                    "tada", 1, 3, function() {
-                        $("body").overhang({
-                            type: "error",
-                            message: "You could not be logged in at this time.",
-                            closeConfirm: "true"
-                        });
-                    }
-                );
-            });
+            {{--$('button').click(function () {--}}
+                {{--Notification.create(--}}
+                    {{--// 消息通知框的标题--}}
+                    {{--"Notification title",--}}
+                    {{--// 消息通知框的内容--}}
+                    {{--"Long text Long text Long text Long text.",--}}
+                    {{--// 图片--}}
+                    {{--"{{ asset('images/user.png') }}",--}}
+                    {{--// 效果--}}
+                    {{--"tada", 1, 3, function() {--}}
+                        {{--$("body").overhang({--}}
+                            {{--type: "error",--}}
+                            {{--message: "You could not be logged in at this time.",--}}
+                            {{--closeConfirm: "true"--}}
+                        {{--});--}}
+                    {{--}--}}
+                {{--);--}}
+            {{--});--}}
         })
     </script>
 @stop
