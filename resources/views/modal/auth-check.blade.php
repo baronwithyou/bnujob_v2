@@ -15,10 +15,10 @@
                             {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => '真实姓名或常用昵称']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::radio('register_type', 'mobile', true) !!} 用手机号注册
-                            {!! Form::radio('register_type', 'email') !!} 用Email注册
+                            {!! Form::radio('register_type', 'mobile', true, ['id' => 'mobile']) !!} {!! Form::label('mobile', '用手机号注册') !!}
+                            {!! Form::radio('register_type', 'email', false, ['id' => 'email']) !!} {!! Form::label('email', '用Email注册') !!}
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="register_type_show">
                             {!! Form::text('mobile', null, ['class' => 'form-control', 'placeholder' => '手机号(仅支持大陆手机号码)', 'style' => 'margin-bottom: 15px']) !!}
                             {!! Form::text('mobile-verify', null, ['class' => 'form-control', 'placeholder' => '短信验证码']) !!}
                         </div>
@@ -42,6 +42,13 @@
                         {!! Form::checkbox('remember_token', '1', true) !!} 记住登录状态
                         {!! Form::submit('登录', ['class' => 'btn btn-register pull-right']) !!}
                         {!! Form::close() !!}
+                        <div class="third-party">
+                            第三方登录:
+                            <a href="{{ route('auth', 'wechat') }}"><span class="fa fa-wechat fa-lg"></span></a>
+                            <a href="{{ route('auth', 'qq') }}"><span class="fa fa-qq fa-lg"></span></a>
+                            <a href=""><span class="fa fa-weibo fa-lg"></span></a>
+                            <a href=""><span class="fa fa-github fa-lg"></span></a>
+                        </div>
                     </div>
                 </div>
             </div>

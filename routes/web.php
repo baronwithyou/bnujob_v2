@@ -17,3 +17,5 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return view('test');
 });
+Route::get('auth/{service}', 'Auth\OAuthController@redirectToProvider')->name('auth');
+Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallback');

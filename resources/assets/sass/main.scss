@@ -162,5 +162,13 @@ body {
     display: inline-block;
     width: 48%;
     float: left;
+    .third-party {
+      margin-top: 60px;
+      a {
+        color: #636b6f;
+        text-decoration: none;
+        padding: 5px;
+      }
+    }
   }
 }

@@ -34,5 +34,20 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'weixin' => [
+        'client_id' => 'wxa68dbaa4030dc906',
+        'client_secret' => '10b491defdfde98b5c250f411f71ddaf',
+        'redirect' => 'http://local.bnujob.com/auth/wechat/callback'
+    ],
+    'weixinweb' => [
+        'client_id' => 'wx672d72141f65b24d',
+        'client_secret' => 'c270a451a93a9f22d7b041f232516040',
+        'redirect' => 'http://local.bnujob.com/auth/wechatweb/callback'
+    ],
+    'qq' => [
+        'client_id' => '100388677',
+        'client_secret' => '4182176aa9e4960d434758008a79d71c',
+        'redirect' => 'http://codepku.com/oauth/qq/callback',
+    ],
 
 ];

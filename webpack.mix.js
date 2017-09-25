@@ -25,6 +25,7 @@ mix.scripts([
     'resources/assets/js/constellation.js',
     'resources/assets/js/star-rating.min.js',
     'resources/assets/js/star-rating_locale_zh.js',
+    'resources/assets/js/main.js'
 ], 'public/js/all.js');
 
 mix.styles([

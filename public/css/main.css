@@ -197,3 +197,13 @@ body {
   float: left;
 }
 
+#auth-check .login-part .third-party {
+  margin-top: 60px;
+}
+
+#auth-check .login-part .third-party a {
+  color: #636b6f;
+  text-decoration: none;
+  padding: 5px;
+}
+
