@@ -83,8 +83,9 @@
                 <div class="right-area">
                     <a href="">
                         <p>前端开发实习生</p>
-                        <small>Github专卖店</small><small>上周六8点</small>
+                        <small>Github专卖店</small>
                     </a>
+                    <span class="label">上周六8点</span>
                 </div>
             </div>
             <div class="full-area">

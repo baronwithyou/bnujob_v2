@@ -117,7 +117,6 @@ body {
   height: 60px;
   display: block;
   position: relative;
-  border-left: 2px dotted #5eb1e7;
 }
 
 .welcome-recommend .full-area > .left-area {
@@ -145,6 +144,13 @@ body {
 .welcome-recommend .full-area > .right-area > a > small {
   padding: 0 5px;
   border-left: 1px solid #636b6f;
+}
+
+.welcome-recommend .full-area > .right-area > .label {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #5eb1e7;
 }
 
 .welcome-banner {
