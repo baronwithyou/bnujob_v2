@@ -20,7 +20,10 @@
                         </div>
                         <div class="form-group" id="register_type_show">
                             {!! Form::text('mobile', null, ['class' => 'form-control', 'placeholder' => '手机号(仅支持大陆手机号码)', 'style' => 'margin-bottom: 15px']) !!}
-                            {!! Form::text('mobile-verify', null, ['class' => 'form-control', 'placeholder' => '短信验证码']) !!}
+                            <div class="input-group">
+                                {!! Form::text('mobile-verify', null, ['class' => 'form-control', 'placeholder' => '短信验证码']) !!}
+                                <span class="input-group-addon" id="basic-addon2"><a href="">获取验证码</a></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             {!! Form::label('password', '密码') !!}
@@ -44,7 +47,7 @@
                         {!! Form::close() !!}
                         <div class="third-party">
                             第三方登录:
-                            <a href="{{ route('auth', 'wechat') }}"><span class="fa fa-wechat fa-lg"></span></a>
+                            <a href="{{ route('auth', 'weixin') }}"><span class="fa fa-wechat fa-lg"></span></a>
                             <a href="{{ route('auth', 'qq') }}"><span class="fa fa-qq fa-lg"></span></a>
                             <a href=""><span class="fa fa-weibo fa-lg"></span></a>
                             <a href=""><span class="fa fa-github fa-lg"></span></a>

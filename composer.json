@@ -11,8 +11,11 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
-        "socialiteproviders/weixin": "^4.0",
-        "socialiteproviders/weixin-web": "^3.0"
+        "socialiteproviders/manager": "2.1.2",
+        "socialiteproviders/weibo": "2.0.1",
+        "socialiteproviders/qq": "2.0.3",
+        "socialiteproviders/weixin-web": "2.0.1",
+        "socialiteproviders/weixin": "2.1.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

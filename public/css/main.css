@@ -11,12 +11,8 @@ body {
   font-family: PingFangSC-Light,-apple-system,PingFang SC,Helvetica Neue,Helvetica,Microsoft YaHei,Arial,sans-serif;
 }
 
-.container {
-  width: 85%;
-}
-
 .app-red-top {
-  height: 2px;
+  height: 3px;
   background: #c12838;
 }
 
@@ -102,6 +98,53 @@ body {
 
 .welcome-recommend {
   margin-top: 20px;
+}
+
+.welcome-recommend > .img-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.welcome-recommend hr {
+  margin: 5px 0 0 0;
+}
+
+.welcome-recommend .full-area {
+  margin-top: 2px;
+  padding-top: 5px;
+  height: 60px;
+  display: block;
+  position: relative;
+  border-left: 2px dotted #5eb1e7;
+}
+
+.welcome-recommend .full-area > .left-area {
+  float: left;
+  height: 100%;
+  display: inline-block;
+  padding: 5px 15px 5px 15px;
+}
+
+.welcome-recommend .full-area > .left-area img {
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+
+.welcome-recommend .full-area > .right-area {
+  display: inline-block;
+  float: left;
+}
+
+.welcome-recommend .full-area > .right-area > a {
+  color: #636b6f;
+}
+
+.welcome-recommend .full-area > .right-area > a > small {
+  padding: 0 5px;
+  border-left: 1px solid #636b6f;
 }
 
 .welcome-banner {
@@ -205,5 +248,10 @@ body {
   color: #636b6f;
   text-decoration: none;
   padding: 5px;
+}
+
+.input-group .input-group-addon > a {
+  text-decoration: none;
+  color: #2a2a2a;
 }
 

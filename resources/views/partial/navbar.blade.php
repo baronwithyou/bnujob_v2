@@ -33,8 +33,8 @@
                     </ul>
                 </li>
                 @else
-                    <li><a href="" class="btn btn-default">立即登录</a></li>
-                    <li><a href="#" class="btn btn-info">免费注册</a></li>
+                    <li><a href="#auth-check" data-toggle="modal" class="btn btn-default">立即登录</a></li>
+                    <li><a href="#auth-check" data-toggle="modal" class="btn btn-info">免费注册</a></li>
                 @endif
             </ul>
 

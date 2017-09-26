@@ -8,12 +8,12 @@ use App\Http\Controllers\Controller;
 
 class OAuthController extends Controller
 {
-    public function redirectToProvider(Request $request,$service)
+    public function redirectToProvider(Request $request, $service)
     {
         return Socialite::driver($service)->redirect();
     }
 
-    public function handleProviderCallback(Request $request,$service)
+    public function handleProviderCallback(Request $request, $service)
     {
         $user = Socialite::driver($service)->user();
         dd($user);

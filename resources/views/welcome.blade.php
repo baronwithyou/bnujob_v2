@@ -72,9 +72,32 @@
     </div>
     <div class="col-md-3">
         <div class="welcome-recommend">
-            <span class="h4"><span class="fa fa-heart-o"></span> Part-time 推荐</span>
+            <span class="fa fa-heart-o"></span> Part-time 推荐
             <span class="pull-right"><a href="" class="more">more <span class="fa fa-angle-double-right"></span></a></span>
-            <hr style="margin-top: 5px;">
+            {{--<hr>--}}
+            <div class="full-area">
+                {{--<img src="{{ asset('img/sun-shine.png') }}" class="img-icon" alt="">--}}
+                <div class="left-area">
+                    <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                </div>
+                <div class="right-area">
+                    <a href="">
+                        <p>前端开发实习生</p>
+                        <small>Github专卖店</small><small>上周六8点</small>
+                    </a>
+                </div>
+            </div>
+            <div class="full-area">
+                <div class="left-area">
+                    <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                </div>
+                <div class="right-area">
+                    <a href="">
+                        <p>前端开发实习生</p>
+                        <small>Github专卖店</small><small>上周六8点</small>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 @stop

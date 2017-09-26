@@ -4078,7 +4078,7 @@ $(function () {
             $('#register_type_show').html('<input type="email" name="email" id="" placeholder="hacker@bnu.com" class="form-control">');
         } else {
             $('#register_type_show').html('<input type="text" name="mobile" id="" placeholder="手机号(仅支持大陆手机号码)" style="margin-bottom: 15px;" class="form-control">' +
-                '<input type="text" name="mobile-verify" id="" placeholder="短信验证码" class="form-control">');
+                '<div class="input-group"><input type="text" name="mobile-verify" id="" placeholder="短信验证码" class="form-control"><span class="input-group-addon" id="basic-addon2"><a href="">获取验证码</a></span></div>');
         }
     })
 });

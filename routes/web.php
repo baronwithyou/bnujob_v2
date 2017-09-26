@@ -11,11 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/test', function () {
-    return view('test');
-});
+Route::get('/', 'IndexController@index');
 Route::get('auth/{service}', 'Auth\OAuthController@redirectToProvider')->name('auth');
 Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallback');

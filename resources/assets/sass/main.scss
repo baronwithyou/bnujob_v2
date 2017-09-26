@@ -7,11 +7,8 @@ body {
   background: #fff;
   font-family: PingFangSC-Light,-apple-system,PingFang SC,Helvetica Neue,Helvetica,Microsoft YaHei,Arial,sans-serif;
 }
-.container {
-  width: 85%;
-}
 .app-red-top {
-  height: 2px;
+  height: 3px;
   background: #c12838;
 }
 .navbar-default {
@@ -83,6 +80,45 @@ body {
 }
 .welcome-recommend {
   margin-top: 20px;
+  > .img-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  hr {
+    margin: 5px 0 0 0;
+  }
+  .full-area {
+    margin-top: 2px;
+    padding-top: 5px;
+    height: 60px;
+    display: block;
+    position: relative;
+    border-left: 2px dotted #5eb1e7;
+    > .left-area {
+      float: left;
+      height: 100%;
+      display: inline-block;
+      padding: 5px 15px 5px 15px;
+      img {
+        float: left;
+        height: 40px;
+        width: 40px;
+      }
+    }
+    > .right-area {
+      display: inline-block;
+      float: left;
+      > a  {
+        color: #636b6f;
+        > small {
+          padding: 0 5px;
+          border-left: 1px solid #636b6f;
+        }
+      }
+    }
+  }
 }
 
 .welcome-banner {
@@ -169,6 +205,14 @@ body {
         text-decoration: none;
         padding: 5px;
       }
+    }
+  }
+}
+.input-group {
+  .input-group-addon {
+    > a {
+      text-decoration: none;
+      color: #2a2a2a;
     }
   }
 }

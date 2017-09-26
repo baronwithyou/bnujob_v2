@@ -18,7 +18,10 @@
             {!! Form::text('mobile', null, ['class' => 'form-control', 'placeholder' => '手机号(仅支持大陆手机号码)']) !!}
         </div>
         <div class="form-group">
-            {!! Form::text('mobile-verify', null, ['class' => 'form-control', 'placeholder' => '短信验证码']) !!}
+            <div class="input-group">
+                {!! Form::text('mobile-verify', null, ['class' => 'form-control', 'placeholder' => '短信验证码']) !!}
+                <span class="input-group-addon" id="basic-addon2"><a href="">获取验证码</a></span>
+            </div>
         </div>
         <div class="form-group">
             {!! Form::password('password', ['class' => 'form-control', 'placeholder' => '密码(不少于六位)']) !!}
