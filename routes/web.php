@@ -14,3 +14,6 @@
 Route::get('/', 'IndexController@index');
 Route::get('auth/{service}', 'Auth\OAuthController@redirectToProvider')->name('auth');
 Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallback');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
