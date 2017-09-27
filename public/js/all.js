@@ -4081,5 +4081,4 @@ $(function () {
                 '<div class="input-group"><input type="text" name="mobile-verify" id="" placeholder="短信验证码" class="form-control"><span class="input-group-addon" id="basic-addon2"><a href="">获取验证码</a></span></div>');
         }
     });
-    $('.navbar-default').smint();
 });

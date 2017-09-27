@@ -1,7 +1,6 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/main.css": "/css/main.css",
-    "/js/all.js": "/js/all.js",
-    "/css/all.css": "/css/all.css"
+    "/js/app.js": "/js/app.js?id=424ccb331f37fb69f8d2",
+    "/css/app.css": "/css/app.css?id=7501ca5ea7e127c5294b",
+    "/js/all.js": "/js/all.js?id=b69eff917ddf609e8810",
+    "/css/all.css": "/css/all.css?id=b3ea0156f919b00f82a7"
 }
