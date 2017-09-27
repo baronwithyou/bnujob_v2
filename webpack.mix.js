@@ -12,8 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-    .sass('resources/assets/sass/main.scss', 'public/css');
+   .sass('resources/assets/sass/app.scss', 'public/css').version();
 
 mix.scripts([
     // 头像提醒
@@ -33,13 +32,12 @@ mix.styles([
     'resources/assets/css/notification.css',
     'resources/assets/css/jquery-ui.min.css',
     'resources/assets/css/overhang.min.css',
-    // 'resources/assets/css/main.css',
     'resources/assets/css/crowd.css',
     'resources/assets/css/star-rating.min.css',
     'resources/assets/css/font-awesome.min.css',
-], 'public/css/all.css');
+], 'public/css/all.css').version();
 
 
-if (mix.inProduction) {
-    mix.version();
-}
+// if (mix.inProduction) {
+//     mix.version();
+// }
