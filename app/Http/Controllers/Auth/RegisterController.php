@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -27,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -47,11 +49,21 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        if (isset($data['email'])) {
+            $validate = Validator::make($data, [
+                'name' => 'required|string|max:255|unique:users',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6|confirmed',
+            ]);
+        } else if (isset($data['mobile'])) {
+            $validate = Validator::make($data, [
+                'name' => 'required|string|max:255|unique:users',
+                'mobile' => 'required|unique:users|is_mobile',
+                'verify_code' => 'required',
+                'password' => 'required|string|min:6',
+            ]);
+        }
+        return $validate;
     }
 
     /**
@@ -62,10 +74,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        if (isset($data['email'])) {
+            $user =  User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'confirmation_token' => str_random(40),
+                'active' => 0
+            ]);
+        } else if (isset($data['mobile'])) {
+            $user =  User::create([
+                'name' => $data['name'],
+                'mobile' => $data['mobile'],
+                'password' => bcrypt($data['password']),
+            ]);
+        }
+        return $user;
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        $data = $request->all();
+        if (isset($data['mobile'])) {
+            return redirect()->back()->with('success', '注册成功');
+        } else if ($data['email']) {
+            return redirect()->back()->with('warning', '注册成功，请点击此验证你的邮箱');
+        }
     }
 }

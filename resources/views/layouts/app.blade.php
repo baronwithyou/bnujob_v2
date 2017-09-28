@@ -26,8 +26,8 @@
     {{--@yield('footer')--}}
     @include('partial.footer')
     @include('modal.auth-check')
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/all.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/all.js') }}"></script>
     @yield('javascripts')
 </body>
 </html>

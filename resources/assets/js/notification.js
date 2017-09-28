@@ -49,7 +49,7 @@ Notification = function () {
     var hide = function (id) {
         $(document).find('.notification-' + id).remove();
         number = number - 1;
-    };9
+    };
 
     var create = function (title, text, image, animation, position, delay, func) {
         var clickOrNot = 0;
@@ -58,7 +58,7 @@ Notification = function () {
         if (!delay) {
             delay = 3;
         }
-        $('.notification .dismiss').click(function () {
+        $('.notification .dismiss').on('click',function () {
             hide(notification.id);
             if (func) {
                 clickOrNot = 1;

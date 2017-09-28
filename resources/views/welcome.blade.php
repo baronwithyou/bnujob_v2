@@ -99,18 +99,30 @@
                     </a>
                 </div>
             </div>
+            <button class="btn btn-info">Click me</button>
         </div>
     </div>
 @stop
 
 @section('javascripts')
-    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    {{--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>--}}
     <script>
         $(function () {
-            $('.glyphicon-remove-circle').click(function () {
+            @if(session()->has('success'))
+                Notification.create(
+                // 消息通知框的标题
+                "{{ session('success') }}",
+                // 消息通知框的内容
+                "Long text Long text Long text Long text.",
+                // 图片
+                "{{ asset('images/user.png') }}",
+                // 效果
+                "tada", 1, 5);
+            @endif
+            $('.glyphicon-remove-circle').on('click', function () {
                 $('.welcome-banner').hide('normal');
             });
-            $('button').click(function () {
+            $('button').on('click', function () {
                 Notification.create(
                     // 消息通知框的标题
                     "Notification title",

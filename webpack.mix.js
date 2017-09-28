@@ -16,14 +16,14 @@ mix.js('resources/assets/js/app.js', 'public/js')
 
 mix.scripts([
     // 头像提醒
+    'resources/assets/js/jquery.min.js',
     'resources/assets/js/notification.js',
     'resources/assets/js/jquery-ui.min.js',
-    'resources/assets/js/jquery.smint.js',
     'resources/assets/js/overhang.min.js',
     // banner星座特效
     'resources/assets/js/constellation.js',
-    'resources/assets/js/star-rating.min.js',
-    'resources/assets/js/star-rating_locale_zh.js',
+    // 'resources/assets/js/star-rating.min.js',
+    // 'resources/assets/js/star-rating_locale_zh.js',
 ], 'public/js/all.js');
 
 mix.styles([

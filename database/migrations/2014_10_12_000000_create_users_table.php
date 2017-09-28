@@ -17,26 +17,26 @@ class CreateUsersTable extends Migration
             // 基础信息
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('real_name');
-            $table->string('nickname');
-            $table->string('email')->unique();
-            $table->string('mobile')->unique();
+            $table->string('real_name')->nullable();
+            $table->string('nickname')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('mobile')->unique()->nullable();
             $table->string('password');
-            $table->string('school');
-            $table->string('province');
-            $table->string('city');
-            $table->string('company');
-            $table->string('website');
-            $table->timestamp('birthday');
-            $table->string('gender')->comment('男 = F, 女 = M');
-            $table->smallInteger('age');
-            $table->string('grade')->comment('所在年级');
-            $table->string('abstract')->comment('个人简介');
-            $table->string('wechat');
+            $table->string('school')->nullable();
+            $table->string('province')->nullable();
+            $table->string('city')->nullable();
+            $table->string('company')->nullable();
+            $table->string('website')->nullable();
+            $table->timestamp('birthday')->nullable();
+            $table->string('gender')->nullable()->comment('男 = F, 女 = M');
+            $table->smallInteger('age')->nullable();
+            $table->string('grade')->nullable()->comment('所在年级');
+            $table->string('abstract')->nullable()->comment('个人简介');
+            $table->string('wechat')->nullable();
 
             // 其他信息
-            $table->integer('role')->comment('用户角色 学生 = 1, 商家 = 2, 管理员 = 7');
-            $table->string('confirmation_token')->comment('用于激活邮箱');
+            $table->integer('role')->default(1)->comment('用户角色 学生 = 1, 商家 = 2, 管理员 = 7');
+            $table->string('confirmation_token')->nullable()->comment('用于激活邮箱');
             $table->smallInteger('status')->default(1)->comment('用户状态 开 = 1, 关 = 0');
             $table->smallInteger('store_show')->default(1)->comment('商家能否看到');
             $table->smallInteger('is_active')->default(0)->comment('邮箱是否激活');
@@ -48,7 +48,7 @@ class CreateUsersTable extends Migration
             $table->integer('followings_count')->default(0)->comment('关注数');
             $table->integer('followers_count')->default(0)->comment('粉丝数');
 
-            $table->json('config');
+            $table->json('config')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
