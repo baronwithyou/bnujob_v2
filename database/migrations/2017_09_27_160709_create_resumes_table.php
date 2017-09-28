@@ -15,6 +15,7 @@ class CreateResumesTable extends Migration
     {
         Schema::create('resumes', function (Blueprint $table) {
             $table->increments('id');
+
             $table->timestamps();
         });
     }

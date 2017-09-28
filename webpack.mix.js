@@ -24,7 +24,6 @@ mix.scripts([
     'resources/assets/js/constellation.js',
     'resources/assets/js/star-rating.min.js',
     'resources/assets/js/star-rating_locale_zh.js',
-    'resources/assets/js/main.js'
 ], 'public/js/all.js');
 
 mix.styles([
@@ -36,8 +35,3 @@ mix.styles([
     'resources/assets/css/star-rating.min.css',
     'resources/assets/css/font-awesome.min.css',
 ], 'public/css/all.css').version();
-
-
-// if (mix.inProduction) {
-//     mix.version();
-// }

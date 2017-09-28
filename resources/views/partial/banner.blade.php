@@ -10,12 +10,17 @@
         <p>我们坚信，你有无数个加入我们的理由！</p>
     </div>
     <div class="banner-form">
-        {!! Form::open() !!}
-        <div class="form-group">
+        {!! Form::open([]) !!}
+        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
             {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => '真实姓名或常用昵称']) !!}
+            @if($errors->has('name'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="form-group">
-            {!! Form::text('mobile', null, ['class' => 'form-control', 'placeholder' => '手机号(仅支持大陆手机号码)']) !!}
+            {!! Form::text('mobile', null, ['class' => 'form-control', 'placeholder' => '手机号(仅支持大陆手机号码)', 'v-validate' => 'required']) !!}
         </div>
         <div class="form-group">
             <div class="input-group">

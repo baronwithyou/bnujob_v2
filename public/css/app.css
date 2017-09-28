@@ -61,7 +61,7 @@ body {
 }
 
 .navbar-default .navbar-nav > .active > a {
-  background: #f8d615;
+  background: #f8d615 !important;
 }
 
 .navbar-default .navbar-nav > .active > a:hover {
@@ -169,7 +169,7 @@ body {
 .welcome-banner .banner-form {
   width: 280px;
   position: absolute;
-  right: 150px;
+  right: 20%;
   top: 50px;
   z-index: 10;
 }
@@ -186,11 +186,11 @@ body {
 .welcome-banner .banner-text {
   position: absolute;
   top: 50px;
-  left: 150px;
+  left: 20%;
 }
 
 .welcome-banner .banner-text > h4 {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .welcome-banner .banner-text > p {
@@ -235,9 +235,10 @@ body {
 }
 
 #auth-check .auth-part {
+  display: block;
   width: 100%;
   height: 350px;
-  margin: 40px 0;
+  margin: 20px 0 40px;
 }
 
 #auth-check .register-part {
@@ -265,9 +266,24 @@ body {
   padding: 5px;
 }
 
+.input-group .input-group-addon {
+  background: #fff;
+}
+
 .input-group .input-group-addon > a {
   text-decoration: none;
   color: #2a2a2a;
+}
+
+.modal-content > .modal-header {
+  background: #5eb1e7;
+  color: #fff;
+}
+
+.modal-content > .modal-body {
+  height: 100%;
+  display: block;
+  position: relative;
 }
 
 /*!

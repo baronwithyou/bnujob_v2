@@ -16,6 +16,8 @@ body {
   height: 3px;
   background: #c12838;
 }
+
+// 导航栏
 .navbar-default {
   height: 100px;
   -moz-box-shadow: 1px 1px 5px #777; /* 老的 Firefox */
@@ -49,7 +51,7 @@ body {
       }
     }
     >.active > a{
-      background: #f8d615;
+      background: #f8d615 !important;
     }
     >.active > a:hover{
       background: #f8d615;
@@ -61,6 +63,8 @@ body {
     border: 0;
   }
 }
+
+// 首页的地区选择
 .welcome-table-nav {
   margin-top: 20px;
   padding-bottom: 5px;
@@ -88,6 +92,8 @@ body {
 .more:hover {
   text-decoration: none;
 }
+
+// 首页推荐
 .welcome-recommend {
   margin-top: 20px;
   > .img-icon {
@@ -137,12 +143,13 @@ body {
   }
 }
 
+// 首页banner
 .welcome-banner {
   max-height: 320px;
   .banner-form {
     width: 280px;
     position: absolute;
-    right: 150px;
+    right: 20%;
     top: 50px;
     z-index: 10;
   }
@@ -157,20 +164,24 @@ body {
   .banner-text {
     position: absolute;
     top: 50px;
-    left: 150px;
+    left: 20%;
     > h4 {
-      margin-top: 20px;
+      margin-top: 50px;
     }
     > p {
       margin-top: 30px;
     }
   }
 }
+
+// 注册按钮 同意黄色
 .btn-register {
   padding: 1px 5px;
   color: #636b6f;
   background: #f8d615;
 }
+
+// 首页商家基础信息布局
 .welcome-store {
   min-height: 100px;
   width: 100%;
@@ -196,11 +207,14 @@ body {
 .rating-all {
   display: inline-block;
 }
+
+// 用户登录注册modal框
 #auth-check {
   .auth-part {
+    display: block;
     width: 100%;
     height: 350px;
-    margin: 40px 0;
+    margin: 20px 0 40px;
   }
   .register-part {
     display: inline-block;
@@ -224,11 +238,25 @@ body {
     }
   }
 }
+
 .input-group {
   .input-group-addon {
+    background: #fff;
     > a {
       text-decoration: none;
       color: #2a2a2a;
     }
+  }
+}
+
+.modal-content {
+  > .modal-header {
+    background: #5eb1e7;
+    color: #fff;
+  }
+  > .modal-body {
+    height: 100%;
+    display: block;
+    position: relative;
   }
 }

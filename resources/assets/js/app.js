@@ -7,6 +7,13 @@
 
 require('./bootstrap');
 
+require('./main');
+
+import Vue from 'vue';
+import VeeValidate from 'vee-validate';
+
+Vue.use(VeeValidate);
+
 window.Vue = require('vue');
 
 /**

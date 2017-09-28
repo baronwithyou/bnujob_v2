@@ -23,7 +23,8 @@
     <div class="container">
         @yield('content')
     </div>
-    @yield('footer')
+    {{--@yield('footer')--}}
+    @include('partial.footer')
     @include('modal.auth-check')
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/all.js') }}"></script>
