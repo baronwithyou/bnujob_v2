@@ -122,24 +122,24 @@
             $('.glyphicon-remove-circle').on('click', function () {
                 $('.welcome-banner').hide('normal');
             });
-            $('button').on('click', function () {
-                Notification.create(
-                    // 消息通知框的标题
-                    "Notification title",
-                    // 消息通知框的内容
-                    "Long text Long text Long text Long text.",
-                    // 图片
-                    "{{ asset('images/user.png') }}",
-                    // 效果
-                    "tada", 1, 3, function() {
-                        $("body").overhang({
-                            type: "error",
-                            message: "You could not be logged in at this time.",
-                            closeConfirm: "true"
-                        });
-                    }
-                );
-            });
+            {{--$('button').on('click', function () {--}}
+                {{--Notification.create(--}}
+                    {{--// 消息通知框的标题--}}
+                    {{--"Notification title",--}}
+                    {{--// 消息通知框的内容--}}
+                    {{--"Long text Long text Long text Long text.",--}}
+                    {{--// 图片--}}
+                    {{--"{{ asset('images/user.png') }}",--}}
+                    {{--// 效果--}}
+                    {{--"tada", 1, 3, function() {--}}
+                        {{--$("body").overhang({--}}
+                            {{--type: "error",--}}
+                            {{--message: "You could not be logged in at this time.",--}}
+                            {{--closeConfirm: "true"--}}
+                        {{--});--}}
+                    {{--}--}}
+                {{--);--}}
+            {{--});--}}
         })
     </script>
 @stop

@@ -1,4 +1,35 @@
 $(function () {
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        }
+    });
+
+    $('#register-form').on('submit', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var data = $this.serialize();
+        $.ajax({
+            url: '/register',
+            type: 'POST',
+            data: data,
+            dataType: 'json',
+            success: function (result) {
+
+            },
+            error: function (msg) {
+                msg = JSON.parse(msg.responseText);
+                for (var i in msg['errors']) {
+                    var validate = $this.find('.validate-' + i);
+                    validate.addClass('has-error');
+                }
+                // console.log(msg['errors']);
+            }
+        });
+    });
+
+
     $("input[name='register_type']").on('click', function () {
         var $this = $("input[name='register_type']:checked");
         if ('email' === $this.val()) {
@@ -8,4 +39,6 @@ $(function () {
                 '<div class="input-group"><input type="text" name="mobile-verify" id="" placeholder="短信验证码" class="form-control"><span class="input-group-addon" id="basic-addon2"><a href="">获取验证码</a></span></div>');
         }
     });
+
+
 });

@@ -48760,7 +48760,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/Example.vue"
+Component.options.__file = "resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -48789,6 +48789,34 @@ module.exports = Component.exports
 /***/ (function(module, exports) {
 
 $(function () {
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        }
+    });
+
+    $('#register-form').on('submit', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var data = $this.serialize();
+        $.ajax({
+            url: '/register',
+            type: 'POST',
+            data: data,
+            dataType: 'json',
+            success: function success(result) {},
+            error: function error(msg) {
+                msg = JSON.parse(msg.responseText);
+                for (var i in msg['errors']) {
+                    var validate = $this.find('.validate-' + i);
+                    validate.addClass('has-error');
+                }
+                // console.log(msg['errors']);
+            }
+        });
+    });
+
     $("input[name='register_type']").on('click', function () {
         var $this = $("input[name='register_type']:checked");
         if ('email' === $this.val()) {

@@ -13,6 +13,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
+        "naux/sendcloud": "^1.1",
+        "overtrue/laravel-lang": "~3.0",
         "socialiteproviders/manager": "^3.2"
     },
     "require-dev": {

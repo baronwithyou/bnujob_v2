@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\UserRepository;
 use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
@@ -36,9 +37,10 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $repository)
     {
         $this->middleware('guest');
+        $this->repository = $repository;
     }
 
     /**
@@ -55,10 +57,10 @@ class RegisterController extends Controller
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:6|confirmed',
             ]);
-        } else if (isset($data['mobile'])) {
+        } else {
             $validate = Validator::make($data, [
                 'name' => 'required|string|max:255|unique:users',
-                'mobile' => 'required|unique:users|is_mobile',
+                'mobile' => 'required|is_mobile|unique:users',
                 'verify_code' => 'required',
                 'password' => 'required|string|min:6',
             ]);
@@ -74,31 +76,44 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $attr = [
+            'name' => $data['name'],
+            'password' => bcrypt($data['password']),
+            'confirmation_token' => str_random(40),
+            'active' => 0
+        ];
         if (isset($data['email'])) {
-            $user =  User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-                'confirmation_token' => str_random(40),
-                'active' => 0
-            ]);
-        } else if (isset($data['mobile'])) {
-            $user =  User::create([
-                'name' => $data['name'],
-                'mobile' => $data['mobile'],
-                'password' => bcrypt($data['password']),
-            ]);
+            $attr[] = ['email' => $data['email']];
+        } else {
+            $attr[] = ['mobile' => $data['mobile']];
         }
-        return $user;
+        return $this->repository->create($attr);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        // 验证输入的验证码和实际验证码是否匹配
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        if ($request->ajax()) {
+            echo "来自原始register controller";
+            return;
+        }
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
     }
 
     protected function registered(Request $request, $user)
     {
         $data = $request->all();
-        if (isset($data['mobile'])) {
-            return redirect()->back()->with('success', '注册成功');
-        } else if ($data['email']) {
+        if (isset($data['email'])) {
             return redirect()->back()->with('warning', '注册成功，请点击此验证你的邮箱');
+        } else {
+            return redirect()->back()->with('success', '注册成功');
         }
     }
 }

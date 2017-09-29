@@ -17,3 +17,4 @@ Route::resource('user', 'UserController');
 Route::get('auth/{service}', 'Auth\OAuthController@redirectToProvider')->name('auth');
 Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallback');
 
+Route::post('/register_ajax', 'AuthController@registerByAjax')->name('register.ajax');

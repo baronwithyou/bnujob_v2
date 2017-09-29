@@ -29,7 +29,11 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">个人中心</a></li>
                         <li><a href="#">兼职状态</a></li>
-                        <li><a href="#">登出</a></li>
+                        <li>
+                            {!! Form::open(['route' => 'logout']) !!}
+                                {!! Form::submit('登出', ['class' => 'list-like']) !!}
+                            {!! Form::close() !!}
+                        </li>
                     </ul>
                 </li>
                 @else

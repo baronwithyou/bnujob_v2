@@ -15,25 +15,25 @@
             {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => '真实姓名或常用昵称']) !!}
             @if($errors->has('name'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
+                    <strong>{{ $errors->first('name') }}</strong>
                 </span>
             @endif
         </div>
         <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
             {!! Form::text('mobile', null, ['class' => 'form-control', 'placeholder' => '手机号(仅支持大陆手机号码)', 'v-validate' => 'required']) !!}
-            @if($errors->has('mobile'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('mobile') }}</strong>
-                </span>
-            @endif
         </div>
-        <div class="form-group{{ $errors->has('verify_code') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('verify_code') || $errors->has('mobile') ? ' has-error' : '' }}">
             <div class="input-group">
                 {!! Form::text('verify_code', null, ['class' => 'form-control', 'placeholder' => '短信验证码']) !!}
                 <span class="input-group-addon" id="basic-addon2"><a href="">获取验证码</a></span>
             </div>
+            @if($errors->has('mobile'))
+                <span class="help-block span-inline">
+                    <strong>{{ $errors->first('mobile') }}</strong>
+                </span>
+            @endif
             @if($errors->has('verify_code'))
-                <span class="help-block">
+                <span class="help-block span-inline">
                     <strong>{{ $errors->first('verify_code') }}</strong>
                 </span>
             @endif
@@ -50,5 +50,4 @@
             {!! Form::submit('注册', ['class' => 'btn btn-register pull-right']) !!}
         {!! Form::close() !!}
     </div>
-
 </header>

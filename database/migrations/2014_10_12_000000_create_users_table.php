@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('school')->nullable();
             $table->string('province')->nullable();
             $table->string('city')->nullable();
+            $table->string('address')->nullable();
             $table->string('company')->nullable();
             $table->string('website')->nullable();
             $table->timestamp('birthday')->nullable();
@@ -40,13 +41,15 @@ class CreateUsersTable extends Migration
             $table->smallInteger('status')->default(1)->comment('用户状态 开 = 1, 关 = 0');
             $table->smallInteger('store_show')->default(1)->comment('商家能否看到');
             $table->smallInteger('is_active')->default(0)->comment('邮箱是否激活');
-            $table->integer('credit')->default(0)->comment('声望 可通过评论、投递简历等来增加');
+            $table->integer('reputation')->default(0)->comment('声望 可通过评论、投递简历等来增加');
             $table->integer('delivers_count')->default(0)->comment('投递简历数');
             $table->integer('collects_count')->default(0)->comment('收藏数');
             $table->integer('comments_count')->default(0)->comment('评论次数');
             $table->integer('likes_count')->default(0)->comment('点赞次数');
             $table->integer('followings_count')->default(0)->comment('关注数');
             $table->integer('followers_count')->default(0)->comment('粉丝数');
+            $table->integer('primary_resume_id')->nullable()->comment('默认简历');
+            $table->string('credit_id')->nullable()->comment('实名认证之后才可注册商家账号');
 
             $table->json('config')->nullable();
             $table->rememberToken();

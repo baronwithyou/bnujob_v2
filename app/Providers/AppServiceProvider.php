@@ -16,8 +16,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Validator::extend('is_mobile', function ($attribute, $value, $parameters, $validator) {
-            return !Helpers::isMobile($value);
-        });
+            return Helpers::isMobile($value);
+        }, '手机号格式不正确');
     }
 
     /**
