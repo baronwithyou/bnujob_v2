@@ -183,17 +183,34 @@ body {
 }
 
 .welcome-banner {
-  max-height: 340px;
+  max-height: 330px;
 }
 
-.welcome-banner .banner-form {
-  padding: 25px 0;
-  max-height: 100%;
-  width: 320px;
+.welcome-banner > .float-area {
   position: absolute;
-  right: 20%;
+  width: 80%;
+  top: 0;
   z-index: 10;
   overflow: hidden;
+  left: 12%;
+  height: 100%;
+}
+
+.welcome-banner > .float-area > .banner-text {
+  padding-top: 40px;
+}
+
+.welcome-banner > .float-area > .banner-text > h4 {
+  margin-top: 50px;
+}
+
+.welcome-banner > .float-area > .banner-text > p {
+  margin-top: 30px;
+}
+
+.welcome-banner > .float-area > .banner-form {
+  height: 100%;
+  padding: 20px;
 }
 
 .welcome-banner > span {
@@ -203,20 +220,6 @@ body {
   top: 15px;
   position: absolute;
   z-index: 1;
-}
-
-.welcome-banner .banner-text {
-  position: absolute;
-  top: 50px;
-  left: 20%;
-}
-
-.welcome-banner .banner-text > h4 {
-  margin-top: 50px;
-}
-
-.welcome-banner .banner-text > p {
-  margin-top: 30px;
 }
 
 .btn-register {

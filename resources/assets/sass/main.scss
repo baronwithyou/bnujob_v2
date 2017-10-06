@@ -163,15 +163,28 @@ body {
 
 // 首页banner
 .welcome-banner {
-  max-height: 340px;
-  .banner-form {
-    padding: 25px 0;
-    max-height: 100%;
-    width: 320px;
+  max-height: 330px;
+  >.float-area {
     position: absolute;
-    right: 20%;
+    width: 80%;
+    top: 0;
     z-index: 10;
     overflow: hidden;
+    left: 12%;
+    height: 100%;
+    >.banner-text {
+      padding-top: 40px;
+        > h4 {
+          margin-top: 50px;
+        }
+        > p {
+          margin-top: 30px;
+        }
+    }
+    >.banner-form {
+      height: 100%;
+      padding: 20px;
+    }
   }
   > span {
     font-size: 20px;
@@ -180,17 +193,6 @@ body {
     top: 15px;
     position: absolute;
     z-index: 1;
-  }
-  .banner-text {
-    position: absolute;
-    top: 50px;
-    left: 20%;
-    > h4 {
-      margin-top: 50px;
-    }
-    > p {
-      margin-top: 30px;
-    }
   }
 }
 

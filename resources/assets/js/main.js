@@ -5,29 +5,34 @@ $(function () {
             'X-CSRF-TOKEN': csrfToken
         }
     });
+    Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 
-    $('#register-form').on('submit', function (e) {
-        e.preventDefault();
-        var $this = $(this);
-        var data = $this.serialize();
-        $.ajax({
-            url: '/register',
-            type: 'POST',
-            data: data,
-            dataType: 'json',
-            success: function (result) {
-
-            },
-            error: function (msg) {
-                msg = JSON.parse(msg.responseText);
-                for (var i in msg['errors']) {
-                    var validate = $this.find('.validate-' + i);
-                    validate.addClass('has-error');
-                }
-                // console.log(msg['errors']);
-            }
-        });
-    });
+    // var error_arr = ['name', 'verify_code', 'mobile', 'password'];
+    // $('#register-form').on('submit', function (e) {
+    //     e.preventDefault();
+    //     var $this = $(this);
+    //     var data = $this.serialize();
+    //     $.ajax({
+    //         url: '/register',
+    //         type: 'POST',
+    //         data: data,
+    //         dataType: 'json',
+    //         success: function (result) {
+    //
+    //         },
+    //         error: function (msg) {
+    //             msg = JSON.parse(msg.responseText);
+    //             var errors = msg.errors;
+    //             console.log(errors);
+    //             $.each(errors, function (i, val) {
+    //                 var validate = $this.find('.validate-' + i);
+    //                 validate.addClass('has-error');
+    //                 validate.find(".help-block strong").html(val);
+    //             });
+    //             console.log(error_arr);
+    //         }
+    //     });
+    // });
 
 
     $("input[name='register_type']").on('click', function () {

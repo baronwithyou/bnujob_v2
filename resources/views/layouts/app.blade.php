@@ -20,14 +20,14 @@
     @endif
     @yield('top')
 
-    <div class="container">
+    <div class="container" id="app">
         @yield('content')
+        @include('partial.footer')
+        @include('modal.auth-check')
     </div>
     {{--@yield('footer')--}}
-    @include('partial.footer')
-    @include('modal.auth-check')
-    <script src="{{ mix('js/app.js') }}"></script>
-    <script src="{{ mix('js/all.js') }}"></script>
-    @yield('javascripts')
 </body>
+<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/all.js') }}"></script>
+@yield('javascripts')
 </html>

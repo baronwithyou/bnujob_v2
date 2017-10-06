@@ -24,6 +24,10 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 
-// const app = new Vue({
-//     el: '#app'
-// });
+Vue.component('register-form', require('./components/RegisterForm.vue'));
+
+Vue.component('login-form', require('./components/LoginForm.vue'));
+
+const app = new Vue({
+    el: '#app'
+});
