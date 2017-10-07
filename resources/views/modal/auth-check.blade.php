@@ -6,20 +6,22 @@
                 <h4 class="modal-title">登录注册</h4>
             </div>
             <div class="modal-body">
-                <div class="auth-part">
-                    <div class="register-part">
-                        <h4>注册新账号</h4>
-                        <register-form></register-form>
-                    </div>
-                    <div class="login-part">
-                        <h4>登录</h4>
-                        <login-form></login-form>
-                        <div class="third-party">
-                            第三方登录:
-                            <a href="{{ route('auth', 'weixin') }}"><span class="fa fa-wechat fa-lg"></span></a>
-                            <a href="{{ route('auth', 'qq') }}"><span class="fa fa-qq fa-lg"></span></a>
-                            <a href=""><span class="fa fa-weibo fa-lg"></span></a>
-                            <a href=""><span class="fa fa-github fa-lg"></span></a>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 register-part">
+                            <h4>注册新账号</h4>
+                            <register-form></register-form>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>登录</h4>
+                            <login-form></login-form>
+                            <div class="third-party">
+                                第三方登录:
+                                <a href="{{ route('auth', 'weixin') }}"><span class="fa fa-wechat fa-lg"></span></a>
+                                <a href="{{ route('auth', 'qq') }}"><span class="fa fa-qq fa-lg"></span></a>
+                                <a href=""><span class="fa fa-weibo fa-lg"></span></a>
+                                <a href=""><span class="fa fa-github fa-lg"></span></a>
+                            </div>
                         </div>
                     </div>
                 </div>

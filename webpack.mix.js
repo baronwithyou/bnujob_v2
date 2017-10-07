@@ -22,8 +22,7 @@ mix.scripts([
     'resources/assets/js/overhang.min.js',
     // banner星座特效
     'resources/assets/js/constellation.js',
-    // 'resources/assets/js/star-rating.min.js',
-    // 'resources/assets/js/star-rating_locale_zh.js',
+    'resources/assets/js/jquery.smint.js',
 ], 'public/js/all.js');
 
 mix.styles([
@@ -34,4 +33,5 @@ mix.styles([
     'resources/assets/css/crowd.css',
     'resources/assets/css/star-rating.min.css',
     'resources/assets/css/font-awesome.min.css',
+    'resources/assets/css/search-form.css',
 ], 'public/css/all.css').version();

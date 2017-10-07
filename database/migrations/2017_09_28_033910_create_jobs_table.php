@@ -17,7 +17,8 @@ class CreateJobsTable extends Migration
             $table->increments('id');
             $table->integer('business_id')->unsigned();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->comment('工作描述');
+            $table->text('required')->comment('岗位需求');
             $table->decimal('salary', 5, 2);
 
             $table->string('contact')->commment('负责人联系方式');

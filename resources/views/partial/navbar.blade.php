@@ -9,13 +9,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">bnu <span style="color: #5eb1e7;">job</span></a>
+            <a class="navbar-brand" href="{{ route('index') }}">bnu <span style="color: #5eb1e7;">job</span></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">所有兼职 <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="{{ route('index') }}">所有兼职 <span class="sr-only">(current)</span></a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -47,6 +47,13 @@
                 <li><a href="">讨论区</a></li>
                 <li><a href="">二手市场</a></li>
             </ul>
+            <div class="search-wrapper">
+                <div class="input-holder">
+                    <input type="text" class="search-input" placeholder="Type to search" />
+                    <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+                </div>
+                <span class="close" onclick="searchToggle(this, event);"></span>
+            </div>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

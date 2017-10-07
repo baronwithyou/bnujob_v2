@@ -28,6 +28,12 @@ body {
     padding-left: 70px;
     font-size: 28px;
   }
+  //.navbar-form {
+  //  margin-top: 40px;
+  //  #welcome-search {
+  //    border-right: 0;
+  //  }
+  //}
   .navbar-nav {
     > li {
       margin-top: 33px;
@@ -205,22 +211,19 @@ body {
 
 // 首页商家基础信息布局
 .welcome-store {
+  overflow: hidden;
   min-height: 100px;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.7rem;
   border-bottom: 1px solid #e6e6e6;
-  .store-left {
-    display: inline-block;
-    width: 10%;
-  }
-  .store-right {
-    float: left;
-    display: inline-block;
-    width: 90%;
-    color: #000;
-    > p {
-      margin-top: 10px;
+  > a {
+    .h4 {
+      color: #000;
     }
+    color: #636b6f;
+  }
+  > a:hover {
+    color: #636b6f;
   }
 }
 .welcome-store:hover {
@@ -239,25 +242,10 @@ body {
       width: 100%;
       height: 460px;
     }
-  }
-  .register-part {
-    display: inline-block;
-    width: 48%;
-    float: left;
-    padding:0 40px;
-    border-right: 1px solid #e6e6e6;
-  }
-  .login-part {
-    padding:0 40px;
-    display: inline-block;
-    width: 48%;
-    float: left;
-    .third-party {
-      margin-top: 60px;
-      a {
-        color: #636b6f;
-        text-decoration: none;
-        padding: 5px;
+    .container-fluid {
+      margin: 20px 30px;
+      .register-part {
+        border-right: 1px solid #e6e6e6;
       }
     }
   }

@@ -5,12 +5,12 @@
         <div id="blachole"></div>
     </div>
     <div class="float-area row">
-        <div class="col-xs-6 col-md-5 col-md-offset-1 banner-text">
+        <div class="col-xs-12 col-md-5 col-md-offset-1 banner-text">
             <h2>北师人 Part-time 社区</h2>
             <h4>更安全方便的找到心仪的 Job</h4>
             <p>我们坚信，你有无数个加入我们的理由！</p>
         </div>
-        <div class="col-xs-6 col-md-5 banner-form">
+        <div class="hidden-xs col-md-5 banner-form">
             {!! Form::open(['route' => 'register', 'method' => 'post']) !!}
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => '真实姓名或常用昵称']) !!}

@@ -8,7 +8,7 @@
 @stop
 
 @section('content')
-    <div class="col-md-9">
+    <div class="col-xs-12 col-md-9">
         <div class="welcome-table-nav">
             <span class="fa fa-grav"></span> 所有商家
             <ul class="nav nav-pills pull-right">
@@ -21,46 +21,38 @@
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
                 <div class="welcome-store">
-                    <a href="">
-                        <div class="store-left">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
-                        </div>
-                        <div class="store-right">
-                            <span class="h4">Github 专卖店</span>
+                    <a href="{{ route('job', 1) }}">
+                        <div class="col-md-10">
+                            <span class="h4">外卖员</span><span class="pull-right">Github 专卖店</span>
                             <p>GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.</p>
+                            <small class="pull-right">地址：广东省珠海市</small>
+                        </div>
+                        <div class="hidden-xs col-md-2">
+                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
                 <div class="welcome-store">
-                    <a href="">
-                        <div class="store-left">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
-                        </div>
-                        <div class="store-right">
-                            <span class="h4">Github 专卖店</span>
+                    <a href="{{ route('job', 1) }}">
+                        <div class="col-md-10">
+                            <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
                             <p>GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.</p>
+                            <small class="pull-right">Github 专卖店</small>
+                        </div>
+                        <div class="hidden-xs col-md-2">
+                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
                 <div class="welcome-store">
-                    <a href="">
-                        <div class="store-left">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
-                        </div>
-                        <div class="store-right">
-                            <span class="h4">Github 专卖店</span>
+                    <a href="{{ route('job', 1) }}">
+                        <div class="col-md-10">
+                            <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
                             <p>GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.</p>
+                            <small class="pull-right">Github 专卖店</small>
                         </div>
-                    </a>
-                </div>
-                <div class="welcome-store">
-                    <a href="">
-                        <div class="store-left">
+                        <div class="hidden-xs col-md-2">
                             <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
-                        </div>
-                        <div class="store-right">
-                            <span class="h4">Github 专卖店</span><span class="h4" style="float: right; margin: 0; padding: 5px 10px;"><small>地址：广东省珠海市</small></span>
-                            <p>GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contr to over 29 million projects.</p>
                         </div>
                     </a>
                 </div>
@@ -70,11 +62,10 @@
             <div role="tabpanel" class="tab-pane" id="settings">...123123</div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="hidden-xs col-md-3">
         <div class="welcome-recommend">
             <span class="fa fa-heart-o"></span> Part-time 推荐
             <span class="pull-right"><a href="" class="more">more <span class="fa fa-angle-double-right"></span></a></span>
-            {{--<hr>--}}
             <div class="full-area">
                 {{--<img src="{{ asset('img/sun-shine.png') }}" class="img-icon" alt="">--}}
                 <div class="left-area">
@@ -99,13 +90,11 @@
                     </a>
                 </div>
             </div>
-            <button class="btn btn-info">Click me</button>
         </div>
     </div>
 @stop
 
 @section('javascripts')
-    {{--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>--}}
     <script>
         $(function () {
             @if(session()->has('success'))

@@ -12,9 +12,16 @@
 */
 
 Auth::routes();
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('index');
 Route::resource('user', 'UserController');
+Route::get('/job/{id}', 'IndexController@jobDetail')->name('job');
+
+
+
+
+
+
 Route::get('auth/{service}', 'Auth\OAuthController@redirectToProvider')->name('auth');
 Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallback');
 
-Route::post('/register_ajax', 'AuthController@registerByAjax')->name('register.ajax');
+//Route::post('/register_ajax', 'AuthController@registerByAjax')->name('register.ajax');

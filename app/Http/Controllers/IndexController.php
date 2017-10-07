@@ -15,8 +15,8 @@ class IndexController extends Controller
         return view('welcome');
     }
 
-    public function storeInfo($id)
+    public function jobDetail($id)
     {
-        return view('store');
+        return view('job');
     }
 }
