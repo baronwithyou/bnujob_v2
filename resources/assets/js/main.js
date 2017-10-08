@@ -34,7 +34,6 @@ $(function () {
     //     });
     // });
 
-
     $("input[name='register_type']").on('click', function () {
         var $this = $("input[name='register_type']:checked");
         if ('email' === $this.val()) {
@@ -45,7 +44,9 @@ $(function () {
         }
     });
 
-
+    $('.search-wrapper').tooltip({
+        content: '点击查询兼职信息'
+    });
 
 
 });

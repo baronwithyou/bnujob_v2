@@ -7,7 +7,7 @@ body {padding: 0px; margin:0px; background:url(../img/image.jpg) ; background-po
     -moz-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     top:50%;
-    left:50%;
+    left:60%;
 }
 .search-wrapper.active {}
 
@@ -17,8 +17,6 @@ body {padding: 0px; margin:0px; background:url(../img/image.jpg) ; background-po
     background: #fff;
     border-radius:6px;
     position: relative;
-    width:70px;
-    margin-left: 150px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
@@ -26,7 +24,7 @@ body {padding: 0px; margin:0px; background:url(../img/image.jpg) ; background-po
 .search-wrapper.active .input-holder {
     width:500px;
     background: #fff;
-    margin-left: 0;
+    margin-left: -400px;
     -webkit-transition: all .5s cubic-bezier(0.000, 0.105, 0.035, 1.570);
     -moz-transition: all .5s cubic-bezier(0.000, 0.105, 0.035, 1.570);
     transition: all .5s cubic-bezier(0.000, 0.105, 0.035, 1.570);

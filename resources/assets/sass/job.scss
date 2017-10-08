@@ -24,6 +24,10 @@
   ol {
     margin-left: 18px;
   }
+
+}
+
+.similar-job-detail {
   .similar-search {
     .panel-body {
       background: #5eb1e7;
@@ -45,5 +49,43 @@
         color: #fff;
       }
     }
+  }
+}
+
+.job-comment {
+  .comment-grade-btn {
+    display: inline-block;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 40px;
+    display: inline-block;
+    .btn-default {
+      display: block;
+      border: 0;
+      width: 100%;
+      padding: 0;
+    }
+  }
+}
+
+.comment-edit {
+  .btn-primary {
+    margin-top: 10px;
+  }
+}
+
+#job-comment-editor {
+  .w-e-toolbar {
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+  }
+  .w-e-text-container {
+    height: 200px !important;
+    -webkit-border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
   }
 }

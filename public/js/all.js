@@ -3835,201 +3835,34 @@ $(function () {
                 300)
     })
 });
+/*!
+ * clipboard.js v1.7.1
+ * https://zenorocha.github.io/clipboard.js
+ *
+ * Licensed MIT © Zeno Rocha
+ */
+!function(t){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var e;e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this,e.Clipboard=t()}}(function(){var t,e,n;return function t(e,n,o){function i(a,c){if(!n[a]){if(!e[a]){var l="function"==typeof require&&require;if(!c&&l)return l(a,!0);if(r)return r(a,!0);var s=new Error("Cannot find module '"+a+"'");throw s.code="MODULE_NOT_FOUND",s}var u=n[a]={exports:{}};e[a][0].call(u.exports,function(t){var n=e[a][1][t];return i(n||t)},u,u.exports,t,e,n,o)}return n[a].exports}for(var r="function"==typeof require&&require,a=0;a<o.length;a++)i(o[a]);return i}({1:[function(t,e,n){function o(t,e){for(;t&&t.nodeType!==i;){if("function"==typeof t.matches&&t.matches(e))return t;t=t.parentNode}}var i=9;if("undefined"!=typeof Element&&!Element.prototype.matches){var r=Element.prototype;r.matches=r.matchesSelector||r.mozMatchesSelector||r.msMatchesSelector||r.oMatchesSelector||r.webkitMatchesSelector}e.exports=o},{}],2:[function(t,e,n){function o(t,e,n,o,r){var a=i.apply(this,arguments);return t.addEventListener(n,a,r),{destroy:function(){t.removeEventListener(n,a,r)}}}function i(t,e,n,o){return function(n){n.delegateTarget=r(n.target,e),n.delegateTarget&&o.call(t,n)}}var r=t("./closest");e.exports=o},{"./closest":1}],3:[function(t,e,n){n.node=function(t){return void 0!==t&&t instanceof HTMLElement&&1===t.nodeType},n.nodeList=function(t){var e=Object.prototype.toString.call(t);return void 0!==t&&("[object NodeList]"===e||"[object HTMLCollection]"===e)&&"length"in t&&(0===t.length||n.node(t[0]))},n.string=function(t){return"string"==typeof t||t instanceof String},n.fn=function(t){return"[object Function]"===Object.prototype.toString.call(t)}},{}],4:[function(t,e,n){function o(t,e,n){if(!t&&!e&&!n)throw new Error("Missing required arguments");if(!c.string(e))throw new TypeError("Second argument must be a String");if(!c.fn(n))throw new TypeError("Third argument must be a Function");if(c.node(t))return i(t,e,n);if(c.nodeList(t))return r(t,e,n);if(c.string(t))return a(t,e,n);throw new TypeError("First argument must be a String, HTMLElement, HTMLCollection, or NodeList")}function i(t,e,n){return t.addEventListener(e,n),{destroy:function(){t.removeEventListener(e,n)}}}function r(t,e,n){return Array.prototype.forEach.call(t,function(t){t.addEventListener(e,n)}),{destroy:function(){Array.prototype.forEach.call(t,function(t){t.removeEventListener(e,n)})}}}function a(t,e,n){return l(document.body,t,e,n)}var c=t("./is"),l=t("delegate");e.exports=o},{"./is":3,delegate:2}],5:[function(t,e,n){function o(t){var e;if("SELECT"===t.nodeName)t.focus(),e=t.value;else if("INPUT"===t.nodeName||"TEXTAREA"===t.nodeName){var n=t.hasAttribute("readonly");n||t.setAttribute("readonly",""),t.select(),t.setSelectionRange(0,t.value.length),n||t.removeAttribute("readonly"),e=t.value}else{t.hasAttribute("contenteditable")&&t.focus();var o=window.getSelection(),i=document.createRange();i.selectNodeContents(t),o.removeAllRanges(),o.addRange(i),e=o.toString()}return e}e.exports=o},{}],6:[function(t,e,n){function o(){}o.prototype={on:function(t,e,n){var o=this.e||(this.e={});return(o[t]||(o[t]=[])).push({fn:e,ctx:n}),this},once:function(t,e,n){function o(){i.off(t,o),e.apply(n,arguments)}var i=this;return o._=e,this.on(t,o,n)},emit:function(t){var e=[].slice.call(arguments,1),n=((this.e||(this.e={}))[t]||[]).slice(),o=0,i=n.length;for(o;o<i;o++)n[o].fn.apply(n[o].ctx,e);return this},off:function(t,e){var n=this.e||(this.e={}),o=n[t],i=[];if(o&&e)for(var r=0,a=o.length;r<a;r++)o[r].fn!==e&&o[r].fn._!==e&&i.push(o[r]);return i.length?n[t]=i:delete n[t],this}},e.exports=o},{}],7:[function(e,n,o){!function(i,r){if("function"==typeof t&&t.amd)t(["module","select"],r);else if(void 0!==o)r(n,e("select"));else{var a={exports:{}};r(a,i.select),i.clipboardAction=a.exports}}(this,function(t,e){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function o(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var i=n(e),r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},a=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}(),c=function(){function t(e){o(this,t),this.resolveOptions(e),this.initSelection()}return a(t,[{key:"resolveOptions",value:function t(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.action=e.action,this.container=e.container,this.emitter=e.emitter,this.target=e.target,this.text=e.text,this.trigger=e.trigger,this.selectedText=""}},{key:"initSelection",value:function t(){this.text?this.selectFake():this.target&&this.selectTarget()}},{key:"selectFake",value:function t(){var e=this,n="rtl"==document.documentElement.getAttribute("dir");this.removeFake(),this.fakeHandlerCallback=function(){return e.removeFake()},this.fakeHandler=this.container.addEventListener("click",this.fakeHandlerCallback)||!0,this.fakeElem=document.createElement("textarea"),this.fakeElem.style.fontSize="12pt",this.fakeElem.style.border="0",this.fakeElem.style.padding="0",this.fakeElem.style.margin="0",this.fakeElem.style.position="absolute",this.fakeElem.style[n?"right":"left"]="-9999px";var o=window.pageYOffset||document.documentElement.scrollTop;this.fakeElem.style.top=o+"px",this.fakeElem.setAttribute("readonly",""),this.fakeElem.value=this.text,this.container.appendChild(this.fakeElem),this.selectedText=(0,i.default)(this.fakeElem),this.copyText()}},{key:"removeFake",value:function t(){this.fakeHandler&&(this.container.removeEventListener("click",this.fakeHandlerCallback),this.fakeHandler=null,this.fakeHandlerCallback=null),this.fakeElem&&(this.container.removeChild(this.fakeElem),this.fakeElem=null)}},{key:"selectTarget",value:function t(){this.selectedText=(0,i.default)(this.target),this.copyText()}},{key:"copyText",value:function t(){var e=void 0;try{e=document.execCommand(this.action)}catch(t){e=!1}this.handleResult(e)}},{key:"handleResult",value:function t(e){this.emitter.emit(e?"success":"error",{action:this.action,text:this.selectedText,trigger:this.trigger,clearSelection:this.clearSelection.bind(this)})}},{key:"clearSelection",value:function t(){this.trigger&&this.trigger.focus(),window.getSelection().removeAllRanges()}},{key:"destroy",value:function t(){this.removeFake()}},{key:"action",set:function t(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"copy";if(this._action=e,"copy"!==this._action&&"cut"!==this._action)throw new Error('Invalid "action" value, use either "copy" or "cut"')},get:function t(){return this._action}},{key:"target",set:function t(e){if(void 0!==e){if(!e||"object"!==(void 0===e?"undefined":r(e))||1!==e.nodeType)throw new Error('Invalid "target" value, use a valid Element');if("copy"===this.action&&e.hasAttribute("disabled"))throw new Error('Invalid "target" attribute. Please use "readonly" instead of "disabled" attribute');if("cut"===this.action&&(e.hasAttribute("readonly")||e.hasAttribute("disabled")))throw new Error('Invalid "target" attribute. You can\'t cut text from elements with "readonly" or "disabled" attributes');this._target=e}},get:function t(){return this._target}}]),t}();t.exports=c})},{select:5}],8:[function(e,n,o){!function(i,r){if("function"==typeof t&&t.amd)t(["module","./clipboard-action","tiny-emitter","good-listener"],r);else if(void 0!==o)r(n,e("./clipboard-action"),e("tiny-emitter"),e("good-listener"));else{var a={exports:{}};r(a,i.clipboardAction,i.tinyEmitter,i.goodListener),i.clipboard=a.exports}}(this,function(t,e,n,o){"use strict";function i(t){return t&&t.__esModule?t:{default:t}}function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function a(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function c(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}function l(t,e){var n="data-clipboard-"+t;if(e.hasAttribute(n))return e.getAttribute(n)}var s=i(e),u=i(n),f=i(o),d="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},h=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}(),p=function(t){function e(t,n){r(this,e);var o=a(this,(e.__proto__||Object.getPrototypeOf(e)).call(this));return o.resolveOptions(n),o.listenClick(t),o}return c(e,t),h(e,[{key:"resolveOptions",value:function t(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.action="function"==typeof e.action?e.action:this.defaultAction,this.target="function"==typeof e.target?e.target:this.defaultTarget,this.text="function"==typeof e.text?e.text:this.defaultText,this.container="object"===d(e.container)?e.container:document.body}},{key:"listenClick",value:function t(e){var n=this;this.listener=(0,f.default)(e,"click",function(t){return n.onClick(t)})}},{key:"onClick",value:function t(e){var n=e.delegateTarget||e.currentTarget;this.clipboardAction&&(this.clipboardAction=null),this.clipboardAction=new s.default({action:this.action(n),target:this.target(n),text:this.text(n),container:this.container,trigger:n,emitter:this})}},{key:"defaultAction",value:function t(e){return l("action",e)}},{key:"defaultTarget",value:function t(e){var n=l("target",e);if(n)return document.querySelector(n)}},{key:"defaultText",value:function t(e){return l("text",e)}},{key:"destroy",value:function t(){this.listener.destroy(),this.clipboardAction&&(this.clipboardAction.destroy(),this.clipboardAction=null)}}],[{key:"isSupported",value:function t(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:["copy","cut"],n="string"==typeof e?[e]:e,o=!!document.queryCommandSupported;return n.forEach(function(t){o=o&&!!document.queryCommandSupported(t)}),o}}]),e}(u.default);t.exports=p})},{"./clipboard-action":7,"good-listener":4,"tiny-emitter":6}]},{},[8])(8)});
+;(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory(require('jquery'));
+  } else {
+    root.jquery_dotdotdot_js = factory(root.jQuery);
+  }
+}(this, function(jQuery) {
 /*
-
-SMINT V1.0 by Robert McCracken
-SMINT V2.0 by robert McCracken with some awesome help from Ryan Clarke (@clarkieryan) and mcpacosy ‏(@mcpacosy)
-SMINT V3.0 by robert McCracken with some awesome help from Ryan Clarke (@clarkieryan) and mcpacosy ‏(@mcpacosy)
-
-SMINT is my first dabble into jQuery plugins!
-
-http://www.outyear.co.uk/smint/
-
-If you like Smint, or have suggestions on how it could be improved, send me a tweet @rabmyself
-
-*/
-
-
-(function(){
-
-
-	$.fn.smint = function( options ) {
-
-		var settings = $.extend({
-			'scrollSpeed'  : 500,
-			'mySelector'     : 'div'
-		}, options);
-
-		// adding a class to users div
-		$(this).addClass('smint');
-
-
-				
-		
-		//Set the variables needed
-		var optionLocs = new Array(),
-			lastScrollTop = 0,
-			menuHeight = $(".smint").height(),
-			smint = $('.smint'),
-        	smintA = $('.smint a'),
-        	myOffset = smint.height();
-
-      
-
-
-
-		if ( settings.scrollSpeed ) {
-				var scrollSpeed = settings.scrollSpeed
-			}
-
-		if ( settings.mySelector ) {
-				var mySelector = settings.mySelector
-		};
-
-
-
-		return smintA.each( function(index) {
-            
-			var id = $(this).attr('href').split('#')[1];
-
-			if (!$(this).hasClass("extLink")) {
-				$(this).attr('id', id);
-			}
-
-			
-			//Fill the menu
-			optionLocs.push(Array(
-				$(mySelector+"."+id).position().top-menuHeight, 
-				$(mySelector+"."+id).height()+$(mySelector+"."+id).position().top, id)
-			);
-
-			///////////////////////////////////
-
-			// get initial top offset for the menu 
-			var stickyTop = smint.offset().top;	
-
-			// check position and make sticky if needed
-			var stickyMenu = function(direction){
-
-				// current distance top
-				var scrollTop = $(window).scrollTop()+myOffset; 
-
-				// if we scroll more than the navigation, change its position to fixed and add class 'fxd', otherwise change it back to absolute and remove the class
-				if (scrollTop > stickyTop+myOffset) { 
-					smint.css({ 'position': 'fixed', 'top':0,'left':0 }).addClass('fxd');
-
-					// add padding to the body to make up for the loss in heigt when the menu goes to a fixed position.
-					// When an item is fixed, its removed from the flow so its height doesnt impact the other items on the page
-					$('body').css('padding-top', menuHeight );	
-				} else {
-					smint.css( 'position', 'relative').removeClass('fxd'); 
-					//remove the padding we added.
-					$('body').css('padding-top', '0' );	
-				}   
-
-				// Check if the position is inside then change the menu
-				// Courtesy of Ryan Clarke (@clarkieryan)
-				if(optionLocs[index][0] <= scrollTop && scrollTop <= optionLocs[index][1]){	
-					if(direction == "up"){
-						$("#"+id).addClass("active");
-						$("#"+optionLocs[index+1][2]).removeClass("active");
-					} else if(index > 0) {
-						$("#"+id).addClass("active");
-						$("#"+optionLocs[index-1][2]).removeClass("active");
-					} else if(direction == undefined){
-						$("#"+id).addClass("active");
-					}
-					$.each(optionLocs, function(i){
-						if(id != optionLocs[i][2]){
-							
-							$("#"+optionLocs[i][2]).removeClass("active");
-						}
-					});
-				}
-			};
-
-			// run functions
-			stickyMenu();
-
-			// run function every time you scroll
-			$(window).scroll(function() {
-				//Get the direction of scroll
-				var st = $(this).scrollTop()+myOffset;
-				if (st > lastScrollTop) {
-				    direction = "down";
-				} else if (st < lastScrollTop ){
-				    direction = "up";
-				}
-				lastScrollTop = st;
-				stickyMenu(direction);
-
-				// Check if at bottom of page, if so, add class to last <a> as sometimes the last div
-				// isnt long enough to scroll to the top of the page and trigger the active state.
-
-				if($(window).scrollTop() + $(window).height() == $(document).height()) {
-	       			smintA.removeClass('active')
-	       			$(".smint a:not('.extLink'):last").addClass('active')
-	       			
-   				} else {
-   					smintA.last().removeClass('active')
-   				}
-			});
-
-			///////////////////////////////////////
-        
-        	$(this).on('click', function(e){
-				// gets the height of the users div. This is used for off-setting the scroll so the menu doesnt overlap any content in the div they jst scrolled to
-				var myOffset = smint.height();   
-
-        		// stops hrefs making the page jump when clicked
-				e.preventDefault();
-				
-				// get the hash of the button you just clicked
-				var hash = $(this).attr('href').split('#')[1];
-
-				
-
-				var goTo =  $(mySelector+'.'+ hash).offset().top-myOffset;
-				
-				// Scroll the page to the desired position!
-				$("html, body").stop().animate({ scrollTop: goTo }, scrollSpeed);
-				
-				// if the link has the '.extLink' class it will be ignored 
-		 		// Courtesy of mcpacosy ‏(@mcpacosy)
-				if ($(this).hasClass("extLink"))
-                {
-                    return false;
-                }
-
-			});	
-
-
-			//This lets yo use links in body text to scroll. Just add the class 'intLink' to your button and it will scroll
-
-			$('.intLink').on('click', function(e){
-				var myOffset = smint.height();   
-
-				e.preventDefault();
-				
-				var hash = $(this).attr('href').split('#')[1];
-
-				if (smint.hasClass('fxd')) {
-					var goTo =  $(mySelector+'.'+ hash).position().top-myOffset;
-				} else {
-					var goTo =  $(mySelector+'.'+ hash).position().top-myOffset*2;
-				}
-				
-				$("html, body").stop().animate({ scrollTop: goTo }, scrollSpeed);
-
-				if ($(this).hasClass("extLink"))
-                {
-                    return false;
-                }
-
-			});	
-		});
-
-	};
-
-	$.fn.smint.defaults = { 'scrollSpeed': 500, 'mySelector': 'div'};
-})(jQuery);
+ *	jQuery dotdotdot 3.0.3
+ *	@requires jQuery 1.7.0 or later
+ *
+ *	dotdotdot.frebsite.nl
+ *
+ *	Copyright (c) Fred Heusschen
+ *	www.frebsite.nl
+ *
+ *	License: CC-BY-NC-4.0
+ *	http://creativecommons.org/licenses/by-nc/4.0/
+ */
+!function(t){"use strict";function e(){a=t(window),s={},r={},o={},t.each([s,r,o],function(t,e){e.add=function(t){t=t.split(" ");for(var n=0,i=t.length;n<i;n++)e[t[n]]=e.ddd(t[n])}}),s.ddd=function(t){return"ddd-"+t},s.add("truncated keep text"),r.ddd=function(t){return"ddd-"+t},r.add("text"),o.ddd=function(t){return t+".ddd"},o.add("resize"),e=function(){}}var n="dotdotdot",i="3.0.3";if(!(t[n]&&t[n].version>i)){t[n]=function(t,e){this.$dot=t,this.api=["getInstance","truncate","restore","destroy","watch","unwatch"],this.opts=e;var i=this.$dot.data(n);return i&&i.destroy(),this.init(),this.truncate(),this.opts.watch&&this.watch(),this},t[n].version=i,t[n].uniqueId=0,t[n].defaults={ellipsis:"… ",truncate:"word",tolerance:0,keep:null,watch:"window"},t[n].prototype={init:function(){this.watchTimeout=null,this.watchInterval=null,this.uniqueId=t[n].uniqueId++,this.originalContent=this.$dot.contents(),this.originalStyle=this.$dot.attr("style")||"",this.maxHeight=this._getMaxHeight()+this.opts.tolerance,"break-word"!==this.$dot.css("word-wrap")&&this.$dot.css("word-wrap","break-word"),"nowrap"===this.$dot.css("white-space")&&this.$dot.css("white-space","normal")},getInstance:function(){return this},truncate:function(){var e=this;this.$inner=this.$dot.wrapInner("<div />").children().css({display:"block",height:"auto",width:"auto",border:"none",padding:0,margin:0}),this.$inner.contents().detach().end().append(this.originalContent.clone(!0)),this.$inner.find("script, style").addClass(s.keep),this.opts.keep&&this.$inner.find(this.opts.keep).addClass(s.keep),this.$inner.find("*").add(this.$inner).not("."+s.keep).contents().each(function(){var n=this,i=t(this);if(3==n.nodeType){if(i.prev().is("table, thead, tfoot, tr, th, td, dl, dt, dd, ul, ol, li, video"))return void i.remove();if(i.parent().contents().length>1){var r=t('<span class="'+s.text+'">'+e.__getTextContent(n)+"</span>").css({display:"inline",height:"auto",width:"auto",border:"none",padding:0,margin:0});i.replaceWith(r)}}else 8==n.nodeType&&i.remove()});var n=this._truncateNode(this.$inner);return this.$dot[n?"addClass":"removeClass"](s.truncated),this.$inner.find("*").add(this.$inner).filter("."+s.text).each(function(){t(this).replaceWith(t(this).contents())}),this.$inner.find("*").add(this.$inner).filter("."+s.keep).removeClass(s.keep),this.$inner.replaceWith(this.$inner.contents()),this.$inner=null,n},restore:function(){this.unwatch(),this.$dot.contents().detach().end().append(this.originalContent).attr("style",this.originalStyle).removeClass(s.truncated)},destroy:function(){this.restore(),this.$dot.data(n,null)},watch:function(){var t=this;this.unwatch();var e={};"window"==this.opts.watch?a.on(o.resize+t.uniqueId,function(n){t.watchTimeout&&clearTimeout(t.watchTimeout),t.watchTimeout=setTimeout(function(){e=t._watchSizes(e,a,"width","height")},100)}):this.watchInterval=setInterval(function(){e=t._watchSizes(e,t.$dot,"innerWidth","innerHeight")},500)},unwatch:function(){a.off(o.resize+this.uniqueId),this.watchInterval&&clearInterval(this.watchInterval),this.watchTimeout&&clearTimeout(this.watchTimeout)},_api:function(){var e=this,n={};return t.each(this.api,function(t){var i=this;n[i]=function(){var t=e[i].apply(e,arguments);return"undefined"==typeof t?n:t}}),n},_truncateNode:function(e){var n=this,i=!1,r=!1;return t(e.children().get().reverse()).not("."+s.keep).each(function(){var e=(t(this).contents()[0],t(this));if(!i&&!e.hasClass(s.keep)){if(e.children().length)i=n._truncateNode(e);else if(!n._fits()||r){var o=t("<span>").css("display","none");if(e.replaceWith(o),e.detach(),n._fits()){if("node"==n.opts.truncate)return!0;o.replaceWith(e),i=n._truncateWord(e),i||(r=!0,e.detach())}else o.remove()}e.contents().length||e.remove()}}),i},_truncateWord:function(t){var e=t.contents()[0];if(!e)return!1;for(var n=this,i=this.__getTextContent(e),s=i.indexOf(" ")!==-1?" ":"　",r=i.split(s),o="",a=r.length;a>=0;a--){if(o=r.slice(0,a).join(s),0==a)return"letter"==n.opts.truncate&&(n.__setTextContent(e,r.slice(0,a+1).join(s)),n._truncateLetter(e));if(o.length&&(n.__setTextContent(e,n._addEllipsis(o)),n._fits()))return"letter"!=n.opts.truncate||(n.__setTextContent(e,r.slice(0,a+1).join(s)),n._truncateLetter(e))}return!1},_truncateLetter:function(t){for(var e=this,n=this.__getTextContent(t),i=n.split(""),s="",r=i.length;r>=0;r--)if(s=i.slice(0,r).join(""),s.length&&(e.__setTextContent(t,e._addEllipsis(s)),e._fits()))return!0;return!1},_fits:function(){return this.$inner.innerHeight()<=this.maxHeight},_addEllipsis:function(e){for(var n=[" ","　",",",";",".","!","?"];t.inArray(e.slice(-1),n)>-1;)e=e.slice(0,-1);return e+=this.opts.ellipsis},_getMaxHeight:function(){for(var t=["height","maxHeight"],e=0,n=0;n<t.length;n++){var i=window.getComputedStyle(this.$dot[0])[t[n]];"px"==i.slice(-2)&&(i=parseInt(i,10),e=e?Math.min(e,i):i)}switch(this.$dot.css("boxSizing")){case"padding-box":case"border-box":for(var t=["paddingTop","paddingBottom"],n=0;n<t.length;n++){var s=window.getComputedStyle(this.$dot[0])[t[n]];"px"==s.slice(-2)&&(e-=parseInt(s,10))}}return Math.max(e,0)},_watchSizes:function(t,e,n,i){if(this.$dot.is(":visible")){var s={width:e[n](),height:e[i]()};return t.width==s.width&&t.height==s.height||this.truncate(),s}},__getTextContent:function(t){for(var e=["nodeValue","textContent","innerText"],n=0;n<e.length;n++)if("string"==typeof t[e[n]])return t[e[n]];return""},__setTextContent:function(t,e){for(var n=["nodeValue","textContent","innerText"],i=0;i<n.length;i++)t[n[i]]=e}},t.fn[n]=function(i){return e(),i=t.extend(!0,{},t[n].defaults,i),this.each(function(){t(this).data(n,new t[n](t(this),i)._api())})};var s,r,o,a}}(jQuery);
+return true;
+}));

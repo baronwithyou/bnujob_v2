@@ -28,12 +28,9 @@ body {
     padding-left: 70px;
     font-size: 28px;
   }
-  //.navbar-form {
-  //  margin-top: 40px;
-  //  #welcome-search {
-  //    border-right: 0;
-  //  }
-  //}
+  .search-wrapper {
+    width: 100px;
+  }
   .navbar-nav {
     > li {
       margin-top: 33px;
@@ -174,7 +171,7 @@ body {
     position: absolute;
     width: 80%;
     top: 0;
-    z-index: 10;
+    z-index: 1;
     overflow: hidden;
     left: 12%;
     height: 100%;
@@ -211,10 +208,9 @@ body {
 
 // 首页商家基础信息布局
 .welcome-store {
-  overflow: hidden;
-  min-height: 100px;
+  height: 120px;
   width: 100%;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 0;
   border-bottom: 1px solid #e6e6e6;
   > a {
     .h4 {
@@ -224,6 +220,11 @@ body {
   }
   > a:hover {
     color: #636b6f;
+  }
+  .job-description {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    height: 70px;
   }
 }
 .welcome-store:hover {

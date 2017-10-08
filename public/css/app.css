@@ -35,6 +35,10 @@ body {
   font-size: 28px;
 }
 
+.navbar-default .search-wrapper {
+  width: 100px;
+}
+
 .navbar-default .navbar-nav > li {
   margin-top: 33px;
 }
@@ -190,7 +194,7 @@ body {
   position: absolute;
   width: 80%;
   top: 0;
-  z-index: 10;
+  z-index: 1;
   overflow: hidden;
   left: 12%;
   height: 100%;
@@ -229,10 +233,9 @@ body {
 }
 
 .welcome-store {
-  overflow: hidden;
-  min-height: 100px;
+  height: 120px;
   width: 100%;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 0;
   border-bottom: 1px solid #e6e6e6;
 }
 
@@ -246,6 +249,12 @@ body {
 
 .welcome-store > a:hover {
   color: #636b6f;
+}
+
+.welcome-store .job-description {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+  height: 70px;
 }
 
 .welcome-store:hover {
@@ -382,20 +391,20 @@ body {
   margin-left: 18px;
 }
 
-.job-detail .similar-search .panel-body {
+.similar-job-detail .similar-search .panel-body {
   background: #5eb1e7;
 }
 
-.job-detail .similar-search .panel-body .search {
+.similar-job-detail .similar-search .panel-body .search {
   width: 70%;
   display: inline-block;
 }
 
-.job-detail .similar-search .panel-body > .btn {
+.similar-job-detail .similar-search .panel-body > .btn {
   width: 29%;
 }
 
-.job-detail .similar-search .panel-body > .close {
+.similar-job-detail .similar-search .panel-body > .close {
   padding: 0;
   width: 2px;
   position: absolute;
@@ -403,8 +412,36 @@ body {
   right: 35px;
 }
 
-.job-detail .similar-search .panel-body > span {
+.similar-job-detail .similar-search .panel-body > span {
   color: #fff;
+}
+
+.job-comment .comment-grade-btn {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 40px;
+  display: inline-block;
+}
+
+.job-comment .comment-grade-btn .btn-default {
+  display: block;
+  border: 0;
+  width: 100%;
+  padding: 0;
+}
+
+.comment-edit .btn-primary {
+  margin-top: 10px;
+}
+
+#job-comment-editor .w-e-toolbar {
+  border-radius: 5px 5px 0 0;
+}
+
+#job-comment-editor .w-e-text-container {
+  height: 200px !important;
+  border-radius: 0 0 5px 5px;
 }
 
 /*!

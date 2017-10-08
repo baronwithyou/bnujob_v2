@@ -47,9 +47,9 @@
                 <li><a href="">讨论区</a></li>
                 <li><a href="">二手市场</a></li>
             </ul>
-            <div class="search-wrapper">
+            <div class="search-wrapper hidden-xs">
                 <div class="input-holder">
-                    <input type="text" class="search-input" placeholder="Type to search" />
+                    <input type="text" class="search-input" placeholder="输入兼职/商家查询" />
                     <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
                 </div>
                 <span class="close" onclick="searchToggle(this, event);"></span>
