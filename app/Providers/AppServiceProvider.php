@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Helpers;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
         Validator::extend('is_mobile', function ($attribute, $value, $parameters, $validator) {
             return Helpers::isMobile($value);
         }, '手机号格式不正确');
