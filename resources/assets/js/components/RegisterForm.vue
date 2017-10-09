@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="form-group" :class="{'has-error': name_error}">
+        <div class="form-group" :class="{'has-error': errors.has('name')}">
             <label for="name">用户名</label>
-            <input type="text" name="name" class="form-control" placeholder="真实姓名或常用昵称" id="name" v-model="name">
-            <span class="help-block"><strong v-text="name_msg"></strong></span>
+            <input type="text" v-validate data-vv-rules="required|string" data-vv-as="用户名" :class="{'is-danger': errors.has('name') }"  name="name" class="form-control" placeholder="真实姓名或常用昵称" id="name" v-model="name">
+            <span class="help-block"><strong v-show="errors.has('name')">{{ errors.first('name') }}</strong></span>
         </div>
         <div class="form-group" :class="{'has-error': mobile_error}">
             <input type="radio" name="register_type" value="mobile" id="mobile" checked> <label for="mobile">用手机号注册</label>

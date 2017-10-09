@@ -1775,6 +1775,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Test.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/_bootstrap-sass@3.3.7@bootstrap-sass/assets/javascripts/bootstrap.js":
 /***/ (function(module, exports) {
 
@@ -31739,7 +31761,7 @@ process.umask = function() { return 0; };
 /* unused harmony export install */
 /* unused harmony export use */
 /* unused harmony export mapFields */
-/* unused harmony export Validator */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Validator; });
 /* unused harmony export ErrorBag */
 /* unused harmony export Rules */
 /* unused harmony export version */
@@ -38364,7 +38386,7 @@ var index_esm = {
 };
 
 
-/* harmony default export */ __webpack_exports__["a"] = (index_esm);
+/* harmony default export */ __webpack_exports__["b"] = (index_esm);
 
 
 /***/ }),
@@ -38427,6 +38449,58 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0a43bae1\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Test.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-md-12"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "email"
+    }
+  }, [_vm._v("Email")]), _vm._v(" "), _c('p', {
+    class: {
+      'control': true
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }],
+    staticClass: "form-control",
+    class: {
+      'input': true, 'is-danger': _vm.errors.has('email')
+    },
+    attrs: {
+      "data-vv-rules": "required|email",
+      "data-vv-as": "邮箱",
+      "id": "email",
+      "name": "email",
+      "type": "email",
+      "placeholder": "Email"
+    }
+  }), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('email')),
+      expression: "errors.has('email')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v(_vm._s(_vm.errors.first('email')))])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-0a43bae1", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-353752eb\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Example.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38464,7 +38538,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', [_c('div', {
     staticClass: "form-group",
     class: {
-      'has-error': _vm.name_error
+      'has-error': _vm.errors.has('name')
     }
   }, [_c('label', {
     attrs: {
@@ -38472,14 +38546,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("用户名")]), _vm._v(" "), _c('input', {
     directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }, {
       name: "model",
       rawName: "v-model",
       value: (_vm.name),
       expression: "name"
     }],
     staticClass: "form-control",
+    class: {
+      'is-danger': _vm.errors.has('name')
+    },
     attrs: {
       "type": "text",
+      "data-vv-rules": "required|string",
+      "data-vv-as": "用户名",
       "name": "name",
       "placeholder": "真实姓名或常用昵称",
       "id": "name"
@@ -38496,10 +38578,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('span', {
     staticClass: "help-block"
   }, [_c('strong', {
-    domProps: {
-      "textContent": _vm._s(_vm.name_msg)
-    }
-  })])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('name')),
+      expression: "errors.has('name')"
+    }]
+  }, [_vm._v(_vm._s(_vm.errors.first('name')))])])]), _vm._v(" "), _c('div', {
     staticClass: "form-group",
     class: {
       'has-error': _vm.mobile_error
@@ -49021,8 +49106,8 @@ module.exports = function(module) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/_vue@2.4.4@vue/dist/vue.common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__locale_vee_validate_zh_CN__ = __webpack_require__("./resources/assets/locale/vee-validate/zh_CN.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__locale_vee_validate_zh_CN___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__locale_vee_validate_zh_CN__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vee_validate__ = __webpack_require__("./node_modules/_vee-validate@2.0.0-rc.18@vee-validate/dist/vee-validate.esm.js");
 
 /**
@@ -49035,12 +49120,29 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 __webpack_require__("./resources/assets/js/main.js");
 
+// import Vue from 'vue';
 
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vee_validate__["a" /* default */]);
 
 window.Vue = __webpack_require__("./node_modules/_vue@2.4.4@vue/dist/vue.common.js");
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_1_vee_validate__["a" /* Validator */].addLocale(__WEBPACK_IMPORTED_MODULE_0__locale_vee_validate_zh_CN___default.a);
+
+var dictionary = {
+    zh_CN: {
+        attributes: {
+            email: '邮箱'
+        }
+    }
+};
+__WEBPACK_IMPORTED_MODULE_1_vee_validate__["a" /* Validator */].updateDictionary(dictionary);
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_1_vee_validate__["b" /* default */], {
+    locale: 'zh_CN'
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -49048,14 +49150,16 @@ window.Vue = __webpack_require__("./node_modules/_vue@2.4.4@vue/dist/vue.common.
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('example', __webpack_require__("./resources/assets/js/components/Example.vue"));
+Vue.component('example', __webpack_require__("./resources/assets/js/components/Example.vue"));
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('register-form', __webpack_require__("./resources/assets/js/components/RegisterForm.vue"));
+Vue.component('register-form', __webpack_require__("./resources/assets/js/components/RegisterForm.vue"));
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('login-form', __webpack_require__("./resources/assets/js/components/LoginForm.vue"));
+Vue.component('login-form', __webpack_require__("./resources/assets/js/components/LoginForm.vue"));
 
-var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-  el: '#app'
+Vue.component('test', __webpack_require__("./resources/assets/js/components/Test.vue"));
+
+var app = new Vue({
+    el: '#app'
 });
 
 /***/ }),
@@ -49132,7 +49236,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/Example.vue"
+Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -49167,7 +49271,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/LoginForm.vue"
+Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\LoginForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] LoginForm.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -49202,7 +49306,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/RegisterForm.vue"
+Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\RegisterForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] RegisterForm.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -49224,6 +49328,41 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/Test.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Test.vue"),
+  /* template */
+  __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0a43bae1\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Test.vue"),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\Test.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Test.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0a43bae1", Component.options)
+  } else {
+    hotAPI.reload("data-v-0a43bae1", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/main.js":
 /***/ (function(module, exports) {
 
@@ -49234,7 +49373,7 @@ $(function () {
             'X-CSRF-TOKEN': csrfToken
         }
     });
-    Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+    // Vue.http.headers.common['X-CSRF-TOKEN'] = csrfToken;
 
     // var error_arr = ['name', 'verify_code', 'mobile', 'password'];
     // $('#register-form').on('submit', function (e) {
@@ -49275,6 +49414,82 @@ $(function () {
     $('.search-wrapper').tooltip({
         content: '点击查询兼职信息'
     });
+});
+
+/***/ }),
+
+/***/ "./resources/assets/locale/vee-validate/zh_CN.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+!function (n, e) {
+  "object" == ( false ? "undefined" : _typeof(exports)) && "undefined" != typeof module ? module.exports = e() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (e),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : (n.__vee_validate_locale__zh_CN = n.__vee_validate_locale__zh_CN || {}, n.__vee_validate_locale__zh_CN.js = e());
+}(this, function () {
+  "use strict";
+  var n = function n(_n) {
+    var e = ["Byte", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"],
+        t = 0 === (_n = 1024 * Number(_n)) ? 0 : Math.floor(Math.log(_n) / Math.log(1024));return 1 * (_n / Math.pow(1024, t)).toFixed(2) + " " + e[t];
+  },
+      e = { name: "zh_CN", messages: { after: function after(n, e) {
+        return " " + n + "必须在" + e[0] + "之后";
+      }, alpha_dash: function alpha_dash(n) {
+        return " " + n + "能够包含字母数字字符，包括破折号、下划线";
+      }, alpha_num: function alpha_num(n) {
+        return n + " 只能包含字母数字字符.";
+      }, alpha_spaces: function alpha_spaces(n) {
+        return " " + n + " 只能包含字母字符，包括空格.";
+      }, alpha: function alpha(n) {
+        return " " + n + " 只能包含字母字符.";
+      }, before: function before(n, e) {
+        return " " + n + " 必须在" + e[0] + " 之前.";
+      }, between: function between(n, e) {
+        return " " + n + " 必须在" + e[0] + " " + e[1] + "之间.";
+      }, confirmed: function confirmed(n, e) {
+        return " " + n + " 不能和" + e[0] + "匹配.";
+      }, date_between: function date_between(n, e) {
+        return " " + n + "必须在" + e[0] + "和" + e[1] + "之间.";
+      }, date_format: function date_format(n, e) {
+        return " " + n + "必须在在" + e[0] + "格式中.";
+      }, decimal: function decimal(n, e) {
+        void 0 === e && (e = ["*"]);var t = e[0];return " " + n + " 必须是数字的而且能够包含" + ("*" === t ? "" : t) + " 小数点.";
+      }, digits: function digits(n, e) {
+        return " " + n + " 必须是数字，且精确到 " + e[0] + "数";
+      }, dimensions: function dimensions(n, e) {
+        return " " + n + "必须是 " + e[0] + " 像素到 " + e[1] + " 像素.";
+      }, email: function email(n) {
+        return " " + n + " 必须是有效的邮箱.";
+      }, ext: function ext(n) {
+        return " " + n + " 必须是有效的文件.";
+      }, image: function image(n) {
+        return " " + n + " 必须是图片.";
+      }, in: function _in(n) {
+        return " " + n + " 必须是一个有效值.";
+      }, ip: function ip(n) {
+        return " " + n + " 必须是一个有效的地址.";
+      }, max: function max(n, e) {
+        return " " + n + " 不能大于" + e[0] + "字符.";
+      }, mimes: function mimes(n) {
+        return " " + n + " 必须是有效的文件类型.";
+      }, min: function min(n, e) {
+        return " " + n + " 必须至少有 " + e[0] + " 字符.";
+      }, not_in: function not_in(n) {
+        return " " + n + "必须是一个有效值.";
+      }, numeric: function numeric(n) {
+        return " " + n + " 只能包含数字字符.";
+      }, regex: function regex(n) {
+        return " " + n + " 格式无效.";
+      }, required: function required(n) {
+        return n + " 是必须的.";
+      }, size: function size(e, t) {
+        var r = t[0];return " " + e + " 必须小于 " + n(r) + ".";
+      }, url: function url(n) {
+        return " " + n + "不是有效的url.";
+      } }, attributes: {} };return "undefined" != typeof VeeValidate && VeeValidate.Validator.addLocale(e), e;
 });
 
 /***/ }),

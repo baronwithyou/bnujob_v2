@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
+@charset "UTF-8";
 
 * {
   -webkit-box-sizing: border-box;
@@ -232,6 +232,11 @@ body {
   background: #f8d615;
 }
 
+.btn-yellow {
+  color: #636b6f;
+  background: #f8d615;
+}
+
 .welcome-store {
   height: 120px;
   width: 100%;
@@ -309,6 +314,10 @@ body {
 
 .form-group > .help-block {
   margin: 0;
+}
+
+.hide-scroll {
+  overflow-y: hidden;
 }
 
 .user-banner {
@@ -431,8 +440,20 @@ body {
   padding: 0;
 }
 
-.comment-edit .btn-primary {
+.comment-edit .btn {
   margin-top: 10px;
+}
+
+.cd-modal .label-title {
+  margin: 20px;
+}
+
+.cd-modal .info-btn {
+  margin: 20px 0;
+}
+
+.cd-modal .info-btn .btn-area {
+  padding: 0;
 }
 
 #job-comment-editor .w-e-toolbar {

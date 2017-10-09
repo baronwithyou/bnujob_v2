@@ -25,10 +25,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.cd-modal h1 {
+.cd-modal .title {
     text-align: center;
 }
-.cd-modal h1::after {
+.cd-modal .title::after {
     /* ink/brush separation */
     content: '';
     display: block;

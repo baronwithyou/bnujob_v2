@@ -206,6 +206,11 @@ body {
   background: #f8d615;
 }
 
+.btn-yellow {
+  color: #636b6f;
+  background: #f8d615;
+}
+
 // 首页商家基础信息布局
 .welcome-store {
   height: 120px;
@@ -281,4 +286,8 @@ body {
   > .help-block {
     margin: 0;
   }
+}
+
+.hide-scroll {
+  overflow-y: hidden;
 }

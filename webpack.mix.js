@@ -27,6 +27,7 @@ mix.scripts([
     // 'resources/assets/js/jquery.easyAccordion.js',
     'resources/assets/js/clipboard.min.js',
     'resources/assets/js/jquery.dotdotdot.js',
+    'resources/assets/js/xss.min.js',
 ], 'public/js/all.js');
 
 mix.styles([

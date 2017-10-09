@@ -51,7 +51,7 @@ class CreateUsersTable extends Migration
             $table->integer('primary_resume_id')->nullable()->comment('默认简历');
             $table->string('credit_id')->nullable()->comment('实名认证之后才可注册商家账号');
 
-            $table->json('config')->nullable();
+            $table->text('config')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

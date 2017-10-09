@@ -17,7 +17,7 @@
             </div>
             <div class="col-xs-4 col-md-3">
                 <div class="deliver-area">
-                    <button class="btn btn-primary">投递</button>
+                    <button class="btn btn-yellow">投递</button>
                     <span><strong>3</strong>人投递</span>
                 </div>
                 <div class="collect-area">
@@ -87,7 +87,7 @@
                     <div id="job-comment-editor">
                         <p>Hello, <strong>Job Searcher</strong></p>
                     </div>
-                    <button class="btn btn-primary pull-right">提交评论</button>
+                    <button class="btn btn-yellow pull-right">提交评论</button>
                 </div>
             </div>
         </div>

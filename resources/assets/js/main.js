@@ -5,7 +5,7 @@ $(function () {
             'X-CSRF-TOKEN': csrfToken
         }
     });
-    Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+    // Vue.http.headers.common['X-CSRF-TOKEN'] = csrfToken;
 
     // var error_arr = ['name', 'verify_code', 'mobile', 'password'];
     // $('#register-form').on('submit', function (e) {

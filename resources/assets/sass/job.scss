@@ -71,8 +71,20 @@
 }
 
 .comment-edit {
-  .btn-primary {
+  .btn {
     margin-top: 10px;
+  }
+}
+
+.cd-modal {
+  .label-title{
+    margin: 20px;
+  }
+  .info-btn {
+    margin: 20px 0;
+    .btn-area {
+      padding: 0;
+    }
   }
 }
 
