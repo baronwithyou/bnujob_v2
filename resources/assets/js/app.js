@@ -9,8 +9,7 @@ require('./bootstrap');
 
 require('./main');
 
-// import Vue from 'vue';
-
+window.Tool = require('./function');
 
 window.Vue = require('vue');
 
@@ -23,7 +22,11 @@ Validator.addLocale(zh_CN);
 const dictionary = {
     zh_CN: {
         attributes: {
-            email: '邮箱'
+            email: '邮箱',
+            mobile: '手机号',
+            verify_code: '验证码',
+            password: '密码',
+            name: '用户名'
         }
     }
 };
@@ -32,6 +35,7 @@ Validator.updateDictionary(dictionary);
 Vue.use(VeeValidate, {
     locale: 'zh_CN'
 });
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -43,10 +47,16 @@ Vue.component('example', require('./components/Example.vue'));
 
 Vue.component('register-form', require('./components/RegisterForm.vue'));
 
+Vue.component('simple-register', require('./components/SimpleRegister.vue'));
+
 Vue.component('login-form', require('./components/LoginForm.vue'));
 
 Vue.component('test', require('./components/Test.vue'));
 
 const app = new Vue({
     el: '#app'
+});
+
+const app2 = new Vue({
+    el: '#app-2'
 });

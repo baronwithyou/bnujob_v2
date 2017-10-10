@@ -99,10 +99,10 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        if ($request->ajax()) {
-            echo "来自原始register controller";
-            return;
-        }
+//        if ($request->ajax()) {
+//            echo "来自原始register controller";
+//            return;
+//        }
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }

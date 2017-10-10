@@ -47,6 +47,4 @@ $(function () {
     $('.search-wrapper').tooltip({
         content: '点击查询兼职信息'
     });
-
-
 });

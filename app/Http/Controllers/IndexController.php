@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers;
 use App\User;
 use JavaScript;
 use Illuminate\Http\Request;
@@ -28,5 +29,11 @@ class IndexController extends Controller
     public function jobDetail($id)
     {
         return view('job');
+    }
+
+    public function getVerifyCode(Request $request)
+    {
+//        return $request->mobile;
+        Helpers::ajaxSuccess('Hello world', ['mobile' => $request->mobile]);
     }
 }

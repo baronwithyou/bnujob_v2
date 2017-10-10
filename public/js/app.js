@@ -1775,6 +1775,67 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/SimpleRegister.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            mobile: ''
+        };
+    },
+
+    methods: {
+        getVerifyCode: function getVerifyCode() {
+            axios.post('/get-verify-code', { 'mobile': this.mobile }).then(function (response) {
+                Tool.test(response.data.msg);
+            }).catch(function (error) {});
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Test.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38748,6 +38809,170 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-65298684\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/SimpleRegister.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "register"
+  }, [_c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors.has('name')
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }],
+    staticClass: "form-control",
+    class: {
+      'is-danger': _vm.errors.has('name')
+    },
+    attrs: {
+      "type": "text",
+      "data-vv-rules": "required",
+      "name": "name",
+      "placeholder": "真实姓名或常用昵称",
+      "id": "name"
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block"
+  }, [_c('strong', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('name')),
+      expression: "errors.has('name')"
+    }]
+  }, [_vm._v(_vm._s(_vm.errors.first('name')))])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors.has('mobile') || _vm.errors.has('verify_code')
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }, {
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.mobile),
+      expression: "mobile"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "data-vv-rules": "required",
+      "name": "mobile",
+      "id": "mobile",
+      "placeholder": "手机号(仅支持大陆手机号码)"
+    },
+    domProps: {
+      "value": (_vm.mobile)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.mobile = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors.has('mobile') || _vm.errors.has('verify_code')
+    }
+  }, [_c('div', {
+    staticClass: "input-group"
+  }, [_c('input', {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "data-vv-rules": "required",
+      "name": "verify_code",
+      "placeholder": "短信验证码",
+      "id": ""
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "input-group-addon",
+    attrs: {
+      "id": "basic-addon2"
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "javascript:void(0)"
+    },
+    on: {
+      "click": _vm.getVerifyCode
+    }
+  }, [_vm._v("获取验证码")])])]), _vm._v(" "), _c('span', {
+    staticClass: "help-block"
+  }, [_c('strong', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('mobile')),
+      expression: "errors.has('mobile')"
+    }]
+  }, [_vm._v("\n                " + _vm._s(_vm.errors.first('mobile')) + "\n            ")]), _vm._v(" "), _c('strong', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('verify_code')),
+      expression: "errors.has('verify_code')"
+    }]
+  }, [_vm._v("\n                " + _vm._s(_vm.errors.first('verify_code')) + "\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors.has('password')
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "password",
+      "data-vv-rules": "required|min:6",
+      "name": "password",
+      "id": "password",
+      "placeholder": "密码(不少于六位)"
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block"
+  }, [_c('strong', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('password')),
+      expression: "errors.has('password')"
+    }]
+  }, [_vm._v(_vm._s(_vm.errors.first('password')))])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-register pull-right"
+  }, [_vm._v("注册")])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', [_vm._v("已有账号？"), _c('a', {
+    attrs: {
+      "href": "#auth-check",
+      "data-toggle": "modal"
+    }
+  }, [_vm._v("立即登录")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-65298684", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-bca2d4e4\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/LoginForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49120,8 +49345,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 __webpack_require__("./resources/assets/js/main.js");
 
-// import Vue from 'vue';
-
+window.Tool = __webpack_require__("./resources/assets/js/function.js");
 
 window.Vue = __webpack_require__("./node_modules/_vue@2.4.4@vue/dist/vue.common.js");
 
@@ -49134,7 +49358,11 @@ __WEBPACK_IMPORTED_MODULE_1_vee_validate__["a" /* Validator */].addLocale(__WEBP
 var dictionary = {
     zh_CN: {
         attributes: {
-            email: '邮箱'
+            email: '邮箱',
+            mobile: '手机号',
+            verify_code: '验证码',
+            password: '密码',
+            name: '用户名'
         }
     }
 };
@@ -49154,12 +49382,18 @@ Vue.component('example', __webpack_require__("./resources/assets/js/components/E
 
 Vue.component('register-form', __webpack_require__("./resources/assets/js/components/RegisterForm.vue"));
 
+Vue.component('simple-register', __webpack_require__("./resources/assets/js/components/SimpleRegister.vue"));
+
 Vue.component('login-form', __webpack_require__("./resources/assets/js/components/LoginForm.vue"));
 
 Vue.component('test', __webpack_require__("./resources/assets/js/components/Test.vue"));
 
 var app = new Vue({
     el: '#app'
+});
+
+var app2 = new Vue({
+    el: '#app-2'
 });
 
 /***/ }),
@@ -49328,6 +49562,41 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/SimpleRegister.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/SimpleRegister.vue"),
+  /* template */
+  __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-65298684\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/SimpleRegister.vue"),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/SimpleRegister.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] SimpleRegister.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-65298684", Component.options)
+  } else {
+    hotAPI.reload("data-v-65298684", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/Test.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49360,6 +49629,18 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
+
+/***/ }),
+
+/***/ "./resources/assets/js/function.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["test"] = test;
+function test(msg) {
+    console.log(msg);
+}
 
 /***/ }),
 

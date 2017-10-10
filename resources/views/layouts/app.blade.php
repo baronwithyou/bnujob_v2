@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ mix('css/all.css') }}">
-    <title>bnu job - @yield('title')</title>
+    <title>BNU JOB - @yield('title')</title>
     @yield('stylesheets')
 </head>
 <body>
@@ -18,7 +18,9 @@
             @include('partial.navbar')
         </div>
     @endif
-    @yield('top')
+    <div id="app-2">
+        @yield('top')
+    </div>
     <div class="container" id="app">
         @yield('content')
         @include('partial.footer')
