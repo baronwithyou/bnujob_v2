@@ -1,6 +1,6 @@
 <header class="welcome-banner row">
     <span class="glyphicon glyphicon-remove-circle"></span>
-    <div class="col-md-12">
+    <div class="row" style="padding: 0;">
         <div class="bg">
             <canvas id="display"></canvas>
             <div id="blachole"></div>
