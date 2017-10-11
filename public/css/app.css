@@ -12,6 +12,8 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
   background: #fff;
   font-family: PingFangSC-Light,-apple-system,PingFang SC,Helvetica Neue,Helvetica,Microsoft YaHei,Arial,sans-serif;
 }
@@ -23,8 +25,9 @@ body {
 
 .navbar-default {
   height: 100%;
-  z-index: 10;
+  z-index: 4;
   padding-bottom: 15px;
+  width: 100%;
   /* 老的 Firefox */
   -webkit-box-shadow: 1px 1px 5px #777;
           box-shadow: 1px 1px 5px #777;
@@ -32,11 +35,11 @@ body {
 }
 
 .navbar-default .navbar-toggle {
-  margin: 30px 40px 0 0;
+  margin: 30px 35px 0 0;
 }
 
 .navbar-default .navbar-brand {
-  padding-left: 70px;
+  margin-left: 25px !important;
   margin-top: 23px;
   font-size: 28px;
 }
@@ -192,41 +195,22 @@ body {
   background: #5eb1e7;
 }
 
-.welcome-banner {
-  max-height: 350px;
+.welcome-banner .float-area {
+  padding: 30px 0;
 }
 
-.welcome-banner > .float-area {
-  position: absolute;
-  width: 80%;
-  top: 0;
-  z-index: 1;
-  overflow: hidden;
-  left: 12%;
-  height: 100%;
-}
-
-.welcome-banner > .float-area > .banner-text {
-  padding-top: 40px;
-}
-
-.welcome-banner > .float-area > .banner-text > h4 {
+.welcome-banner .float-area > .banner-text > h4 {
   margin-top: 50px;
 }
 
-.welcome-banner > .float-area > .banner-text > p {
+.welcome-banner .float-area > .banner-text > p {
   margin-top: 30px;
-}
-
-.welcome-banner > .float-area > .banner-form {
-  height: 100%;
-  padding: 20px;
 }
 
 .welcome-banner > span {
   font-size: 20px;
   cursor: pointer;
-  right: 15px;
+  right: 27px;
   top: 15px;
   position: absolute;
   z-index: 1;
@@ -248,6 +232,7 @@ body {
   width: 100%;
   padding: 0.5rem 0;
   border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
 }
 
 .welcome-store > a {
@@ -332,8 +317,9 @@ body {
 }
 
 .user-banner {
-  background: #f6f6f6;
+  background: #5eb1e7;
   padding: 20px;
+  color: #fff;
 }
 
 .user-banner .user-name {
@@ -348,11 +334,11 @@ body {
 
 .user-banner .edit-banner-info a {
   text-decoration: none;
-  color: #636b6f;
+  color: #fff;
 }
 
 .user-banner .edit-banner-info a:hover {
-  color: #5eb1e7;
+  color: #f6f6f6;
 }
 
 .user-banner .edit-banner-info .fa {
@@ -362,6 +348,46 @@ body {
 
 .user-banner .reputation-div {
   margin: 20px 0 0 15px;
+}
+
+.user-banner .ocean > .ocean-middle {
+  position: absolute;
+  top: 50px;
+  right: 220px;
+}
+
+.user-banner .ocean > .ocean-middle > .shark {
+  position: relative;
+  width: 50%;
+  right: -50px;
+  top: -30px;
+}
+
+.user-banner .ocean > .ocean-middle > .fishes {
+  position: relative;
+  width: 20%;
+  right: -60px;
+}
+
+.user-banner .ocean > .ocean-bottom {
+  position: absolute;
+  top: 100px;
+  right: 0;
+}
+
+.user-banner .ocean > .ocean-bottom > .sea-weed {
+  position: relative;
+  right: 130px;
+}
+
+.user-banner .ocean > .ocean-bottom > .coral {
+  position: relative;
+  right: 50px;
+}
+
+.user-banner .ocean > .ocean-bottom > .barnacle {
+  position: relative;
+  right: 0;
 }
 
 .user-content {
@@ -378,8 +404,17 @@ body {
   margin-top: 0;
 }
 
+.user-content .user-private-info .btn-link {
+  padding: 0;
+}
+
+.user-content .user-private-info .user-avatar {
+  border: 2px solid #5eb1e7;
+  border-radius: 10px;
+}
+
 .btn-reputation {
-  background: #5eb1e7;
+  background: #FFD700;
   padding: 10px;
   color: #fff;
   border-radius: 25px;
@@ -1882,7 +1917,7 @@ body {
   font-size: 14px;
   line-height: 1.6;
   color: #636b6f;
-  background-color: #f5f8fa;
+  background-color: #fff;
 }
 
 input,
@@ -1931,7 +1966,7 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.6;
-  background-color: #f5f8fa;
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -3530,7 +3565,7 @@ th {
 }
 
 .table .table {
-  background-color: #f5f8fa;
+  background-color: #fff;
 }
 
 .table-condensed > thead > tr > th,
@@ -5621,7 +5656,7 @@ tbody.collapse.in {
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
   color: #555555;
-  background-color: #f5f8fa;
+  background-color: #fff;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
   cursor: default;
@@ -5722,7 +5757,7 @@ tbody.collapse.in {
   .nav-tabs.nav-justified > .active > a:hover,
   .nav-tabs-justified > .active > a:focus,
   .nav-tabs.nav-justified > .active > a:focus {
-    border-bottom-color: #f5f8fa;
+    border-bottom-color: #fff;
   }
 }
 
@@ -6165,7 +6200,7 @@ tbody.collapse.in {
 
 .navbar-default {
   background-color: #fff;
-  border-color: #d3e0e9;
+  border-color: #e6e5e5;
 }
 
 .navbar-default .navbar-brand {
@@ -6221,7 +6256,7 @@ tbody.collapse.in {
 
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #d3e0e9;
+  border-color: #e6e5e5;
 }
 
 .navbar-default .navbar-nav > .open > a,
@@ -6790,7 +6825,7 @@ a.badge:focus {
   padding: 4px;
   margin-bottom: 22px;
   line-height: 1.6;
-  background-color: #f5f8fa;
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-transition: border 0.2s ease-in-out;
@@ -7072,7 +7107,7 @@ a.thumbnail.active {
   padding: 10px 15px;
   margin-bottom: -1px;
   background-color: #fff;
-  border: 1px solid #d3e0e9;
+  border: 1px solid #e6e5e5;
 }
 
 .list-group-item:first-child {
@@ -7355,7 +7390,7 @@ button.list-group-item-danger.active:focus {
 .panel-footer {
   padding: 10px 15px;
   background-color: #f5f5f5;
-  border-top: 1px solid #d3e0e9;
+  border-top: 1px solid #e6e5e5;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
 }
@@ -7576,7 +7611,7 @@ button.list-group-item-danger.active:focus {
 
 .panel-group .panel-heading + .panel-collapse > .panel-body,
 .panel-group .panel-heading + .panel-collapse > .list-group {
-  border-top: 1px solid #d3e0e9;
+  border-top: 1px solid #e6e5e5;
 }
 
 .panel-group .panel-footer {
@@ -7584,21 +7619,21 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-group .panel-footer + .panel-collapse .panel-body {
-  border-bottom: 1px solid #d3e0e9;
+  border-bottom: 1px solid #e6e5e5;
 }
 
 .panel-default {
-  border-color: #d3e0e9;
+  border-color: #e6e5e5;
 }
 
 .panel-default > .panel-heading {
   color: #333333;
   background-color: #fff;
-  border-color: #d3e0e9;
+  border-color: #e6e5e5;
 }
 
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #d3e0e9;
+  border-top-color: #e6e5e5;
 }
 
 .panel-default > .panel-heading .badge {
@@ -7607,7 +7642,7 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-default > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: #d3e0e9;
+  border-bottom-color: #e6e5e5;
 }
 
 .panel-primary {

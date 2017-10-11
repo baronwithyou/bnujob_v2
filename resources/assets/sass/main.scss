@@ -9,6 +9,8 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
   background: #fff;
   font-family: PingFangSC-Light,-apple-system,PingFang SC,Helvetica Neue,Helvetica,Microsoft YaHei,Arial,sans-serif;
 }
@@ -20,16 +22,18 @@ body {
 // 导航栏
 .navbar-default {
   height: 100%;
-  z-index: 10;
+  z-index: 4;
   padding-bottom: 15px;
+  width: 100%;
   -moz-box-shadow: 1px 1px 5px #777; /* 老的 Firefox */
   box-shadow: 1px 1px 5px #777;
   margin-bottom: 0 !important;
   .navbar-toggle {
-    margin: 30px 40px 0 0;
+    margin: 30px 35px 0 0;
   }
   .navbar-brand {
-    padding-left: 70px;
+    //padding-left: 70px;
+    margin-left: 25px !important;
     margin-top: 23px;
     font-size: 28px;
   }
@@ -173,33 +177,21 @@ body {
 
 // 首页banner
 .welcome-banner {
-  max-height: 350px;
-  >.float-area {
-    position: absolute;
-    width: 80%;
-    top: 0;
-    z-index: 1;
-    overflow: hidden;
-    left: 12%;
-    height: 100%;
+  .float-area {
+    padding: 30px 0;
     >.banner-text {
-      padding-top: 40px;
-        > h4 {
-          margin-top: 50px;
-        }
-        > p {
-          margin-top: 30px;
-        }
-    }
-    >.banner-form {
-      height: 100%;
-      padding: 20px;
+      > h4 {
+        margin-top: 50px;
+      }
+      > p {
+        margin-top: 30px;
+      }
     }
   }
   > span {
     font-size: 20px;
     cursor: pointer;
-    right: 15px;
+    right: 27px;
     top: 15px;
     position: absolute;
     z-index: 1;
@@ -224,6 +216,7 @@ body {
   width: 100%;
   padding: 0.5rem 0;
   border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
   > a {
     .h4 {
       color: #000;

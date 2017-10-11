@@ -7,6 +7,7 @@ use App\Http\Sms;
 use App\Http\UserRepository;
 use App\User;
 use function GuzzleHttp\Psr7\str;
+use Illuminate\Support\Facades\Auth;
 use JavaScript;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class IndexController extends Controller
 //        User::find(1)->update([
 //            'config' => $config
 //        ]);
-
+//        Auth::loginUsingId(4);
         return view('welcome');
     }
 

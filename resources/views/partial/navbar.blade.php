@@ -25,11 +25,12 @@
 
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
+                <?php $user = Auth::user()?>
                 <li><a href="#"><span class="glyphicon glyphicon-bell" style="font-size: 25px;"></span></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" style="padding: 10px 15px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ asset('images/user.png') }}" style="width: 30px" class="img img-circle" alt="">
-                        Martinhacker <span class="caret"></span>
+                        <img src="{{ asset($user->avatar) }}" style="width: 30px" class="img img-circle" alt="">
+                        {{ $user->name }} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('user.index') }}">个人中心</a></li>

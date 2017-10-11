@@ -21,7 +21,7 @@ mix.scripts([
     'resources/assets/js/jquery-ui.min.js',
     'resources/assets/js/overhang.min.js',
     // banner星座特效
-    'resources/assets/js/constellation.js',
+    // 'resources/assets/js/constellation.js',
     // 'resources/assets/js/jquery.smint.js',
     // 导航
     // 'resources/assets/js/jquery.easyAccordion.js',

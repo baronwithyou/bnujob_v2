@@ -34,6 +34,7 @@ class CreateUsersTable extends Migration
             $table->string('grade')->nullable()->comment('所在年级');
             $table->string('abstract')->nullable()->comment('个人简介');
             $table->string('wechat')->nullable();
+            $table->string('avatar')->nullable();
 
             // 其他信息
             $table->integer('role')->default(1)->comment('用户角色 学生 = 1, 商家 = 2, 管理员 = 7');

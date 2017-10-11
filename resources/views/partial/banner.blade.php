@@ -1,17 +1,19 @@
-<header class="welcome-banner">
+<header class="welcome-banner row">
     <span class="glyphicon glyphicon-remove-circle"></span>
-    <div class="bg" style="position: absolute;">
-        <canvas id="display"></canvas>
-        <div id="blachole"></div>
-    </div>
-    <div class="float-area row">
-        <div class="col-xs-12 col-md-5 col-md-offset-1 banner-text">
-            <h2>北师人 Part-time 社区</h2>
-            <h4>更安全方便的找到心仪的 Job</h4>
-            <p>我们坚信，你有无数个加入我们的理由！</p>
+    <div class="col-md-12">
+        <div class="bg">
+            <canvas id="display"></canvas>
+            <div id="blachole"></div>
         </div>
-        <div class="hidden-xs col-md-5 banner-form">
-            <simple-register></simple-register>
+        <div class="row float-area">
+            <div class="col-xs-10 col-xs-offset-2 col-md-4 col-md-offset-2 banner-text">
+                <h2>北师人 Part-time 社区</h2>
+                <h4>更安全方便的找到心仪的 Job</h4>
+                <p>我们坚信，你有无数个加入我们的理由！</p>
+            </div>
+            <div class="hidden-xs col-md-4 banner-form">
+                <simple-register></simple-register>
+            </div>
         </div>
     </div>
 </header>

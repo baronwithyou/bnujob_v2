@@ -1874,6 +1874,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -1919,9 +1921,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/register', { 'name': this.name, 'mobile': this.mobile, 'verify_code': this.verify_code, 'password': this.password }).then(function (response) {
                 var data = response.data;
                 if (data.status) {
-                    Tool.successPrompt(data.msg);
-
+                    console.log(data.data);
                     location.reload();
+                    Tool.welcomeBack(data.msg, data.data.avatar);
                 } else {
                     Tool.errorPrompt(data.msg);
                 }
@@ -38976,7 +38978,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "data-vv-rules": "required",
+      "data-vv-rules": "required|digits:6",
       "name": "verify_code",
       "placeholder": "短信验证码",
       "id": ""
@@ -39069,6 +39071,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_vm._v(_vm._s(_vm.errors.first('password')))])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('button', {
     staticClass: "btn btn-register pull-right",
+    attrs: {
+      "disabled": _vm.errors.has('password') || _vm.errors.has('name') ||
+        _vm.errors.has('mobile') || _vm.errors.has('verify_code')
+    },
     on: {
       "click": _vm.register
     }
@@ -49831,16 +49837,16 @@ function prompt(msg, type) {
     });
 }
 
-function welcomeBack() {
+function welcomeBack(msg, avatar) {
     Notification.create(
     // 消息通知框的标题
-    "Welcome Back",
+    "Welcome! :)",
     // 消息通知框的内容
-    "欢迎回来",
+    msg,
     // 图片
-    "./image/user.png",
+    avatar,
     // 效果
-    "tada", 1, 3);
+    "tada", 2, 4);
 }
 
 /***/ }),

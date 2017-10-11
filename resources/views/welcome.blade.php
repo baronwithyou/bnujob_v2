@@ -4,7 +4,9 @@
 
 @section('top')
     @include('partial.navbar')
-    @include('partial.banner')
+    @if(!Auth::check())
+        @include('partial.banner')
+    @endif
 @stop
 
 @section('content')
@@ -23,7 +25,7 @@
             <div role="tabpanel" class="tab-pane active" id="home">
                 <div class="welcome-store open-modal">
                     <a href="{{ route('job', 1) }}">
-                        <div class="col-md-10">
+                        <div class="col-xs-9 col-md-10">
                             <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
                             <div class="job-description">
                                 <p>
@@ -38,14 +40,14 @@
                             </div>
                             <small class="pull-right">Github 专卖店</small>
                         </div>
-                        <div class="hidden-xs col-md-2">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                        <div class="col-xs-3 col-md-2">
+                            <img src="{{ asset('images/avatar/user1.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
                 <div class="welcome-store">
                     <a href="{{ route('job', 1) }}">
-                        <div class="col-md-10">
+                        <div class="col-xs-9 col-md-10">
                             <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
                             <div class="job-description">
                                 <p>
@@ -60,14 +62,14 @@
                             </div>
                             <small class="pull-right">Github 专卖店</small>
                         </div>
-                        <div class="hidden-xs col-md-2">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                        <div class="col-xs-3 col-md-2">
+                            <img src="{{ asset('images/avatar/user2.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
                 <div class="welcome-store">
                     <a href="{{ route('job', 1) }}">
-                        <div class="col-md-10">
+                        <div class="col-xs-9 col-md-10">
                             <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
                             <div class="job-description">
                                 <p>
@@ -82,14 +84,14 @@
                             </div>
                             <small class="pull-right">Github 专卖店</small>
                         </div>
-                        <div class="hidden-xs col-md-2">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                        <div class="col-xs-3 col-md-2">
+                            <img src="{{ asset('images/avatar/user3.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
                 <div class="welcome-store">
                     <a href="{{ route('job', 1) }}">
-                        <div class="col-md-10">
+                        <div class="col-xs-9 col-md-10">
                             <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
                             <div class="job-description">
                                 <p>
@@ -104,14 +106,14 @@
                             </div>
                             <small class="pull-right">Github 专卖店</small>
                         </div>
-                        <div class="hidden-xs col-md-2">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                        <div class="col-xs-3 col-md-2">
+                            <img src="{{ asset('images/avatar/user4.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
                 <div class="welcome-store">
                     <a href="{{ route('job', 1) }}">
-                        <div class="col-md-10">
+                        <div class="col-xs-9 col-md-10">
                             <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
                             <div class="job-description">
                                 <p>
@@ -126,14 +128,14 @@
                             </div>
                             <small class="pull-right">Github 专卖店</small>
                         </div>
-                        <div class="hidden-xs col-md-2">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                        <div class="col-xs-3 col-md-2">
+                            <img src="{{ asset('images/avatar/user5.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
                 <div class="welcome-store">
                     <a href="{{ route('job', 1) }}">
-                        <div class="col-md-10">
+                        <div class="col-xs-9 col-md-10">
                             <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
                             <div class="job-description">
                                 <p>
@@ -148,14 +150,14 @@
                             </div>
                             <small class="pull-right">Github 专卖店</small>
                         </div>
-                        <div class="hidden-xs col-md-2">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                        <div class="col-xs-3 col-md-2">
+                            <img src="{{ asset('images/avatar/user6.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
                 <div class="welcome-store">
                     <a href="{{ route('job', 1) }}">
-                        <div class="col-md-10">
+                        <div class="col-xs-9 col-md-10">
                             <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
                             <div class="job-description">
                                 <p>
@@ -170,8 +172,8 @@
                             </div>
                             <small class="pull-right">Github 专卖店</small>
                         </div>
-                        <div class="hidden-xs col-md-2">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                        <div class="col-xs-3 col-md-2">
+                            <img src="{{ asset('images/avatar/user8.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
@@ -188,7 +190,7 @@
             <div class="full-area">
                 {{--<img src="{{ asset('img/sun-shine.png') }}" class="img-icon" alt="">--}}
                 <div class="left-area">
-                    <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                    <img src="{{ asset('images/avatar/user1.png') }}" class="img img-responsive" alt="">
                 </div>
                 <div class="right-area">
                     <a href="">
@@ -200,7 +202,7 @@
             </div>
             <div class="full-area">
                 <div class="left-area">
-                    <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
+                    <img src="{{ asset('images/avatar/user1.png') }}" class="img img-responsive" alt="">
                 </div>
                 <div class="right-area">
                     <a href="">
@@ -215,6 +217,7 @@
 @stop
 
 @section('javascripts')
+    <script src="{{ asset('js/constellation.js') }}"></script>
     <script>
         $(function () {
             @if(session()->has('success'))
@@ -224,7 +227,7 @@
                 // 消息通知框的内容
                 "Long text Long text Long text Long text.",
                 // 图片
-                "{{ asset('images/user.png') }}",
+                "{{ asset('images/avatar/user1.png') }}",
                 // 效果
                 "tada", 1, 5);
             @endif
@@ -260,7 +263,7 @@
                     {{--// 消息通知框的内容--}}
                     {{--"Long text Long text Long text Long text.",--}}
                     {{--// 图片--}}
-                    {{--"{{ asset('images/user.png') }}",--}}
+                    {{--"{{ asset('images/avatar/user1.png') }}",--}}
                     {{--// 效果--}}
                     {{--"tada", 1, 3, function() {--}}
                         {{--$("body").overhang({--}}

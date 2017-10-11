@@ -7,24 +7,26 @@
             <span class="label label-primary">IT</span>
         </div>
         <div class="row info-btn">
-            <div class="col-md-1 col-md-offset-5 btn-area">
+            <div class="col-xs-3 col-xs-offset-3 col-md-2 col-md-offset-4 btn-area">
                 <button class="btn btn-yellow">投递</button>
                 <span><strong>3</strong>人投递</span>
             </div>
-            <div class="col-md-1 btn-area">
-                <button class="btn btn-default">收藏</button>
-                <span><strong>10</strong>人收藏</span>
+            <div class="col-xs-3 col-md-2 btn-area">
+                <div class="pull-right">
+                    <button class="btn btn-default">收藏</button>
+                    <span><strong>10</strong>人收藏</span>
+                </div>
             </div>
         </div>
 
 
 
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="row text-center">
-                    <div class="col-md-4"><span class="fa fa-phone"></span> 13106803427</div>
-                    <div class="col-md-4"><span class="fa fa-rmb"></span> 300元/天</div>
-                    <div class="col-md-4"><span class="fa fa-map-marker"></span> 广东省珠海市</div>
+                    <div class="col-xs-4"><span class="fa fa-phone"></span> 13106803427</div>
+                    <div class="col-xs-4"><span class="fa fa-rmb"></span> 300元/天</div>
+                    <div class="col-xs-4"><span class="fa fa-map-marker"></span> 广东省珠海市</div>
                 </div>
                 <hr>
                 <div class="job-detail">
@@ -49,7 +51,7 @@
                 </div>
                 <div class="job-comment">
                     <div class="row">
-                        <div class="col-md-1" style="padding: 0; margin: 0;">
+                        <div class="col-xs-1" style="padding: 0; margin: 0;">
                             <div class="comment-grade-btn pull-right">
                                 <button class="btn btn-default">
                                     <i class="fa fa-chevron-up"></i>
@@ -60,7 +62,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-xs-8">
                             <div class="comment-detail">
                                 <div class="comment-content">
                                     <p>
@@ -78,7 +80,7 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-md-1" style="padding: 0; margin: 0;">
+                        <div class="col-xs-1" style="padding: 0; margin: 0;">
                             <div class="comment-grade-btn pull-right">
                                 <button class="btn btn-default">
                                     <i class="fa fa-chevron-up"></i>
@@ -89,7 +91,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-xs-8">
                             <div class="comment-detail">
                                 <div class="comment-content">
                                     <p>
