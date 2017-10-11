@@ -1700,6 +1700,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/OpenConfig.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['user'],
+    data: function data() {
+        return {
+            checked: false
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        if (this.user) {
+            axios.post('/api/user/config/' + this.user).then(function (response) {
+                if (response.data.open_type && response.data.open_type === 'modal') {
+                    _this.checked = true;
+                    $('.welcome-store').addClass('open-modal');
+                } else {
+                    _this.checked = false;
+                    $('.welcome-store').removeClass('open-modal');
+                }
+            });
+        }
+    },
+
+    methods: {
+        updateConfig: function updateConfig() {
+            var _this2 = this;
+
+            axios.post('/api/user/config/update/' + this.user).then(function (response) {
+                _this2.checked = response.data.open_type === 'modal';
+                if (_this2.checked) {
+                    $('.welcome-store').addClass('open-modal');
+                } else {
+                    $('.welcome-store').removeClass('open-modal');
+                }
+            }).catch();
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/RegisterForm.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1821,39 +1876,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            mobile: ''
+            mobile: '',
+            name: '',
+            verify_code: '',
+            password: ''
         };
     },
 
     methods: {
         getVerifyCode: function getVerifyCode() {
             axios.post('/get-verify-code', { 'mobile': this.mobile }).then(function (response) {
-                Tool.test(response.data.msg);
-            }).catch(function (error) {});
+                var data = response.data;
+                if (data.status) {
+                    Tool.successPrompt(data.msg);
+                } else {
+                    Tool.errorPrompt(data.msg);
+                }
+            }).catch(function (error) {
+                Tool.errorPrompt('获取验证码失败');
+            });
+        },
+        register: function register() {
+            if (!this.name || !this.mobile || !this.verify_code || !this.password) {
+                Tool.errorPrompt('请完整填写信息再提交');
+                return false;
+            }
+            axios.post('/register', { 'name': this.name, 'mobile': this.mobile, 'verify_code': this.verify_code, 'password': this.password }).then(function (response) {
+                var data = response.data;
+                if (data.status) {
+                    Tool.successPrompt(data.msg);
+                    location.reload();
+                } else {
+                    Tool.errorPrompt(data.msg);
+                }
+            }).catch(function (error) {
+                var errors = error.response.data.errors;
+                var msg = '';
+                if (errors.mobile) {
+                    msg += errors.mobile[0];
+                }
+                Tool.errorPrompt(msg);
+            });
         }
     }
-});
-
-/***/ }),
-
-/***/ "./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Test.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {}
 });
 
 /***/ }),
@@ -38510,58 +38575,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0a43bae1\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Test.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-12"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "email"
-    }
-  }, [_vm._v("Email")]), _vm._v(" "), _c('p', {
-    class: {
-      'control': true
-    }
-  }, [_c('input', {
-    directives: [{
-      name: "validate",
-      rawName: "v-validate"
-    }],
-    staticClass: "form-control",
-    class: {
-      'input': true, 'is-danger': _vm.errors.has('email')
-    },
-    attrs: {
-      "data-vv-rules": "required|email",
-      "data-vv-as": "邮箱",
-      "id": "email",
-      "name": "email",
-      "type": "email",
-      "placeholder": "Email"
-    }
-  }), _vm._v(" "), _c('span', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.errors.has('email')),
-      expression: "errors.has('email')"
-    }],
-    staticClass: "help is-danger"
-  }, [_vm._v(_vm._s(_vm.errors.first('email')))])])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-0a43bae1", module.exports)
-  }
-}
-
-/***/ }),
-
 /***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-353752eb\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Example.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38809,6 +38822,42 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5d10ab8a\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/OpenConfig.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "checkbox pull-right",
+    staticStyle: {
+      "padding": "2px 40px 2px 0",
+      "margin": "0"
+    }
+  }, [_c('label', [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "id": "website-open-type"
+    },
+    domProps: {
+      "checked": _vm.checked,
+      "value": _vm.checked
+    },
+    on: {
+      "change": _vm.updateConfig
+    }
+  }), _vm._v(" "), _c('i', {
+    staticClass: "fa fa-icon-eye-open"
+  }), _vm._v(" 十级美颜效果\n    ")])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-5d10ab8a", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-65298684\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/SimpleRegister.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38824,6 +38873,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "validate",
       rawName: "v-validate"
+    }, {
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.name),
+      expression: "name"
     }],
     staticClass: "form-control",
     class: {
@@ -38835,6 +38889,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "name": "name",
       "placeholder": "真实姓名或常用昵称",
       "id": "name"
+    },
+    domProps: {
+      "value": (_vm.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.name = $event.target.value
+      }
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "help-block"
@@ -38888,6 +38951,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "validate",
       rawName: "v-validate"
+    }, {
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.verify_code),
+      expression: "verify_code"
     }],
     staticClass: "form-control",
     attrs: {
@@ -38896,6 +38964,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "name": "verify_code",
       "placeholder": "短信验证码",
       "id": ""
+    },
+    domProps: {
+      "value": (_vm.verify_code)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.verify_code = $event.target.value
+      }
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "input-group-addon",
@@ -38934,14 +39011,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "validate",
       rawName: "v-validate"
+    }, {
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.password),
+      expression: "password"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "password",
       "data-vv-rules": "required|min:6",
+      "placeholder": "密码(不少于六位)",
       "name": "password",
-      "id": "password",
-      "placeholder": "密码(不少于六位)"
+      "id": "password"
+    },
+    domProps: {
+      "value": (_vm.password)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.password = $event.target.value
+      }
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "help-block"
@@ -38953,7 +39044,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "errors.has('password')"
     }]
   }, [_vm._v(_vm._s(_vm.errors.first('password')))])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-register pull-right"
+    staticClass: "btn btn-register pull-right",
+    on: {
+      "click": _vm.register
+    }
   }, [_vm._v("注册")])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('span', [_vm._v("已有账号？"), _c('a', {
@@ -49345,7 +49439,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 __webpack_require__("./resources/assets/js/main.js");
 
-window.Tool = __webpack_require__("./resources/assets/js/function.js");
+window.Tool = __webpack_require__("./resources/assets/js/tool.js");
 
 window.Vue = __webpack_require__("./node_modules/_vue@2.4.4@vue/dist/vue.common.js");
 
@@ -49386,7 +49480,7 @@ Vue.component('simple-register', __webpack_require__("./resources/assets/js/comp
 
 Vue.component('login-form', __webpack_require__("./resources/assets/js/components/LoginForm.vue"));
 
-Vue.component('test', __webpack_require__("./resources/assets/js/components/Test.vue"));
+Vue.component('open-config', __webpack_require__("./resources/assets/js/components/OpenConfig.vue"));
 
 var app = new Vue({
     el: '#app'
@@ -49527,6 +49621,41 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/OpenConfig.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/OpenConfig.vue"),
+  /* template */
+  __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5d10ab8a\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/OpenConfig.vue"),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/OpenConfig.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] OpenConfig.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5d10ab8a", Component.options)
+  } else {
+    hotAPI.reload("data-v-5d10ab8a", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/RegisterForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49597,53 +49726,6 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/Test.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/component-normalizer.js")(
-  /* script */
-  __webpack_require__("./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Test.vue"),
-  /* template */
-  __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0a43bae1\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Test.vue"),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/Test.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Test.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0a43bae1", Component.options)
-  } else {
-    hotAPI.reload("data-v-0a43bae1", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/function.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (immutable) */ __webpack_exports__["test"] = test;
-function test(msg) {
-    console.log(msg);
-}
-
-/***/ }),
-
 /***/ "./resources/assets/js/main.js":
 /***/ (function(module, exports) {
 
@@ -49696,6 +49778,46 @@ $(function () {
         content: '点击查询兼职信息'
     });
 });
+
+/***/ }),
+
+/***/ "./resources/assets/js/tool.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["errorPrompt"] = errorPrompt;
+/* harmony export (immutable) */ __webpack_exports__["successPrompt"] = successPrompt;
+/* harmony export (immutable) */ __webpack_exports__["welcomeBack"] = welcomeBack;
+function errorPrompt(msg) {
+    prompt(msg, 'error');
+    return;
+}
+
+function successPrompt(msg) {
+    prompt(msg, 'success');
+    return;
+}
+
+function prompt(msg, type) {
+    $("body").overhang({
+        type: type,
+        message: msg,
+        duration: 2.5
+    });
+}
+
+function welcomeBack() {
+    Notification.create(
+    // 消息通知框的标题
+    "Welcome Back",
+    // 消息通知框的内容
+    "欢迎回来",
+    // 图片
+    "./image/user.png",
+    // 效果
+    "tada", 1, 3);
+}
 
 /***/ }),
 

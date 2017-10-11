@@ -9,7 +9,7 @@ require('./bootstrap');
 
 require('./main');
 
-window.Tool = require('./function');
+window.Tool = require('./tool');
 
 window.Vue = require('vue');
 
@@ -51,7 +51,7 @@ Vue.component('simple-register', require('./components/SimpleRegister.vue'));
 
 Vue.component('login-form', require('./components/LoginForm.vue'));
 
-Vue.component('test', require('./components/Test.vue'));
+Vue.component('open-config', require('./components/OpenConfig.vue'));
 
 const app = new Vue({
     el: '#app'

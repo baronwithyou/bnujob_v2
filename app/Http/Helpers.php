@@ -24,7 +24,6 @@ class Helpers
             'data' => $data
         ]);
         echo $response;
-        return;
     }
 
     public static function ajaxSuccess($msg = '', $data = [])
@@ -32,8 +31,13 @@ class Helpers
         self::ajaxReturn(1, $msg, $data);
     }
 
-    public function ajaxError($msg = '', $data = [])
+    public static function ajaxFail($msg = '', $data = [])
     {
         self::ajaxReturn(0, $msg, $data);
+    }
+
+    public static function getRandomVerifyCode()
+    {
+        return rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9);
     }
 }

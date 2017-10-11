@@ -15,7 +15,8 @@
         "laravelcollective/html": "^5.4",
         "naux/sendcloud": "^1.1",
         "overtrue/laravel-lang": "~3.0",
-        "socialiteproviders/manager": "^3.2"
+        "socialiteproviders/manager": "^3.2",
+        "yunpian/yunpian-php-sdk" : "~1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

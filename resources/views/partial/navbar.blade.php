@@ -27,7 +27,7 @@
                         Martinhacker <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">个人中心</a></li>
+                        <li><a href="{{ route('user.index') }}">个人中心</a></li>
                         <li><a href="#">兼职状态</a></li>
                         <li>
                             {!! Form::open(['route' => 'logout']) !!}

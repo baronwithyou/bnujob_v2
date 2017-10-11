@@ -17,38 +17,12 @@
                 <li role="presentation"><a href="#messages" data-toggle="tab">京华苑</a></li>
                 <li role="presentation"><a href="#settings" data-toggle="tab">粤华苑</a></li>
             </ul>
-            <div class="checkbox pull-right" style="padding: 2px 40px 2px 0; margin: 0">
-                <label>
-                    <input type="checkbox" checked id="website-open-type" value="1"> <i class="fa fa-icon-eye-open"></i> 十级美颜效果
-                </label>
-            </div>
+            {{--<open-config user="{{ Auth::check() ? Auth::user()->id : Auth::loginUsingId(4) }}"></open-config>--}}
         </div>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
-                <div class="welcome-store">
+                <div class="welcome-store open-modal">
                     <a href="{{ route('job', 1) }}">
-                        <div class="col-md-10">
-                            <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
-                            <div class="job-description">
-                                <p>
-                                    GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.
-                                    GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.
-                                    GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.
-                                    GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.
-                                    GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.
-                                    GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.
-                                    GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 29 million projects.
-                                </p>
-                            </div>
-                            <small class="pull-right">Github 专卖店</small>
-                        </div>
-                        <div class="hidden-xs col-md-2">
-                            <img src="{{ asset('images/user.png') }}" class="img img-responsive" alt="">
-                        </div>
-                    </a>
-                </div>
-                <div class="welcome-store">
-                    <a href="javascript:void(0);" id="test-1">
                         <div class="col-md-10">
                             <span class="h4">外卖员</span><span class="pull-right">地址：广东省珠海市</span>
                             <div class="job-description">
@@ -298,7 +272,7 @@
                 {{--);--}}
             {{--});--}}
             //cache some jQuery objects
-            var modalTrigger = $('.welcome-store'),
+            var modalTrigger = $('.open-modal'),
                 transitionLayer = $('.cd-transition-layer'),
                 transitionBackground = transitionLayer.children(),
                 modalWindow = $('.cd-modal');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Helpers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\UserRepository;
 use Illuminate\Auth\Events\Registered;
+use Symfony\Component\Console\Helper\Helper;
 
 class RegisterController extends Controller
 {
@@ -80,12 +82,13 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'password' => bcrypt($data['password']),
             'confirmation_token' => str_random(40),
-            'active' => 0
+            'active' => 0,
+            'config' => json_encode(['open_type' => 'modal'])
         ];
         if (isset($data['email'])) {
-            $attr[] = ['email' => $data['email']];
+            $attr['email'] = $data['email'];
         } else {
-            $attr[] = ['mobile' => $data['mobile']];
+            $attr['mobile'] = $data['mobile'];
         }
         return $this->repository->create($attr);
     }
@@ -94,17 +97,26 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        // 验证输入的验证码和实际验证码是否匹配
+        if (!$this->checkVerifyMatch($request->verify_code)) {
+            $err = 'Sorry,验证码不正确:(';
+            if ($request->ajax()) {
+                Helpers::ajaxFail($err);
+                return;
+            } else {
+                return redirect()->back()->withErrors($err);
+            }
+        }
+
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
-
-//        if ($request->ajax()) {
-//            echo "来自原始register controller";
-//            return;
-//        }
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+        if ($request->ajax()) {
+            Helpers::ajaxSuccess('注册成功');
+            return;
+        } else {
+            return $this->registered($request, $user)
+                ?: redirect($this->redirectPath());
+        }
     }
 
     protected function registered(Request $request, $user)
@@ -115,5 +127,13 @@ class RegisterController extends Controller
         } else {
             return redirect()->back()->with('success', '注册成功');
         }
+    }
+
+    protected function checkVerifyMatch($verify_code)
+    {
+        if (session()->has('verify_code')) {
+            return $verify_code == session()->get('verify_code');
+        }
+        return false;
     }
 }
