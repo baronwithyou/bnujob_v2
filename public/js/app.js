@@ -1872,6 +1872,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -1879,16 +1881,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             mobile: '',
             name: '',
             verify_code: '',
-            password: ''
+            password: '',
+            disabled: false,
+            time: 60
         };
     },
 
     methods: {
         getVerifyCode: function getVerifyCode() {
+            var _this = this;
+
             axios.post('/get-verify-code', { 'mobile': this.mobile }).then(function (response) {
                 var data = response.data;
                 if (data.status) {
                     Tool.successPrompt(data.msg);
+                    var the = _this;
+                    _this.disabled = true;
+                    var t1 = window.setInterval(function () {
+                        console.log(the.time--);
+                        if (!the.time) {
+                            window.clearInterval(t1);
+                            the.disabled = false;
+                        }
+                    }, 1000);
                 } else {
                     Tool.errorPrompt(data.msg);
                 }
@@ -1905,6 +1920,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var data = response.data;
                 if (data.status) {
                     Tool.successPrompt(data.msg);
+
                     location.reload();
                 } else {
                     Tool.errorPrompt(data.msg);
@@ -38979,14 +38995,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "basic-addon2"
     }
-  }, [_c('a', {
+  }, [_c('button', {
+    staticClass: "btn btn-link",
     attrs: {
-      "href": "javascript:void(0)"
+      "disabled": _vm.disabled
     },
     on: {
       "click": _vm.getVerifyCode
     }
-  }, [_vm._v("获取验证码")])])]), _vm._v(" "), _c('span', {
+  }, [_vm._v("获取验证码 "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.disabled),
+      expression: "disabled"
+    }]
+  }, [_vm._v("(" + _vm._s(_vm.time) + "秒后再试)")])])])]), _vm._v(" "), _c('span', {
     staticClass: "help-block"
   }, [_c('strong', {
     directives: [{

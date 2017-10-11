@@ -291,3 +291,10 @@ body {
 .hide-scroll {
   overflow-y: hidden;
 }
+
+.input-group-addon {
+  .btn {
+    padding: 0;
+    height: 20px;
+  }
+}

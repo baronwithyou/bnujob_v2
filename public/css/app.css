@@ -320,6 +320,11 @@ body {
   overflow-y: hidden;
 }
 
+.input-group-addon .btn {
+  padding: 0;
+  height: 20px;
+}
+
 .user-banner {
   background: #f6f6f6;
   padding: 20px;

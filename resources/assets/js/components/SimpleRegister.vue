@@ -14,7 +14,9 @@
             <div class="input-group">
                 <input type="text" v-validate data-vv-rules="required" v-model="verify_code"
                        name="verify_code" placeholder="短信验证码" class="form-control" id="">
-                <span class="input-group-addon" id="basic-addon2"><a href="javascript:void(0)" @click="getVerifyCode">获取验证码</a></span>
+                <span class="input-group-addon" id="basic-addon2">
+                    <button class="btn btn-link" @click="getVerifyCode" :disabled="disabled">获取验证码 <span v-show="disabled">({{ time }}秒后再试)</span></button>
+                </span>
             </div>
             <span class="help-block">
                 <strong v-show="errors.has('mobile')">
@@ -43,6 +45,8 @@
                 name: '',
                 verify_code: '',
                 password: '',
+                disabled: false,
+                time: 60
             }
         },
         methods: {
@@ -51,6 +55,15 @@
                     const data = response.data;
                     if (data.status) {
                         Tool.successPrompt(data.msg);
+                        const the = this;
+                        this.disabled = true;
+                        let t1 = window.setInterval(function() {
+                            console.log(the.time--);
+                            if (!the.time) {
+                                window.clearInterval(t1);
+                                the.disabled = false;
+                            }
+                        }, 1000);
                     } else {
                         Tool.errorPrompt(data.msg);
                     }
@@ -68,6 +81,7 @@
                     const data = response.data;
                     if (data.status) {
                         Tool.successPrompt(data.msg);
+
                         location.reload();
                     } else {
                         Tool.errorPrompt(data.msg);
