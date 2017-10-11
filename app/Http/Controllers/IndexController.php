@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Helpers;
 use App\Http\Sms;
+use App\Http\UserRepository;
 use App\User;
 use function GuzzleHttp\Psr7\str;
 use JavaScript;
@@ -11,6 +12,16 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
+
+
+    /**
+     * IndexController constructor.
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function index()
     {
 //        JavaScript::put([
@@ -38,6 +49,11 @@ class IndexController extends Controller
         $mobile = $request->input('mobile', null);
         if (is_null($mobile) || !Helpers::isMobile($mobile)) {
             Helpers::ajaxFail('请输入正确手机号码');
+            return;
+        }
+
+        if ($this->userRepository->checkMobileExists($mobile)) {
+            Helpers::ajaxFail('该手机号已经被使用');
             return;
         }
 

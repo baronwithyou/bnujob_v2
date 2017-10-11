@@ -17,4 +17,9 @@ class UserRepository
     {
         return User::create($attr);
     }
+
+    public function checkMobileExists($mobile)
+    {
+        return User::where('mobile', $mobile)->first();
+    }
 }

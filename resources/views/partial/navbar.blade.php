@@ -17,6 +17,11 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ route('index') }}">所有兼职 <span class="sr-only">(current)</span></a></li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="">丢卡狂魔集中营</a></li>
+                <li><a href="">讨论区</a></li>
+                <li><a href="">二手市场</a></li>
+            </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
@@ -37,16 +42,13 @@
                     </ul>
                 </li>
                 @else
-                    <li><a href="#auth-check" data-toggle="modal" class="btn btn-default">立即登录</a></li>
-                    <li><a href="#auth-check" data-toggle="modal" class="btn btn-info">免费注册</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#auth-check" data-toggle="modal" class="list-btn-xs">立即登录</a></li>
+                <li><a href="#auth-check" data-toggle="modal" class="list-btn-xs">免费注册</a></li>
                 @endif
             </ul>
 
-            <ul class="nav navbar-nav" style="margin-left: 100px;">
-                <li><a href="">丢卡狂魔集中营</a></li>
-                <li><a href="">讨论区</a></li>
-                <li><a href="">二手市场</a></li>
-            </ul>
+
             <div class="search-wrapper hidden-xs">
                 <div class="input-holder">
                     <input type="text" class="search-input" placeholder="输入兼职/商家查询" />

@@ -1898,7 +1898,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     var the = _this;
                     _this.disabled = true;
                     var t1 = window.setInterval(function () {
-                        console.log(the.time--);
+                        the.time--;
                         if (!the.time) {
                             window.clearInterval(t1);
                             the.disabled = false;

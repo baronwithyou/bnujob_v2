@@ -19,21 +19,28 @@ body {
 
 // 导航栏
 .navbar-default {
-  height: 100px;
+  height: 100%;
+  z-index: 10;
+  padding-bottom: 15px;
   -moz-box-shadow: 1px 1px 5px #777; /* 老的 Firefox */
   box-shadow: 1px 1px 5px #777;
   margin-bottom: 0 !important;
+  .navbar-toggle {
+    margin: 30px 40px 0 0;
+  }
   .navbar-brand {
-    margin-top: 33px;
     padding-left: 70px;
+    margin-top: 23px;
     font-size: 28px;
   }
   .search-wrapper {
     width: 100px;
   }
+  .navbar-collapse {
+    margin-top: 23px;
+  }
   .navbar-nav {
     > li {
-      margin-top: 33px;
       > a {
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
