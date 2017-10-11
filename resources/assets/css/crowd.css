@@ -1,4 +1,4 @@
-html { font-size: 1em; line-height: 1.4; height: 100%; }
+html { font-size: 1em; line-height: 1.4; height: 100%;  overflow: hidden;}
 body { overflow-x: hidden; height: 100%; font-family: "PingHei","Lucida Grande", "Lucida Sans Unicode", "STHeitiSC-Light", Helvetica,"BBAlpha Sans","S60 Sans","Hiragino Sans GB",Arial,"Microsoft YaHei","Verdana", SimHei, STXihei, SimSun, "WenQuanYi Micro Hei", sans-serif; }
 *{
     margin: 0;
