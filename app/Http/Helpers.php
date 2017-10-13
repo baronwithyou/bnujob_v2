@@ -40,4 +40,15 @@ class Helpers
     {
         return rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9);
     }
+
+    public static function getRandomAnimate()
+    {
+        $animation = ['bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp',
+            'fadeIn', 'fadeInDown', 'fadeInLeft', 'fadeInRight', 'fadeInUp',
+            'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp',
+            'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight',
+            'flipInX', 'flipInY', 'lightSpeedIn', 'rollIn', 'bounce', 'pulse', 'rubberBand', 'shake',
+            'swing', 'tada', 'wobble'];
+        return $animation[rand(0, count($animation) - 1)];
+    }
 }

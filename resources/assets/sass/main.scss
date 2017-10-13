@@ -240,20 +240,10 @@ body {
 }
 
 // 用户登录注册modal框
-#auth-check {
+.auth-check {
+  padding-top: 70px;
   .modal-body {
-    height: 100%;
-    .auth-part {
-      display: block;
-      width: 100%;
-      height: 460px;
-    }
-    .container-fluid {
-      margin: 20px 30px;
-      .register-part {
-        border-right: 1px solid #e6e6e6;
-      }
-    }
+    padding: 25px 0;
   }
 }
 
@@ -298,3 +288,4 @@ body {
     height: 20px;
   }
 }
+

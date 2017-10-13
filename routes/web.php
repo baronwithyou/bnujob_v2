@@ -13,7 +13,9 @@
 
 Auth::routes();
 Route::get('/', 'IndexController@index')->name('index');
-Route::get('/user', 'UserController@index')->name('user.index');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/user', 'UserController@index')->name('user.index');
+});
 Route::get('/job/{id}', 'IndexController@jobDetail')->name('job');
 
 Route::post('/get-verify-code', 'IndexController@getVerifyCode')->name('get-verify-code');

@@ -112,7 +112,8 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
         if ($request->ajax()) {
-            Helpers::ajaxSuccess('注册成功', ['avatar' => $user->avatar]);
+            session()->flash('success', ['title' => 'Congratulation! :)', 'msg' => '注册成功', 'avatar' => $user->avatar]);
+            Helpers::ajaxSuccess();
             return;
         } else {
             return $this->registered($request, $user)

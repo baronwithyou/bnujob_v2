@@ -16,14 +16,14 @@ function prompt(msg, type) {
     });
 }
 
-export function welcomeBack(msg, avatar) {
+export function welcomeBack(title, msg, avatar, animate) {
     Notification.create(
         // 消息通知框的标题
-        "Welcome! :)",
+        title,
         // 消息通知框的内容
         msg,
         // 图片
         avatar,
         // 效果
-        "tada", 2, 4,);
+        animate, 1, 3, function(){});
 }

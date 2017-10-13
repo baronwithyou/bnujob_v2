@@ -220,16 +220,8 @@
     <script src="{{ asset('js/constellation.js') }}"></script>
     <script>
         $(function () {
-            @if(session()->has('success'))
-                Notification.create(
-                // 消息通知框的标题
-                "{{ session('success') }}",
-                // 消息通知框的内容
-                "Long text Long text Long text Long text.",
-                // 图片
-                "{{ asset('images/avatar/user1.png') }}",
-                // 效果
-                "tada", 1, 5);
+            @if(session()->has('success') && $data = session()->get('success'))
+                Tool.welcomeBack('{{ $data['title'] }}', '{{ $data['msg'] }}', '{{ $data['avatar'] }}', $('meta[name="animate"]').attr('content'));
             @endif
 
             $('.glyphicon-remove-circle').on('click', function () {

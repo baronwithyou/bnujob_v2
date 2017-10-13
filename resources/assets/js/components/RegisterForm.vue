@@ -2,7 +2,7 @@
     <div>
         <div class="form-group" :class="{'has-error': errors.has('name')}">
             <label for="name">用户名</label>
-            <input type="text" v-validate data-vv-rules="required|string" data-vv-as="用户名" :class="{'is-danger': errors.has('name') }"  name="name" class="form-control" placeholder="真实姓名或常用昵称" id="name" v-model="name">
+            <input type="text" v-validate data-vv-rules="required" data-vv-as="用户名" :class="{'is-danger': errors.has('name') }"  name="name" class="form-control" placeholder="真实姓名或常用昵称" id="name" v-model="name">
             <span class="help-block"><strong v-show="errors.has('name')">{{ errors.first('name') }}</strong></span>
         </div>
         <div class="form-group" :class="{'has-error': mobile_error}">

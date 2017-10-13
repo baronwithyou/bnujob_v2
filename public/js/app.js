@@ -1665,34 +1665,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            name_error: '',
-            password_error: '',
-            name: '',
+            username: '',
             password: ''
         };
     },
 
-    computed: {
-        name_msg: function name_msg() {
-            return this.name_error ? this.name_error : '';
-        },
-        password_msg: function password_msg() {
-            return this.password_error ? this.password_error : '';
-        }
-    },
     methods: {
         login: function login() {
             var _this = this;
 
-            axios.post('/login', { name: this.name, password: this.password }).then(function (response) {}).catch(function (error) {
-                error = error.response.data.errors;
-                _this.name_error = error.mobile ? error.mobile[0] : '';
-                _this.name_error += error.email ? error.email[0] : '';
-                _this.password_error = error.password ? error.password[0] : '';
+            if (!this.username || !this.password) {
+                if (!this.username) {
+                    this.errors.add('username', '用户名 是必须的.');
+                }
+                if (!this.password) {
+                    this.errors.add('password', '密码 是必须的.');
+                }
+                return false;
+            }
+            axios.post('/login', { 'username': this.username, 'password': this.password }).then(function (response) {
+                var data = response.data;
+                location.reload();
+                //                    Tool.welcomeBack("Welcome! :)", data.msg, data.data.avatar);
+            }).catch(function (error) {
+                var errors = error.response.data.errors;
+                _this.errors.add('all', errors.mobile[0]);
             });
         }
     }
@@ -1875,7 +1882,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -1907,7 +1913,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                     }, 1000);
                 } else {
-                    Tool.errorPrompt(data.msg);
+                    _this.errors.add('mobile', data.msg);
                 }
             }).catch(function (error) {
                 Tool.errorPrompt('获取验证码失败');
@@ -1915,15 +1921,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         register: function register() {
             if (!this.name || !this.mobile || !this.verify_code || !this.password) {
-                Tool.errorPrompt('请完整填写信息再提交');
+                if (!this.name) {
+                    this.errors.add('name', '用户名 是必须的.');
+                }
+                if (!this.mobile) {
+                    this.errors.add('mobile', '手机号 是必须的.');
+                }
+                if (!this.verify_code) {
+                    this.errors.add('verify_code', '验证码 是必须的.');
+                }
+                if (!this.password) {
+                    this.errors.add('password', '密码 是必须的.');
+                }
                 return false;
             }
             axios.post('/register', { 'name': this.name, 'mobile': this.mobile, 'verify_code': this.verify_code, 'password': this.password }).then(function (response) {
                 var data = response.data;
                 if (data.status) {
-                    console.log(data.data);
                     location.reload();
-                    Tool.welcomeBack(data.msg, data.data.avatar);
+                    //                        Tool.welcomeBack("Welcome! :)", data.msg, data.data.avatar);
                 } else {
                     Tool.errorPrompt(data.msg);
                 }
@@ -38652,7 +38668,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     attrs: {
       "type": "text",
-      "data-vv-rules": "required|string",
+      "data-vv-rules": "required",
       "data-vv-as": "用户名",
       "name": "name",
       "placeholder": "真实姓名或常用昵称",
@@ -38898,9 +38914,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "name"
     }],
     staticClass: "form-control",
-    class: {
-      'is-danger': _vm.errors.has('name')
-    },
     attrs: {
       "type": "text",
       "data-vv-rules": "required",
@@ -38946,7 +38959,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text",
       "data-vv-rules": "required",
       "name": "mobile",
-      "id": "mobile",
       "placeholder": "手机号(仅支持大陆手机号码)"
     },
     domProps: {
@@ -39082,7 +39094,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('span', [_vm._v("已有账号？"), _c('a', {
     attrs: {
-      "href": "#auth-check",
+      "href": "#login-modal",
       "data-toggle": "modal"
     }
   }, [_vm._v("立即登录")])])
@@ -39104,42 +39116,56 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', [_c('div', {
     staticClass: "form-group",
     class: {
-      'has-error': _vm.name_error
+      'has-error': _vm.errors.has('username') || _vm.errors.has('all')
     }
   }, [_c('input', {
     directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.name),
-      expression: "name"
+      value: (_vm.username),
+      expression: "username"
     }],
     staticClass: "form-control",
+    class: {
+      'is-danger': _vm.errors.has('username')
+    },
     attrs: {
       "type": "text",
+      "data-vv-rules": "required",
+      "name": "username",
       "placeholder": "11位手机号或邮箱"
     },
     domProps: {
-      "value": (_vm.name)
+      "value": (_vm.username)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.name = $event.target.value
+        _vm.username = $event.target.value
       }
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "help-block"
   }, [_c('strong', {
-    domProps: {
-      "textContent": _vm._s(_vm.name_msg)
-    }
-  })])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('username')),
+      expression: "errors.has('username')"
+    }]
+  }, [_vm._v(_vm._s(_vm.errors.first('username')))])])]), _vm._v(" "), _c('div', {
     staticClass: "form-group",
     class: {
-      'has-error': _vm.password_error
+      'has-error': _vm.errors.has('password') || _vm.errors.has('all')
     }
   }, [_c('input', {
     directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }, {
       name: "model",
       rawName: "v-model",
       value: (_vm.password),
@@ -39148,6 +39174,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "type": "password",
+      "data-vv-rules": "required",
+      "name": "password",
       "placeholder": "密码"
     },
     domProps: {
@@ -39162,20 +39190,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('span', {
     staticClass: "help-block"
   }, [_c('strong', {
-    domProps: {
-      "textContent": _vm._s(_vm.password_msg)
-    }
-  })])]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('password')),
+      expression: "errors.has('password')"
+    }]
+  }, [_vm._v(_vm._s(_vm.errors.first('password')))]), _vm._v(" "), _c('strong', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('all')),
+      expression: "errors.has('all')"
+    }]
+  }, [_vm._v(_vm._s(_vm.errors.first('all')))])])]), _vm._v(" "), _c('input', {
     attrs: {
       "type": "checkbox",
       "name": "remember_token",
       "checked": "",
-      "id": ""
+      "id": "remember"
     }
-  }), _vm._v(" 记住登录状态\n    "), _c('button', {
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "remember"
+    }
+  }, [_vm._v("记住登录状态")]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-register pull-right",
     attrs: {
-      "type": "button"
+      "type": "button",
+      "disabled": _vm.errors.has('username') || _vm.errors.has('password')
     },
     on: {
       "click": _vm.login
@@ -49486,7 +49529,8 @@ var dictionary = {
             mobile: '手机号',
             verify_code: '验证码',
             password: '密码',
-            name: '用户名'
+            name: '用户名',
+            username: '用户名'
         }
     }
 };
@@ -49837,16 +49881,16 @@ function prompt(msg, type) {
     });
 }
 
-function welcomeBack(msg, avatar) {
+function welcomeBack(title, msg, avatar, animate) {
     Notification.create(
     // 消息通知框的标题
-    "Welcome! :)",
+    title,
     // 消息通知框的内容
     msg,
     // 图片
     avatar,
     // 效果
-    "tada", 2, 4);
+    animate, 1, 3, function () {});
 }
 
 /***/ }),

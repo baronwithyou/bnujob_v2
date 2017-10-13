@@ -37,8 +37,12 @@ class IndexController extends Controller
 //            'config' => $config
 //        ]);
 //        Auth::loginUsingId(4);
+//        $arr = [12, 23, 4, 102, 1];
+//        dd($this->test($arr));
+//        dd(intval("1test"));
         return view('welcome');
     }
+
 
     public function jobDetail($id)
     {

@@ -1,14 +1,13 @@
 <template>
     <div class="register">
         <div class="form-group" :class="{'has-error': errors.has('name')}">
-            <input type="text" v-validate data-vv-rules="required" v-model="name"
-                   :class="{'is-danger': errors.has('name') }"  name="name"
+            <input type="text" v-validate data-vv-rules="required" v-model="name" name="name"
                    class="form-control" placeholder="真实姓名或常用昵称" id="name">
             <span class="help-block"><strong v-show="errors.has('name')">{{ errors.first('name') }}</strong></span>
         </div>
         <div class="form-group" :class="{'has-error': errors.has('mobile') || errors.has('verify_code')}">
             <input type="text" v-validate data-vv-rules="required" v-model="mobile"
-                   name="mobile" id="mobile" class="form-control" placeholder="手机号(仅支持大陆手机号码)">
+                   name="mobile" class="form-control" placeholder="手机号(仅支持大陆手机号码)">
         </div>
         <div class="form-group" :class="{'has-error': errors.has('mobile') || errors.has('verify_code')}">
             <div class="input-group">
@@ -32,7 +31,7 @@
                    class="form-control" placeholder="密码(不少于六位)" name="password" id="password">
             <span class="help-block"><strong v-show="errors.has('password')">{{ errors.first('password') }}</strong></span>
         </div>
-        <span>已有账号？<a href="#auth-check" data-toggle="modal">立即登录</a></span>
+        <span>已有账号？<a href="#login-modal" data-toggle="modal">立即登录</a></span>
         <button class="btn btn-register pull-right" @click="register"
                 :disabled="errors.has('password') || errors.has('name') ||
                 errors.has('mobile') || errors.has('verify_code')">注册</button>
@@ -67,7 +66,7 @@
                             }
                         }, 1000);
                     } else {
-                        Tool.errorPrompt(data.msg);
+                        this.errors.add('mobile', data.msg);
                     }
                 }).catch(error => {
                     Tool.errorPrompt('获取验证码失败');
@@ -75,16 +74,26 @@
             },
             register() {
                 if (!this.name || !this.mobile || !this.verify_code || !this.password) {
-                    Tool.errorPrompt('请完整填写信息再提交');
+                    if (!this.name) {
+                        this.errors.add('name', '用户名 是必须的.');
+                    }
+                    if (!this.mobile) {
+                        this.errors.add('mobile', '手机号 是必须的.');
+                    }
+                    if (!this.verify_code) {
+                        this.errors.add('verify_code', '验证码 是必须的.');
+                    }
+                    if (!this.password) {
+                        this.errors.add('password', '密码 是必须的.');
+                    }
                     return false;
                 }
                 axios.post('/register',
                     {'name': this.name, 'mobile': this.mobile, 'verify_code': this.verify_code, 'password': this.password}).then(response => {
                     const data = response.data;
                     if (data.status) {
-                        console.log(data.data);
                         location.reload();
-                        Tool.welcomeBack(data.msg, data.data.avatar);
+//                        Tool.welcomeBack("Welcome! :)", data.msg, data.data.avatar);
                     } else {
                         Tool.errorPrompt(data.msg);
                     }

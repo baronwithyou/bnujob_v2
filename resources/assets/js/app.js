@@ -26,7 +26,8 @@ const dictionary = {
             mobile: '手机号',
             verify_code: '验证码',
             password: '密码',
-            name: '用户名'
+            name: '用户名',
+            username: '用户名'
         }
     }
 };

@@ -1,15 +1,21 @@
 <template>
     <div>
-        <div class="form-group" :class="{'has-error': name_error}">
-            <input type="text" class="form-control" placeholder="11位手机号或邮箱" v-model="name">
-            <span class="help-block"><strong v-text="name_msg"></strong></span>
+        <div class="form-group" :class="{'has-error': errors.has('username') || errors.has('all')}">
+            <input type="text" v-validate data-vv-rules="required"  name="username"
+                   :class="{'is-danger': errors.has('username') }" class="form-control" placeholder="11位手机号或邮箱" v-model="username">
+            <span class="help-block"><strong v-show="errors.has('username')">{{ errors.first('username') }}</strong></span>
         </div>
-        <div class="form-group" :class="{'has-error': password_error}">
-            <input type="password" class="form-control" placeholder="密码" v-model="password">
-            <span class="help-block"><strong v-text="password_msg"></strong></span>
+        <div class="form-group" :class="{'has-error': errors.has('password') || errors.has('all')}">
+            <input type="password" v-validate data-vv-rules="required"
+                   name="password" class="form-control" placeholder="密码" v-model="password">
+            <span class="help-block">
+                <strong v-show="errors.has('password')">{{ errors.first('password') }}</strong>
+                <strong v-show="errors.has('all')">{{ errors.first('all') }}</strong>
+            </span>
         </div>
-        <input type="checkbox" name="remember_token" checked id=""> 记住登录状态
-        <button type="button" @click="login" class="btn btn-register pull-right">登录</button>
+        <input type="checkbox" name="remember_token" checked id="remember"> <label for="remember">记住登录状态</label>
+        <button type="button" @click="login" class="btn btn-register pull-right"
+                :disabled="errors.has('username') || errors.has('password')">登录</button>
     </div>
 </template>
 
@@ -17,30 +23,29 @@
     export default {
         data() {
             return {
-                name_error: '',
-                password_error: '',
-                name : '',
-                password : '',
-            }
-        },
-        computed: {
-            name_msg() {
-                return this.name_error ? this.name_error : '';
-            },
-            password_msg() {
-                return this.password_error ? this.password_error : '';
+                username: '',
+                password: ''
             }
         },
         methods: {
-            login: function() {
-                axios.post('/login', {name: this.name, password: this.password}).then(response => {
-
+            login() {
+                if (!this.username || !this.password) {
+                    if (!this.username) {
+                        this.errors.add('username', '用户名 是必须的.');
+                    }
+                    if (!this.password) {
+                        this.errors.add('password', '密码 是必须的.');
+                    }
+                    return false;
+                }
+                axios.post('/login', {'username': this.username, 'password': this.password}).then(response => {
+                    const data = response.data;
+                    location.reload();
+//                    Tool.welcomeBack("Welcome! :)", data.msg, data.data.avatar);
                 }).catch(error => {
-                    error = error.response.data.errors;
-                    this.name_error = error.mobile ? error.mobile[0] : '';
-                    this.name_error += error.email ? error.email[0] : '';
-                    this.password_error = error.password ? error.password[0] : '';
-                })
+                    const errors = error.response.data.errors;
+                    this.errors.add('all', errors.mobile[0]);
+                });
             }
         }
     }
