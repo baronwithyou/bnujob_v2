@@ -4,8 +4,8 @@
 
 @section('top')
 <section class="user-banner">
-    <div class="container">
-        <div class="col-xs-6 col-md-2">
+    <div class="container-fluid">
+        <div class="col-xs-6 col-md-offset-1 col-md-1">
             <img src="{{ asset($user->avatar) }}" class="img img-responsive img-circle" alt="">
             <p class="user-name">{{ $user->name }}</p>
         </div>
@@ -20,7 +20,7 @@
                 <p><span class="fa fa-building-o"></span><a href=""></a></p>
             </div>
         </div>
-        <div class="hidden-xs col-md-7">
+        <div class="hidden-xs col-md-3 col-md-4">
             <div class="ocean">
                 <div class="ocean-middle pull-right">
                     <img src="{{ asset('images/ocean/shark.png') }}" class="shark" alt="">

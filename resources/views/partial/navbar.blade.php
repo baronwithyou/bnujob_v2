@@ -44,8 +44,8 @@
                 </li>
                 @else
                 <li role="separator" class="divider"></li>
-                <li><a href="#login-modal" data-toggle="modal" class="list-btn-xs">立即登录</a></li>
-                <li><a href="#register-modal" data-toggle="modal" class="list-btn-xs">免费注册</a></li>
+                <li><a href="#auth-modal" data-toggle="modal" class="list-btn-xs">立即登录</a></li>
+                <li><a href="#auth-modal" data-toggle="modal" class="list-btn-xs">免费注册</a></li>
                 @endif
             </ul>
 

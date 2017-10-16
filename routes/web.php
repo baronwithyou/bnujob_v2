@@ -20,6 +20,9 @@ Route::get('/job/{id}', 'IndexController@jobDetail')->name('job');
 
 Route::post('/get-verify-code', 'IndexController@getVerifyCode')->name('get-verify-code');
 
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+Route::get('/test', 'IndexController@test');
 
 
 

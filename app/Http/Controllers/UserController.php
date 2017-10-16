@@ -19,6 +19,7 @@ class UserController extends Controller
         return view('user', compact('user'));
     }
 
+    // api
     public function getConfig($user)
     {
 //        $user = Auth::user();

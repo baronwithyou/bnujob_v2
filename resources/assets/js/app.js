@@ -57,7 +57,3 @@ Vue.component('open-config', require('./components/OpenConfig.vue'));
 const app = new Vue({
     el: '#app'
 });
-
-const app2 = new Vue({
-    el: '#app-2'
-});

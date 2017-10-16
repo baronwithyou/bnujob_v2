@@ -11,7 +11,7 @@
                 <h4>更安全方便的找到心仪的 Job</h4>
                 <p>我们坚信，你有无数个加入我们的理由！</p>
             </div>
-            <div class="hidden-xs col-md-4 banner-form">
+            <div class="hidden-xs col-md-offset-1 col-md-3 banner-form">
                 <simple-register></simple-register>
             </div>
         </div>

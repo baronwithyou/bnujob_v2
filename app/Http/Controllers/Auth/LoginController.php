@@ -65,7 +65,7 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request)) {
             if ($request->ajax()) {
-                session()->flash('success', ['title' => 'Welcome Back! :)', 'msg' => '欢迎回来', 'avatar' => Auth::user()->avatar]);
+                session()->flash('login_success', ['title' => 'Welcome Back! :)', 'msg' => '欢迎回来', 'avatar' => Auth::user()->avatar]);
                 Helpers::ajaxSuccess();
                 return;
             } else {
@@ -84,6 +84,7 @@ class LoginController extends Controller
     protected function setUsername(Request $request)
     {
         if (strpos($request->username, '@')) {
+            $request->offsetSet('email', $request->username);
             $this->username = 'email';
         } else {
             $request->offsetSet('mobile', $request->username);

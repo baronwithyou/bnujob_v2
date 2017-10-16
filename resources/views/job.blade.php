@@ -9,7 +9,7 @@
                 <h3>快递员 <small>GITHUB美食小站</small></h3>
                 <span class="label label-primary">餐饮</span>
                 <span class="label label-primary">IT</span>
-                <span style="margin-left:  40px;"><span class="fa fa-phone"></span> 13106803427</span>
+                <span style="margin-left:  2%"><span class="fa fa-phone"></span> 13106803427</span>
                 <div class="pull-right">
                     <span>￥300元/天</span>
                     <span>地址：广东省珠海市</span>
@@ -52,7 +52,7 @@
             </div>
             <div class="job-comment">
                 <div class="row">
-                    <div class="col-md-1">
+                    <div class="col-xs-2">
                         <div class="comment-grade-btn pull-right">
                             <button class="btn btn-default">
                                 <i class="fa fa-chevron-up"></i>
@@ -63,7 +63,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-xs-10">
                         <div class="comment-detail">
                             <div class="comment-content">
                                 <p>
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="hidden-xs col-md-3">
             <div class="similar-job-detail">
                 <div class="panel panel-default similar-search">
                     <div class="panel-body">

@@ -31,10 +31,9 @@
                    class="form-control" placeholder="密码(不少于六位)" name="password" id="password">
             <span class="help-block"><strong v-show="errors.has('password')">{{ errors.first('password') }}</strong></span>
         </div>
-        <span>已有账号？<a href="#login-modal" data-toggle="modal">立即登录</a></span>
+        <span>已有账号？<a href="#auth-modal" data-toggle="modal">立即登录</a></span>
         <button class="btn btn-register pull-right" @click="register"
-                :disabled="errors.has('password') || errors.has('name') ||
-                errors.has('mobile') || errors.has('verify_code')">注册</button>
+                :disabled="allowToSubmit">注册</button>
     </div>
 </template>
 
@@ -48,6 +47,12 @@
                 password: '',
                 disabled: false,
                 time: 60
+            }
+        },
+        computed: {
+            allowToSubmit: function () {
+                return this.errors.has('password') || this.errors.has('name') ||
+                    this.errors.has('mobile') || this.errors.has('verify_code')
             }
         },
         methods: {
@@ -69,7 +74,7 @@
                         this.errors.add('mobile', data.msg);
                     }
                 }).catch(error => {
-                    Tool.errorPrompt('获取验证码失败');
+                    Tool.errorPrompt('获取验证码失败,请稍后再试');
                 });
             },
             register() {
@@ -93,7 +98,6 @@
                     const data = response.data;
                     if (data.status) {
                         location.reload();
-//                        Tool.welcomeBack("Welcome! :)", data.msg, data.data.avatar);
                     } else {
                         Tool.errorPrompt(data.msg);
                     }

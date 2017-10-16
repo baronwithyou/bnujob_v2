@@ -16,7 +16,10 @@ function prompt(msg, type) {
     });
 }
 
-export function welcomeBack(title, msg, avatar, animate) {
+export function welcomeBack(title, msg, avatar, animate, func) {
+    if (!func) {
+        func = function () {}
+    }
     Notification.create(
         // 消息通知框的标题
         title,
@@ -25,5 +28,5 @@ export function welcomeBack(title, msg, avatar, animate) {
         // 图片
         avatar,
         // 效果
-        animate, 1, 3, function(){});
+        animate, 1, 3, func);
 }

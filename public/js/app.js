@@ -1636,10 +1636,77 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            message: 'Hello',
+            firstName: 'Martin',
+            lastName: 'Lam',
+            ok: false,
+            selected: true
+        };
+    },
     mounted: function mounted() {
         console.log('Component mounted.');
+    },
+
+    // 计算属性是基于他们的依赖进行缓存的（只有在相关依赖发生改变了才重新求值）
+    computed: {
+        now: function now() {
+            return Date.now();
+        },
+        reverseMessage: function reverseMessage() {
+            return this.message.split('').reverse().join('');
+        },
+        fullName: {
+            get: function get() {
+                return this.firstName + " " + this.lastName;
+            },
+            set: function set(newValue) {
+                var names = newValue.split(' ');
+                this.firstName = names[0];
+                this.lastName = names[names.length - 1];
+            }
+        }
+    },
+    // 函数定义与计算属性完全相反
+    methods: {
+        changeName: function changeName() {
+            this.fullName = 'Hello world';
+        },
+        changeSelectedStatus: function changeSelectedStatus(type) {
+            if (type === 'mobile') {
+                this.selected = true;
+            } else {
+                this.selected = false;
+            }
+        }
     }
 });
 
@@ -1796,40 +1863,120 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            name_error: '',
-            mobile_error: '',
-            password_error: '',
             name: '',
-            mobile: '',
             verify_code: '',
-            password: ''
+            mobile: '',
+            password: '',
+            email: '',
+            mobileSelected: true,
+            time: 60,
+            disabled: false
         };
     },
 
     computed: {
-        name_msg: function name_msg() {
-            return this.name_error ? this.name_error : '';
-        },
-        mobile_msg: function mobile_msg() {
-            return this.mobile_error ? this.mobile_error : '';
-        },
-        password_msg: function password_msg() {
-            return this.password_error ? this.password_error : '';
+        allowToSubmit: function allowToSubmit() {
+            var allow = this.errors.has('password') || this.errors.has('name');
+            if (this.mobileSelected) {
+                return allow || this.errors.has('mobile') || this.errors.has('verify_code');
+            } else {
+                return allow || this.errors.has('email');
+            }
         }
     },
     methods: {
-        register: function register() {
+        changeSelectedType: function changeSelectedType(type) {
+            if (type === 'mobile') {
+                this.mobileSelected = true;
+            } else {
+                this.mobileSelected = false;
+            }
+        },
+        getVerifyCode: function getVerifyCode() {
             var _this = this;
 
-            axios.post('/register', { name: this.name, mobile: this.mobile, password: this.password, verify_code: this.verify_code }).then(function (response) {}).catch(function (error) {
-                error = error.response.data.errors;
-                _this.name_error = error.name ? error.name[0] : '';
-                _this.password_error = error.password ? error.password[0] : '';
-                _this.mobile_error = error.mobile || error.verify_code ? error.mobile[0] + " " + error.verify_code[0] : '';
+            axios.post('/get-verify-code', { 'mobile': this.mobile }).then(function (response) {
+                var data = response.data;
+                if (data.status) {
+                    Tool.successPrompt(data.msg);
+                    var the = _this;
+                    _this.disabled = true;
+                    var t1 = window.setInterval(function () {
+                        the.time--;
+                        if (!the.time) {
+                            window.clearInterval(t1);
+                            the.disabled = false;
+                        }
+                    }, 1000);
+                } else {
+                    _this.errors.add('mobile', data.msg);
+                }
+            }).catch(function (error) {
+                Tool.errorPrompt('获取验证码失败,请稍后再试');
+            });
+        },
+        register: function register() {
+            var errors = 0;
+            if (!this.name) {
+                this.errors.add('name', '用户名 是必须的.');
+                errors++;
+            }
+            if (!this.password) {
+                this.errors.add('password', '密码 是必须的.');
+                errors++;
+            }
+            if (this.mobileSelected) {
+                if (!this.mobile) {
+                    this.errors.add('mobile', '手机号 是必须的.');
+                    errors++;
+                }
+                if (!this.verify_code) {
+                    this.errors.add('verify_code', '验证码 是必须的.');
+                    errors++;
+                }
+            } else {
+                if (!this.email) {
+                    this.errors.add('email', '邮箱 是必须的.');
+                    errors++;
+                }
+            }
+            if (errors > 0) {
+                return false;
+            }
+            var params;
+            if (this.mobileSelected) {
+                params = { 'name': this.name, 'mobile': this.mobile, 'verify_code': this.verify_code, 'password': this.password };
+            } else {
+                params = { 'name': this.name, 'email': this.email, 'password': this.password };
+            }
+            axios.post('/register', params).then(function (response) {
+                var data = response.data;
+                if (data.status) {
+                    location.reload();
+                } else {
+                    Tool.errorPrompt(data.msg);
+                }
             });
         }
     }
@@ -1842,7 +1989,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -1895,6 +2041,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    computed: {
+        allowToSubmit: function allowToSubmit() {
+            return this.errors.has('password') || this.errors.has('name') || this.errors.has('mobile') || this.errors.has('verify_code');
+        }
+    },
     methods: {
         getVerifyCode: function getVerifyCode() {
             var _this = this;
@@ -1916,7 +2067,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.errors.add('mobile', data.msg);
                 }
             }).catch(function (error) {
-                Tool.errorPrompt('获取验证码失败');
+                Tool.errorPrompt('获取验证码失败,请稍后再试');
             });
         },
         register: function register() {
@@ -1939,7 +2090,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var data = response.data;
                 if (data.status) {
                     location.reload();
-                    //                        Tool.welcomeBack("Welcome! :)", data.msg, data.data.avatar);
                 } else {
                     Tool.errorPrompt(data.msg);
                 }
@@ -38613,8 +38763,6 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
   }, [_c('div', {
@@ -38627,8 +38775,72 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel-heading"
   }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
-  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
-}]}
+  }, [_vm._v("\n                    " + _vm._s(_vm.fullName) + "\n                    "), _c('button', {
+    staticClass: "btn btn-primary btn-block",
+    on: {
+      "click": function($event) {
+        _vm.changeName()
+      }
+    }
+  }, [_vm._v("Change Name")]), _vm._v(" "), (_vm.ok) ? [_c('h4', [_vm._v("1.This template would not appear")])] : _vm._e(), _vm._v(" "), (_vm.ok) ? _c('div', [_c('h4', [_vm._v("2.This is True")])]) : _c('div', [_c('h4', [_vm._v("3.This is False")])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('input', {
+    attrs: {
+      "type": "radio",
+      "name": "register_type",
+      "value": "mobile",
+      "id": "mobile-select",
+      "checked": ""
+    },
+    on: {
+      "click": function($event) {
+        _vm.changeSelectedStatus('mobile')
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "mobile-select"
+    }
+  }, [_vm._v("用手机号注册")]), _vm._v(" "), _c('input', {
+    attrs: {
+      "type": "radio",
+      "name": "register_type",
+      "value": "email",
+      "id": "email-select"
+    },
+    on: {
+      "click": function($event) {
+        _vm.changeSelectedStatus('email')
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "email-select"
+    }
+  }, [_vm._v("用Email注册")]), _vm._v(" "), _c('hr'), _vm._v(" "), (_vm.selected) ? [_c('label', {
+    attrs: {
+      "for": "mobile"
+    }
+  }, [_vm._v("手机号")]), _vm._v(" "), _c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "name": "",
+      "id": "mobile"
+    }
+  })] : [_c('label', {
+    attrs: {
+      "for": "email"
+    }
+  }, [_vm._v("Email")]), _vm._v(" "), _c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "name": "",
+      "id": "email"
+    }
+  })]], 2)], 2)])])])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -38693,39 +38905,54 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "errors.has('name')"
     }]
   }, [_vm._v(_vm._s(_vm.errors.first('name')))])])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group",
-    class: {
-      'has-error': _vm.mobile_error
-    }
+    staticClass: "form-group"
   }, [_c('input', {
     attrs: {
       "type": "radio",
       "name": "register_type",
-      "value": "mobile",
-      "id": "mobile",
+      "id": "mobile-select",
       "checked": ""
+    },
+    on: {
+      "click": function($event) {
+        _vm.changeSelectedType('mobile')
+      }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": "mobile"
+      "for": "mobile-select"
     }
   }, [_vm._v("用手机号注册")]), _vm._v(" "), _c('input', {
     attrs: {
       "type": "radio",
       "name": "register_type",
-      "value": "email",
-      "id": "email"
+      "id": "email-select"
+    },
+    on: {
+      "click": function($event) {
+        _vm.changeSelectedType('email')
+      }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": "email"
+      "for": "email-select"
     }
-  }, [_vm._v("用Email注册")]), _vm._v(" "), _c('div', {
-    attrs: {
-      "id": "register_type_show"
+  }, [_vm._v("用Email注册")])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.mobileSelected),
+      expression: "mobileSelected"
+    }],
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors.has('mobile') || _vm.errors.has('verify_code')
     }
   }, [_c('input', {
     directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }, {
       name: "model",
       rawName: "v-model",
       value: (_vm.mobile),
@@ -38738,8 +38965,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "text",
       "name": "mobile",
-      "placeholder": "手机号(仅支持大陆手机号码)",
-      "id": ""
+      "data-vv-rules": "required",
+      "placeholder": "手机号(仅支持大陆手机号码)"
     },
     domProps: {
       "value": (_vm.mobile)
@@ -38754,6 +38981,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "input-group"
   }, [_c('input', {
     directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }, {
       name: "model",
       rawName: "v-model",
       value: (_vm.verify_code),
@@ -38762,9 +38992,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "name": "mobile-verify",
+      "name": "verify_code",
+      "data-vv-rules": "required",
       "placeholder": "短信验证码",
-      "id": "mobile-verify"
+      "id": "verify_code"
     },
     domProps: {
       "value": (_vm.verify_code)
@@ -38775,16 +39006,89 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.verify_code = $event.target.value
       }
     }
-  }), _vm._v(" "), _vm._m(0)])]), _vm._v(" "), _c('span', {
+  }), _vm._v(" "), _c('span', {
+    staticClass: "input-group-addon"
+  }, [_c('button', {
+    staticClass: "btn btn-link",
+    attrs: {
+      "disabled": _vm.disabled
+    },
+    on: {
+      "click": _vm.getVerifyCode
+    }
+  }, [_vm._v("获取验证码 "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.disabled),
+      expression: "disabled"
+    }]
+  }, [_vm._v("(" + _vm._s(_vm.time) + "秒后再试)")])])])]), _vm._v(" "), _c('span', {
     staticClass: "help-block"
   }, [_c('strong', {
-    domProps: {
-      "textContent": _vm._s(_vm.mobile_msg)
-    }
-  })])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('mobile')),
+      expression: "errors.has('mobile')"
+    }]
+  }, [_vm._v("\n                " + _vm._s(_vm.errors.first('mobile')) + "\n            ")]), _vm._v(" "), _c('strong', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('verify_code')),
+      expression: "errors.has('verify_code')"
+    }]
+  }, [_vm._v("\n                " + _vm._s(_vm.errors.first('verify_code')) + "\n            ")])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.mobileSelected === false),
+      expression: "mobileSelected === false"
+    }],
     staticClass: "form-group",
     class: {
-      'has-error': _vm.password_error
+      'has-error': _vm.errors.has('email')
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }, {
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.email),
+      expression: "email"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "email",
+      "name": "email",
+      "data-vv-rules": "required|email",
+      "placeholder": "part-time@bnujob.com"
+    },
+    domProps: {
+      "value": (_vm.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.email = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block"
+  }, [_c('strong', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('email')),
+      expression: "errors.has('email')"
+    }]
+  }, [_vm._v("\n                " + _vm._s(_vm.errors.first('email')) + "\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors.has('password')
     }
   }, [_c('label', {
     attrs: {
@@ -38792,6 +39096,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("密码")]), _vm._v(" "), _c('input', {
     directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }, {
       name: "model",
       rawName: "v-model",
       value: (_vm.password),
@@ -38801,6 +39108,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "password",
       "name": "password",
+      "data-vv-rules": "required",
       "id": "password",
       "placeholder": "不少于六位"
     },
@@ -38816,30 +39124,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('span', {
     staticClass: "help-block"
   }, [_c('strong', {
-    domProps: {
-      "textContent": _vm._s(_vm.password_msg)
-    }
-  })])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('button', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('password')),
+      expression: "errors.has('password')"
+    }]
+  }, [_vm._v(_vm._s(_vm.errors.first('password')))])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('button', {
     staticClass: "btn btn-register pull-right",
     attrs: {
-      "type": "button"
+      "disabled": _vm.allowToSubmit
     },
     on: {
       "click": _vm.register
     }
   }, [_vm._v("注册")])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('span', {
-    staticClass: "input-group-addon",
-    attrs: {
-      "id": "basic-addon2"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": ""
-    }
-  }, [_vm._v("获取验证码")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('span', [_vm._v("同意并接受 "), _c('a', {
     attrs: {
       "href": ""
@@ -39084,8 +39384,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.errors.first('password')))])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('button', {
     staticClass: "btn btn-register pull-right",
     attrs: {
-      "disabled": _vm.errors.has('password') || _vm.errors.has('name') ||
-        _vm.errors.has('mobile') || _vm.errors.has('verify_code')
+      "disabled": _vm.allowToSubmit
     },
     on: {
       "click": _vm.register
@@ -39094,7 +39393,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('span', [_vm._v("已有账号？"), _c('a', {
     attrs: {
-      "href": "#login-modal",
+      "href": "#auth-modal",
       "data-toggle": "modal"
     }
   }, [_vm._v("立即登录")])])
@@ -49560,10 +49859,6 @@ var app = new Vue({
     el: '#app'
 });
 
-var app2 = new Vue({
-    el: '#app-2'
-});
-
 /***/ }),
 
 /***/ "./resources/assets/js/bootstrap.js":
@@ -49638,7 +49933,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/Example.vue"
+Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -49673,7 +49968,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/LoginForm.vue"
+Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\LoginForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] LoginForm.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -49708,7 +50003,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/OpenConfig.vue"
+Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\OpenConfig.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] OpenConfig.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -49743,7 +50038,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/RegisterForm.vue"
+Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\RegisterForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] RegisterForm.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -49778,7 +50073,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/SimpleRegister.vue"
+Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\SimpleRegister.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] SimpleRegister.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -49839,18 +50134,124 @@ $(function () {
     //     });
     // });
 
-    $("input[name='register_type']").on('click', function () {
-        var $this = $("input[name='register_type']:checked");
-        if ('email' === $this.val()) {
-            $('#register_type_show').html('<input type="email" name="email" id="" placeholder="part-time@bnujob.com" class="form-control">');
-        } else {
-            $('#register_type_show').html('<input type="text" name="mobile" id="" placeholder="手机号(仅支持大陆手机号码)" style="margin-bottom: 15px;" class="form-control">' + '<div class="input-group"><input type="text" name="mobile-verify" id="" placeholder="短信验证码" class="form-control"><span class="input-group-addon" id="basic-addon2"><a href="">获取验证码</a></span></div>');
-        }
-    });
+    // $("input[name='register_type']").on('click', function () {
+    //     var $this = $("input[name='register_type']:checked");
+    //     if ('email' === $this.val()) {
+    //         $('#register_type_show').html('<input type="email" name="email" id="" placeholder="part-time@bnujob.com" class="form-control">');
+    //     } else {
+    //         $('#register_type_show').html('<input type="text" name="mobile" id="" placeholder="手机号(仅支持大陆手机号码)" style="margin-bottom: 15px;" class="form-control">' +
+    //             '<div class="input-group"><input type="text" name="mobile-verify" id="" placeholder="短信验证码" class="form-control"><span class="input-group-addon" id="basic-addon2"><a href="">获取验证码</a></span></div>');
+    //     }
+    // });
 
     $('.search-wrapper').tooltip({
         content: '点击查询兼职信息'
     });
+
+    var E = window.wangEditor;
+    var editor = new E('#job-comment-editor');
+    editor.customConfig.menus = ['head', // 标题
+    'bold', // 粗体
+    'link', // 插入链接
+    'list', // 列表
+    'quote', // 引用
+    'image', // 插入图片
+    'code', // 插入代码
+    'undo', // 撤销
+    'redo' // 重复
+    ];
+    editor.create();
+
+    $('.glyphicon-remove-circle').on('click', function () {
+        $('.welcome-banner').hide('normal');
+    });
+
+    // 截取首页部分字
+    $('.job-description').dotdotdot({
+        ellipsis: '\u2026 ',
+        /* The text to add as ellipsis. */
+
+        truncate: "word",
+        /* How to truncate the text: By "node", "word" or "letter". */
+
+        keep: null,
+        /* jQuery-selector for elements to keep after the ellipsis. */
+
+        watch: "window",
+        /* Whether to update the ellipsis:
+         true: Monitors the wrapper width and height.
+         "window": Monitors the window width and height.
+         */
+
+        tolerance: 0
+        /* Deviation for the measured wrapper height. */
+    });
+
+    //cache some jQuery objects
+    var modalTrigger = $('.open-modal'),
+        transitionLayer = $('.cd-transition-layer'),
+        transitionBackground = transitionLayer.children(),
+        modalWindow = $('.cd-modal');
+
+    var frameProportion = 1.78,
+        //png frame aspect ratio
+    frames = 25,
+        //number of png frames
+    resize = false;
+
+    //set transitionBackground dimentions
+    setLayerDimensions();
+    $(window).on('resize', function () {
+        if (!resize) {
+            resize = true;
+            !window.requestAnimationFrame ? setTimeout(setLayerDimensions, 300) : window.requestAnimationFrame(setLayerDimensions);
+        }
+    });
+
+    //open modal window
+    modalTrigger.on('click', function (event) {
+        event.preventDefault();
+        $('body').addClass('hide-scroll');
+        transitionLayer.addClass('visible opening');
+        var delay = $('.no-cssanimations').length > 0 ? 0 : 600;
+        setTimeout(function () {
+            modalWindow.addClass('visible');
+        }, delay);
+    });
+
+    //close modal window
+    modalWindow.on('click', '.modal-close', function (event) {
+        event.preventDefault();
+        $('body').removeClass('hide-scroll');
+        transitionLayer.addClass('closing');
+        modalWindow.removeClass('visible');
+        transitionBackground.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
+            transitionLayer.removeClass('closing opening visible');
+            transitionBackground.off('webkitAnimationEnd oanimationend msAnimationEnd animationend');
+        });
+    });
+
+    function setLayerDimensions() {
+        var windowWidth = $(window).width(),
+            windowHeight = $(window).height(),
+            layerHeight,
+            layerWidth;
+
+        if (windowWidth / windowHeight > frameProportion) {
+            layerWidth = windowWidth;
+            layerHeight = layerWidth / frameProportion;
+        } else {
+            layerHeight = windowHeight * 1.2;
+            layerWidth = layerHeight * frameProportion;
+        }
+
+        transitionBackground.css({
+            'width': layerWidth * frames + 'px',
+            'height': layerHeight + 'px'
+        });
+
+        resize = false;
+    }
 });
 
 /***/ }),
@@ -49881,7 +50282,10 @@ function prompt(msg, type) {
     });
 }
 
-function welcomeBack(title, msg, avatar, animate) {
+function welcomeBack(title, msg, avatar, animate, func) {
+    if (!func) {
+        func = function func() {};
+    }
     Notification.create(
     // 消息通知框的标题
     title,
@@ -49890,7 +50294,7 @@ function welcomeBack(title, msg, avatar, animate) {
     // 图片
     avatar,
     // 效果
-    animate, 1, 3, function () {});
+    animate, 1, 3, func);
 }
 
 /***/ }),

@@ -14,41 +14,24 @@
     @yield('stylesheets')
 </head>
 <body>
+<div id="app">
     @if(url()->current() != url('/'))
         <div class="app-top">
             @include('partial.navbar')
         </div>
     @endif
-    <div id="app-2">
-        @yield('top')
-    </div>
+    @yield('top')
     <div class="container" id="app">
         @yield('content')
-        @include('partial.footer')
-        @include('modal.auth-check')
     </div>
+    @include('partial.footer')
+    @include('modal.auth-check')
+</div>
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
 <script src="{{ mix('js/all.js') }}"></script>
 <script src="{{ asset('js/wangEditor.min.js') }}"></script>
 <script>
-    $(function () {
-        var E = window.wangEditor;
-        var editor = new E('#job-comment-editor');
-        editor.customConfig.menus = [
-            'head',  // 标题
-            'bold',  // 粗体
-            'italic',  // 斜体
-            'link',  // 插入链接
-            'list',  // 列表
-            'quote',  // 引用
-            'image',  // 插入图片
-            'code',  // 插入代码
-            'undo',  // 撤销
-            'redo'  // 重复
-        ];
-        editor.create();
-    });
     function searchToggle(obj, evt){
         var container = $(obj).closest('.search-wrapper');
 

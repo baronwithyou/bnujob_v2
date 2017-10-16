@@ -57,7 +57,7 @@ class RegisterController extends Controller
             $validate = Validator::make($data, [
                 'name' => 'required|string|max:255|unique:users',
                 'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:6|confirmed',
+                'password' => 'required|string|min:6',
             ]);
         } else {
             $validate = Validator::make($data, [
@@ -98,7 +98,7 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        if (!$this->checkVerifyMatch($request->verify_code)) {
+        if ($request->mobile && !$this->checkVerifyMatch($request->verify_code)) {
             $err = 'Sorry,验证码不正确:(';
             if ($request->ajax()) {
                 Helpers::ajaxFail($err);
@@ -111,8 +111,14 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
+
+        session()->forget('verify_code');
         if ($request->ajax()) {
-            session()->flash('success', ['title' => 'Congratulation! :)', 'msg' => '注册成功', 'avatar' => $user->avatar]);
+            if ($request->email) {
+                session()->flash('email_register_success', ['title' => 'Congratulation! :)', 'msg' => '注册成功', 'avatar' => $user->avatar]);
+            } else {
+                session()->flash('mobile_register_success', ['title' => 'Congratulation! :)', 'msg' => '注册成功', 'avatar' => $user->avatar]);
+            }
             Helpers::ajaxSuccess();
             return;
         } else {
