@@ -15,12 +15,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                {{--<li class="active"><a href="{{ route('index') }}">所有兼职 <span class="sr-only">(current)</span></a></li>--}}
+                <li class="active"><a href="{{ route('index') }}">所有兼职 <span class="sr-only">(current)</span></a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="">丢卡狂魔集中营</a></li>
+                <li><a href="javascript:void(0)" style="visibility: hidden"></a></li>
+                <li><a href="">丢卡狂魔集中营</a></li>
                 <li><a href="">讨论区</a></li>
-                {{--<li><a href="">二手市场</a></li>--}}
+                <li><a href="">二手市场</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -50,13 +51,13 @@
             </ul>
 
 
-            <div class="search-wrapper hidden-xs">
-                <div class="input-holder">
-                    <input type="text" class="search-input" placeholder="输入兼职/商家查询" />
-                    <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
-                </div>
-                <span class="close" onclick="searchToggle(this, event);"></span>
-            </div>
+            {{--<div class="search-wrapper hidden-xs">--}}
+                {{--<div class="input-holder">--}}
+                    {{--<input type="text" class="search-input" placeholder="输入兼职/商家查询" />--}}
+                    {{--<button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>--}}
+                {{--</div>--}}
+                {{--<span class="close" onclick="searchToggle(this, event);"></span>--}}
+            {{--</div>--}}
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

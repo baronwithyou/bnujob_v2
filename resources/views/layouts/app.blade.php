@@ -32,6 +32,11 @@
 <script src="{{ mix('js/all.js') }}"></script>
 <script src="{{ asset('js/wangEditor.min.js') }}"></script>
 <script>
+    $(function () {
+        @if(count($errors->all())> 0)
+            Tool.errorPrompt('{{ $errors->first() }}');
+        @endif
+    });
     function searchToggle(obj, evt){
         var container = $(obj).closest('.search-wrapper');
 

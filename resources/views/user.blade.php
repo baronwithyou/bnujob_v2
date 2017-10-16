@@ -56,9 +56,7 @@
                     <div class="row">
                         <div class="col-xs-3">
                             <p>真人头像 <span class="fa fa-lock"></span></p>
-                            <div class="user-avatar">
-                                <img src="{{ asset($user->avatar) }}" class="img img-responsive" alt="">
-                            </div>
+                            <img src="{{ asset($user->avatar) }}" class="img img-responsive img-circle" alt="">
                         </div>
                         <div class="col-xs-4">
                             <p class="list-title">真实姓名 <span class="fa fa-lock"></span></p>

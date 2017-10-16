@@ -15,12 +15,12 @@ Auth::routes();
 Route::get('/', 'IndexController@index')->name('index');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/user', 'UserController@index')->name('user.index');
+
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware(['admin']);
 });
 Route::get('/job/{id}', 'IndexController@jobDetail')->name('job');
 
 Route::post('/get-verify-code', 'IndexController@getVerifyCode')->name('get-verify-code');
-
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/activate/{token}', 'UserController@activate')->name('activate');
 

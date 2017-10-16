@@ -9,7 +9,7 @@
     @endif
 @stop
 
-@section('content-v1')
+@section('content')
     <div class="col-xs-12 col-md-9">
         <div class="welcome-table-nav">
             <span class="fa fa-grav"></span> 所有商家
@@ -215,7 +215,7 @@
     @include('modal.job-modal')
 @stop
 
-@section('content')
+@section('content-aliyun')
     <div class="col-md-9" style="padding-top: 30px;">
         <div class="discard-area">
             <a href="" style="text-decoration: none;">
