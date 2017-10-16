@@ -31,7 +31,9 @@
                                 <input type="text" name="" id="email" class="form-control">
                             </template>
                         </div>
-
+                        <ul v-for="language in languages">
+                            <li>{{ language }}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -47,7 +49,10 @@
                 firstName: 'Martin',
                 lastName: 'Lam',
                 ok: false,
-                selected: true
+                selected: true,
+                languages: [
+                    'Java', 'Javascript', 'Python'
+                ]
             }
         },
         mounted() {

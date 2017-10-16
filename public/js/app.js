@@ -1661,6 +1661,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -1669,7 +1671,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             firstName: 'Martin',
             lastName: 'Lam',
             ok: false,
-            selected: true
+            selected: true,
+            languages: ['Java', 'Javascript', 'Python']
         };
     },
     mounted: function mounted() {
@@ -38839,7 +38842,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "name": "",
       "id": "email"
     }
-  })]], 2)], 2)])])])])
+  })]], 2), _vm._v(" "), _vm._l((_vm.languages), function(language) {
+    return _c('ul', [_c('li', [_vm._v(_vm._s(language))])])
+  })], 2)])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

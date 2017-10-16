@@ -22,7 +22,9 @@ Route::post('/get-verify-code', 'IndexController@getVerifyCode')->name('get-veri
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::get('/test', 'IndexController@test');
+Route::get('/activate/{token}', 'UserController@activate')->name('activate');
+
+
 
 
 
@@ -31,4 +33,5 @@ Route::get('/test', 'IndexController@test');
 Route::get('auth/{service}', 'Auth\OAuthController@redirectToProvider')->name('auth');
 Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallback');
 
-//Route::post('/register_ajax', 'AuthController@registerByAjax')->name('register.ajax');
+// 测试
+Route::get('/test', 'IndexController@test');

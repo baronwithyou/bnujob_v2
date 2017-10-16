@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Helpers;
+use App\Http\Mail\ActivateMail;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -115,6 +116,7 @@ class RegisterController extends Controller
         session()->forget('verify_code');
         if ($request->ajax()) {
             if ($request->email) {
+                ActivateMail::send($user->name, $user->confirmation_token ,$user->email);
                 session()->flash('email_register_success', ['title' => 'Congratulation! :)', 'msg' => '注册成功', 'avatar' => $user->avatar]);
             } else {
                 session()->flash('mobile_register_success', ['title' => 'Congratulation! :)', 'msg' => '注册成功', 'avatar' => $user->avatar]);

@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    private $userRepository;
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +23,17 @@ class UserController extends Controller
     {
         $user = Auth::user();
         return view('user', compact('user'));
+    }
+
+    // 用户邮箱验证
+    public function activate($token)
+    {
+        $user = $this->userRepository->activateEmail($token);
+        if (!$user) {
+            return redirect('/')->withErrors('链接错误或者已经失效');
+        }
+        Auth::login($user);
+        return redirect('/')->with('login_success', ['title' => 'Welcome Back! :)', 'msg' => '邮箱激活成功，欢迎回来', 'avatar' => $user->avatar]);
     }
 
     // api

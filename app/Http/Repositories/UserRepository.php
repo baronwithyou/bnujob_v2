@@ -22,4 +22,15 @@ class UserRepository
     {
         return User::where('mobile', $mobile)->first();
     }
+
+    public function activateEmail($token)
+    {
+        $user = User::where('confirmation_token', $token)->first();
+        if (!$user) {
+            return false;
+        }
+        $user->is_active = 1;
+        $user->save();
+        return $user;
+    }
 }

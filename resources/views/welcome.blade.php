@@ -225,7 +225,7 @@
             @endif
 
             @if(session()->has('email_register_success') && $data = session()->get('email_register_success'))
-                $("body").overhang({ type: "prompt", message: '验证码已经发到你的邮箱', closeConfirm: true, html: true});
+                $("body").overhang({ type: "confirm", message: '请登录邮箱激活您的账号', closeConfirm: true, html: true});
             @endif
 
             @if(session()->has('login_success') && $data = session()->get('login_success'))
