@@ -11,9 +11,9 @@ namespace App\Http\Mail;
 
 class ActivateMail extends Email
 {
-    public static function send($name, $confirmation_token, $send_to)
+    public static function send($id, $name, $confirmation_token, $send_to)
     {
-        $bind_data = ['name' => $name, 'url' => route('activate', $confirmation_token)];
+        $bind_data = [ 'id' => $id,'name' => $name, 'url' => route('activate', $confirmation_token)];
         self::sendByTemplate('email_register_activate', $bind_data, $send_to);
     }
 }

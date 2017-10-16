@@ -1940,6 +1940,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         register: function register() {
+            var _this2 = this;
+
             var errors = 0;
             if (!this.name) {
                 this.errors.add('name', '用户名 是必须的.');
@@ -1979,6 +1981,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     location.reload();
                 } else {
                     Tool.errorPrompt(data.msg);
+                }
+            }).catch(function (error) {
+                var errors = error.response.data.errors;
+                if (errors.name) {
+                    _this2.errors.add('name', errors.name[0]);
                 }
             });
         }
@@ -2074,6 +2081,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         register: function register() {
+            var _this2 = this;
+
             if (!this.name || !this.mobile || !this.verify_code || !this.password) {
                 if (!this.name) {
                     this.errors.add('name', '用户名 是必须的.');
@@ -2098,11 +2107,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).catch(function (error) {
                 var errors = error.response.data.errors;
-                var msg = '';
-                if (errors.mobile) {
-                    msg += errors.mobile[0];
+                if (errors.name) {
+                    _this2.errors.add('name', errors.name[0]);
                 }
-                Tool.errorPrompt(msg);
             });
         }
     }
@@ -39113,7 +39120,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "password",
       "name": "password",
-      "data-vv-rules": "required",
+      "data-vv-rules": "required|min:6",
       "id": "password",
       "placeholder": "不少于六位"
     },
@@ -49938,7 +49945,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\Example.vue"
+Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -49973,7 +49980,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\LoginForm.vue"
+Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/LoginForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] LoginForm.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -50008,7 +50015,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\OpenConfig.vue"
+Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/OpenConfig.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] OpenConfig.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -50043,7 +50050,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\RegisterForm.vue"
+Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/RegisterForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] RegisterForm.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -50078,7 +50085,7 @@ var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loade
   /* cssModules */
   null
 )
-Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\SimpleRegister.vue"
+Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/SimpleRegister.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] SimpleRegister.vue: functional components are not supported with templates, they should use render functions.")}
 

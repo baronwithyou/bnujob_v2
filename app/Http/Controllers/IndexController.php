@@ -25,22 +25,9 @@ class IndexController extends Controller
 
     public function index()
     {
-//        JavaScript::put([
-//            'age' => '29'
-//        ]);
-//        $config = User::first()->config;
-//        $decode_config = json_decode($config);
-//        dump($decode_config->open_type);
-//        $config = json_encode(['a' => 'b']);
-//
-//        User::find(1)->update([
-//            'config' => $config
-//        ]);
-//        Auth::loginUsingId(4);
-//        $arr = [12, 23, 4, 102, 1];
-//        dd($this->test($arr));
-//        dd(intval("1test"));
-        return view('welcome');
+        $needToActivate = $this->userRepository->needToActivate();
+
+        return view('welcome', compact('needToActivate'));
     }
 
     public function test()

@@ -10,6 +10,7 @@ namespace App\Http;
 
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserRepository
 {
@@ -32,5 +33,25 @@ class UserRepository
         $user->is_active = 1;
         $user->save();
         return $user;
+    }
+
+    public function needToActivate()
+    {
+        if (!Auth::check()) {
+            return false;
+        }
+        $user = Auth::user();
+        if ($user->mobile || $user->is_active) {
+            return false;
+        }
+        return true;
+    }
+
+    public function updateConfirmationToken($token)
+    {
+        User::where('confirmation_token', $token)->update([
+            'confirmation_token' => str_random(40)
+        ]);
+        return;
     }
 }

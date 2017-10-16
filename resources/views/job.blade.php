@@ -52,7 +52,7 @@
             </div>
             <div class="job-comment">
                 <div class="row">
-                    <div class="col-xs-2">
+                    <div class="col-xs-2 col-md-1">
                         <div class="comment-grade-btn pull-right">
                             <button class="btn btn-default">
                                 <i class="fa fa-chevron-up"></i>
@@ -63,7 +63,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-xs-10">
+                    <div class="col-xs-10 col-md-11">
                         <div class="comment-detail">
                             <div class="comment-content">
                                 <p>

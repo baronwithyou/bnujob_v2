@@ -32,6 +32,7 @@ class UserController extends Controller
         if (!$user) {
             return redirect('/')->withErrors('链接错误或者已经失效');
         }
+        $this->userRepository->updateConfirmationToken($token);
         Auth::login($user);
         return redirect('/')->with('login_success', ['title' => 'Welcome Back! :)', 'msg' => '邮箱激活成功，欢迎回来', 'avatar' => $user->avatar]);
     }

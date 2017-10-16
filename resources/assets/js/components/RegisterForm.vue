@@ -36,7 +36,7 @@
         </div>
         <div class="form-group" :class="{'has-error': errors.has('password')}">
             <label for="password">密码</label>
-            <input type="password" name="password" v-validate data-vv-rules="required" id="password" class="form-control" placeholder="不少于六位" v-model="password">
+            <input type="password" name="password" v-validate data-vv-rules="required|min:6" id="password" class="form-control" placeholder="不少于六位" v-model="password">
             <span class="help-block"><strong v-show="errors.has('password')">{{ errors.first('password') }}</strong></span>
         </div>
         <span>同意并接受 <a href="">《服务条款》</a></span>
@@ -137,6 +137,11 @@
                         location.reload();
                     } else {
                         Tool.errorPrompt(data.msg);
+                    }
+                }).catch(error => {
+                    const errors = error.response.data.errors;
+                    if (errors.name) {
+                        this.errors.add('name', errors.name[0]);
                     }
                 });
             }

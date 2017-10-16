@@ -9,7 +9,7 @@
     @endif
 @stop
 
-@section('content')
+@section('content-v1')
     <div class="col-xs-12 col-md-9">
         <div class="welcome-table-nav">
             <span class="fa fa-grav"></span> 所有商家
@@ -188,7 +188,6 @@
             <span class="fa fa-heart-o"></span> Part-time 推荐
             <span class="pull-right"><a href="" class="more">more <span class="fa fa-angle-double-right"></span></a></span>
             <div class="full-area">
-                {{--<img src="{{ asset('img/sun-shine.png') }}" class="img-icon" alt="">--}}
                 <div class="left-area">
                     <img src="{{ asset('images/avatar/user1.png') }}" class="img img-responsive" alt="">
                 </div>
@@ -216,16 +215,68 @@
     @include('modal.job-modal')
 @stop
 
+@section('content')
+    <div class="col-md-9" style="padding-top: 30px;">
+        <div class="discard-area">
+            <a href="" style="text-decoration: none;">
+                <h4>我又丢卡啦！！！！（规定字数）</h4>
+                <p>我又丢卡了！！！
+                    大概在丽泽湖里面，有没有好心人帮我捞一下！！！！范德萨范德萨范德萨法第三方打分的萨芬撒大发送到防守打法是打发打范德萨发</p>
+                <p><small>地点：丽泽A231</small><small style="margin-left: 20px;">联系方式： 13106803427</small><small class="pull-right">发布时间： 15小时之前</small></p>
+            </a>
+        </div>
+        <hr>
+        <div class="discard-area">
+            <a href="" style="text-decoration: none;">
+                <h4>我又丢卡啦！！！！（规定字数）</h4>
+                <p>我又丢卡了！！！
+                    大概在丽泽湖里面，有没有好心人帮我捞一下！！！！fdsfsdffdsfsdadfdsfdsfadsfdsafsadasdfasdfsdafsdafdsafdsafsadfsadfsadfasdf
+                fdsafdsafsadfadf</p>
+                <p><small>地点：丽泽A231</small><small style="margin-left: 20px;">联系方式： 13106803427</small><small class="pull-right">发布时间： 15小时之前</small></p>
+            </a>
+        </div>
+        <hr>
+        <div class="discard-area">
+            <a href="" style="text-decoration: none;">
+                <h4>我又丢卡啦！！！！（规定字数）</h4>
+                <p>我又丢卡了！！！
+                    大概在丽泽湖里面，有没有好心人帮我捞一下！！！！</p>
+                <p><small>地点：丽泽A231</small><small style="margin-left: 20px;">联系方式： 13106803427</small><small class="pull-right">发布时间： 15小时之前</small></p>
+            </a>
+        </div>
+        <hr>
+        <div class="discard-area">
+            <a href="" style="text-decoration: none;">
+                <h4>我又丢卡啦！！！！（规定字数）</h4>
+                <p>我又丢卡了！！！
+                    大概在丽泽湖里面，有没有好心人帮我捞一下！！！！</p>
+                <p><small>地点：丽泽A231</small><small style="margin-left: 20px;">联系方式： 13106803427</small><small class="pull-right">发布时间： 15小时之前</small></p>
+            </a>
+        </div>
+        <hr>
+        <div class="discard-area">
+            <a href="" style="text-decoration: none;">
+                <h4>我又丢卡啦！！！！（规定字数）</h4>
+                <p>我又丢卡了！！！
+                    大概在丽泽湖里面，有没有好心人帮我捞一下！！！！</p>
+                <p><small>地点：丽泽A231</small><small style="margin-left: 20px;">联系方式： 13106803427</small><small class="pull-right">发布时间： 15小时之前</small></p>
+            </a>
+        </div>
+        <hr>
+    </div>
+    <div class="col-md-3"></div>
+@stop
+
 @section('javascripts')
     <script src="{{ asset('js/constellation.js') }}"></script>
     <script>
         $(function () {
-            @if(session()->has('mobile_register_success') && $data = session()->get('mobile_register_success'))
+            @if(session()->has('register_success') && $data = session()->get('register_success'))
                 Tool.welcomeBack('{{ $data['title'] }}', '{{ $data['msg'] }}', '{{ $data['avatar'] }}', $('meta[name="animate"]').attr('content'));
             @endif
 
-            @if(session()->has('email_register_success') && $data = session()->get('email_register_success'))
-                $("body").overhang({ type: "confirm", message: '请登录邮箱激活您的账号', closeConfirm: true, html: true});
+            @if($needToActivate)
+                $("body").overhang({ type: "info", message: '请登录邮箱激活您的账号', closeConfirm: true, html: true});
             @endif
 
             @if(session()->has('login_success') && $data = session()->get('login_success'))

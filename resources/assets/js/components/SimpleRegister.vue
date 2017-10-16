@@ -103,11 +103,9 @@
                     }
                 }).catch(error => {
                     const errors = error.response.data.errors;
-                    let msg = '';
-                    if (errors.mobile) {
-                        msg += errors.mobile[0];
+                    if (errors.name) {
+                        this.errors.add('name', errors.name[0]);
                     }
-                    Tool.errorPrompt(msg);
                 })
             }
         }
