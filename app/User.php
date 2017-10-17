@@ -36,9 +36,4 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->role_id == 1;
     }
-
-    public function avatar()
-    {
-        return 'storage/'.$this->avatar;
-    }
 }

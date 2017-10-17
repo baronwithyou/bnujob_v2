@@ -21,6 +21,7 @@
         "rap2hpoutre/laravel-log-viewer": "^0.10.4",
         "socialiteproviders/manager": "^3.2",
         "tcg/voyager": "^1.0",
+        "voyager-themes": "^0.3.0",
         "yunpian/yunpian-php-sdk": "~1.0"
     },
     "require-dev": {
