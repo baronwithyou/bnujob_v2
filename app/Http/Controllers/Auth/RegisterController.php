@@ -85,7 +85,6 @@ class RegisterController extends Controller
             'confirmation_token' => str_random(40),
             'active' => 0,
             'config' => json_encode(['open_type' => 'modal']),
-            'avatar' => 'images/avatar/user'.rand(1, 10).".png",
         ];
         if (isset($data['email'])) {
             $attr['email'] = $data['email'];

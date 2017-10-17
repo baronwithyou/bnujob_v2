@@ -35,3 +35,8 @@ Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallba
 
 // 测试
 Route::get('/test', 'IndexController@test');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

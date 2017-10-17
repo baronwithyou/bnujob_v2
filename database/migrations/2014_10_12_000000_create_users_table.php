@@ -37,7 +37,6 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
 
             // 其他信息
-            $table->integer('role')->default(1)->comment('用户角色 学生 = 1, 商家 = 2, 管理员 = 7');
             $table->string('confirmation_token')->nullable()->comment('用于激活邮箱');
             $table->smallInteger('status')->default(1)->comment('用户状态 开 = 1, 关 = 0');
             $table->smallInteger('store_show')->default(1)->comment('商家能否看到');

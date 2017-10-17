@@ -27,10 +27,13 @@
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
                 <?php $user = Auth::user()?>
-                <li><a href="#"><span class="glyphicon glyphicon-bell" style="font-size: 25px;"></span></a></li>
+                @if($user->isAdmin())
+                    <li><a href="{{ route('voyager.dashboard') }}" style="font-size: 20px;"><i class="fa fa-hand-spock-o"></i> King</a></li>
+                @endif
+                <li><a href="#"><span class="fa fa-bell-o" style="font-size: 20px;"></span></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" style="padding: 10px 15px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ asset($user->avatar) }}" style="width: 30px" class="img img-circle" alt="">
+                        <img src="{{ asset($user->avatar()) }}" style="width: 30px" class="img img-circle" alt="">
                         {{ $user->name }} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
