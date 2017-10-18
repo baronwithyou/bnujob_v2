@@ -53,6 +53,7 @@ class CreateUsersTable extends Migration
 
             $table->text('config')->nullable();
             $table->rememberToken();
+            $table->timestamp('email_at')->nullable()->comment('发送邮件的时间');
             $table->timestamps();
         });
     }

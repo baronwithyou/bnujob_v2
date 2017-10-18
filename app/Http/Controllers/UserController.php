@@ -37,6 +37,11 @@ class UserController extends Controller
         return redirect('/')->with('login_success', ['title' => 'Welcome Back! :)', 'msg' => '邮箱激活成功，欢迎回来', 'avatar' => $user->avatar]);
     }
 
+    public function emailToVerify(Request $request)
+    {
+        $this->userRepository->emailToVerify();
+    }
+
     // api
     public function getConfig($user)
     {

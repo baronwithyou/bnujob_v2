@@ -17,12 +17,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/user', 'UserController@index')->name('user.index');
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware(['admin']);
+
+    Route::post('/email/verify', 'UserController@emailToVerify')->name('email.verify');
 });
 Route::get('/job/{id}', 'IndexController@jobDetail')->name('job');
 
 Route::post('/get-verify-code', 'IndexController@getVerifyCode')->name('get-verify-code');
 
 Route::get('/activate/{token}', 'UserController@activate')->name('activate');
+
 
 
 

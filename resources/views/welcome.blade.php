@@ -276,7 +276,14 @@
             @endif
 
             @if($needToActivate)
-                $("body").overhang({ type: "info", message: '请登录邮箱激活您的账号', closeConfirm: true, html: true});
+                $("body").overhang({ type: "confirm", message: '立即激活？', closeConfirm: true, callback: function () {
+                    var selection = $("body").data("overhangConfirm");
+                    if (selection) {
+                        $.post('/email/verify', {}, function (data) {
+                            $("body").overhang({ type: "success", message: '邮件已发送，请尽快激活账号' });
+                        })
+                    }
+                }});
             @endif
 
             @if(session()->has('login_success') && $data = session()->get('login_success'))

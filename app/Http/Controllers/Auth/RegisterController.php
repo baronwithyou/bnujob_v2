@@ -115,9 +115,7 @@ class RegisterController extends Controller
         session()->forget('verify_code');
         if ($request->ajax()) {
             $register_session_data = ['title' => 'Congratulation! :)', 'msg' => '注册成功', 'avatar' => $user->avatar];
-            if ($request->email) {
-                ActivateMail::send($user->id, $user->name, $user->confirmation_token ,$user->email);
-            } else {
+            if ($request->mobile) {
                 session()->flash('register_success', $register_session_data);
             }
             Helpers::ajaxSuccess();

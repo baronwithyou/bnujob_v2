@@ -9,7 +9,9 @@
 namespace App\Http;
 
 
+use App\Http\Mail\ActivateMail;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class UserRepository
@@ -41,7 +43,7 @@ class UserRepository
             return false;
         }
         $user = Auth::user();
-        if ($user->mobile || $user->is_active) {
+        if ($user->mobile || $user->is_active || ($user->email_at && Carbon::now()->diffInHours(new Carbon($user->email_at)) < 12)) {
             return false;
         }
         return true;
@@ -53,5 +55,15 @@ class UserRepository
             'confirmation_token' => str_random(40)
         ]);
         return;
+    }
+
+    public function emailToVerify()
+    {
+        $user = Auth::user();
+        $new_confirmation_token = str_random(40);
+        $user->confirmation_token = $new_confirmation_token;
+        $user->email_at = Carbon::now();
+        $user->save();
+        ActivateMail::send($user->id, $user->name, $new_confirmation_token ,$user->email);
     }
 }
