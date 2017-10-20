@@ -12,25 +12,31 @@
 */
 
 Auth::routes();
+
 Route::get('/', 'IndexController@index')->name('index');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/user', 'UserController@index')->name('user.index');
 
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware(['admin']);
-
     Route::post('/email/verify', 'UserController@emailToVerify')->name('email.verify');
+
+    Route::group(['prefix' => 'business', 'as' => 'business.'], function () {
+        Route::get('/certificate', 'BusinessController@certificate')->name('certificate');
+    });
+
+    // 后台voyager
+    Route::group(['prefix' => 'admin'], function () {
+        Voyager::routes();
+
+        Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware(['admin']);
+    });
 });
+
 Route::get('/job/{id}', 'IndexController@jobDetail')->name('job');
 
 Route::post('/get-verify-code', 'IndexController@getVerifyCode')->name('get-verify-code');
 
 Route::get('/activate/{token}', 'UserController@activate')->name('activate');
-
-
-
-
-
-
 
 
 Route::get('auth/{service}', 'Auth\OAuthController@redirectToProvider')->name('auth');
@@ -40,6 +46,3 @@ Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallba
 Route::get('/test', 'IndexController@test');
 
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});

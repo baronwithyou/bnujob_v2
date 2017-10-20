@@ -43,7 +43,7 @@ class UserRepository
             return false;
         }
         $user = Auth::user();
-        if ($user->mobile || $user->is_active || ($user->email_at && Carbon::now()->diffInHours(new Carbon($user->email_at)) < 12)) {
+        if ($user->mobile || $user->is_active || ($user->email_at && Carbon::now()->diffInHours(new Carbon($user->email_at)) < 12) || $user->isAdmin()) {
             return false;
         }
         return true;

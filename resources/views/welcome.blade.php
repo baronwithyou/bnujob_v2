@@ -41,7 +41,7 @@
                             <small class="pull-right">Github 专卖店</small>
                         </div>
                         <div class="col-xs-3 col-md-2">
-                            <img src="{{ asset('images/avatar/user1.png') }}" class="img img-responsive" alt="">
+                            <img src="{{ asset('images/avatars/user1.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
@@ -63,7 +63,7 @@
                             <small class="pull-right">Github 专卖店</small>
                         </div>
                         <div class="col-xs-3 col-md-2">
-                            <img src="{{ asset('images/avatar/user2.png') }}" class="img img-responsive" alt="">
+                            <img src="{{ asset('images/avatars/user2.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
@@ -85,7 +85,7 @@
                             <small class="pull-right">Github 专卖店</small>
                         </div>
                         <div class="col-xs-3 col-md-2">
-                            <img src="{{ asset('images/avatar/user3.png') }}" class="img img-responsive" alt="">
+                            <img src="{{ asset('images/avatars/user3.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
@@ -107,7 +107,7 @@
                             <small class="pull-right">Github 专卖店</small>
                         </div>
                         <div class="col-xs-3 col-md-2">
-                            <img src="{{ asset('images/avatar/user4.png') }}" class="img img-responsive" alt="">
+                            <img src="{{ asset('images/avatars/user4.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
@@ -129,7 +129,7 @@
                             <small class="pull-right">Github 专卖店</small>
                         </div>
                         <div class="col-xs-3 col-md-2">
-                            <img src="{{ asset('images/avatar/user5.png') }}" class="img img-responsive" alt="">
+                            <img src="{{ asset('images/avatars/user5.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
@@ -151,7 +151,7 @@
                             <small class="pull-right">Github 专卖店</small>
                         </div>
                         <div class="col-xs-3 col-md-2">
-                            <img src="{{ asset('images/avatar/user6.png') }}" class="img img-responsive" alt="">
+                            <img src="{{ asset('images/avatars/user6.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
@@ -173,7 +173,7 @@
                             <small class="pull-right">Github 专卖店</small>
                         </div>
                         <div class="col-xs-3 col-md-2">
-                            <img src="{{ asset('images/avatar/user8.png') }}" class="img img-responsive" alt="">
+                            <img src="{{ asset('images/avatars/user8.png') }}" class="img img-responsive" alt="">
                         </div>
                     </a>
                 </div>
@@ -189,7 +189,7 @@
             <span class="pull-right"><a href="" class="more">more <span class="fa fa-angle-double-right"></span></a></span>
             <div class="full-area">
                 <div class="left-area">
-                    <img src="{{ asset('images/avatar/user1.png') }}" class="img img-responsive" alt="">
+                    <img src="{{ asset('images/avatars/user1.png') }}" class="img img-responsive" alt="">
                 </div>
                 <div class="right-area">
                     <a href="">
@@ -201,13 +201,14 @@
             </div>
             <div class="full-area">
                 <div class="left-area">
-                    <img src="{{ asset('images/avatar/user1.png') }}" class="img img-responsive" alt="">
+                    <img src="{{ asset('images/avatars/user1.png') }}" class="img img-responsive" alt="">
                 </div>
                 <div class="right-area">
                     <a href="">
                         <p>前端开发实习生</p>
-                        <small>Github专卖店</small><small>上周六8点</small>
+                        <small>Github专卖店</small>
                     </a>
+                    <span class="label">上周六8点</span>
                 </div>
             </div>
         </div>

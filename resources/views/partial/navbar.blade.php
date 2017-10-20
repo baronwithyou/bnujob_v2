@@ -26,30 +26,27 @@
 
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
-                <?php $user = Auth::user()?>
-                @if($user->isAdmin())
-                    <li><a href="{{ route('voyager.dashboard') }}" style="font-size: 20px;"><i class="fa fa-hand-spock-o"></i> King</a></li>
-                @endif
-                <li><a href="#"><span class="fa fa-bell-o" style="font-size: 20px;"></span></a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" style="padding: 10px 15px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ asset($user->avatar) }}" style="width: 30px" class="img img-circle" alt="">
-                        {{ $user->name }} <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('user.index') }}">个人中心</a></li>
-                        <li><a href="#">兼职状态</a></li>
-                        <li>
-                            {!! Form::open(['route' => 'logout']) !!}
-                                {!! Form::submit('登出', ['class' => 'list-like']) !!}
-                            {!! Form::close() !!}
-                        </li>
-                    </ul>
-                </li>
+                    <li><a href="{{ route('business.certificate') }}">我是商家</a></li>
+                    <?php $user = Auth::user()?>
+                    @if($user->isAdmin())
+                        <li><a href="{{ route('voyager.dashboard') }}" style="font-size: 20px;"><i class="fa fa-hand-spock-o"></i> King</a></li>
+                    @endif
+                    <li><a href="#"><span class="fa fa-bell-o" style="font-size: 20px;"></span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" style="padding: 10px 15px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ asset($user->avatar) }}" style="width: 30px" class="img img-circle" alt="">
+                            {{ $user->name }} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('user.index') }}">个人中心</a></li>
+                            <li><a href="#">兼职状态</a></li>
+                            <li><a href="javascript:void(0)" id="logout">登出</a></li>
+                        </ul>
+                    </li>
                 @else
-                <li role="separator" class="divider"></li>
-                <li><a href="#auth-modal" data-toggle="modal" class="list-btn-xs">立即登录</a></li>
-                <li><a href="#auth-modal" data-toggle="modal" class="list-btn-xs">免费注册</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#auth-modal" data-toggle="modal" class="list-btn-xs">立即登录</a></li>
+                    <li><a href="#auth-modal" data-toggle="modal" class="list-btn-xs">免费注册</a></li>
                 @endif
             </ul>
 
