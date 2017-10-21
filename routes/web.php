@@ -15,6 +15,8 @@ Auth::routes();
 
 Route::get('/', 'IndexController@index')->name('index');
 
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware(['admin']);
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/user', 'UserController@index')->name('user.index');
 
@@ -28,7 +30,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'admin'], function () {
         Voyager::routes();
 
-        Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware(['admin']);
     });
 });
 

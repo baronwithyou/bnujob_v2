@@ -15,7 +15,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css').version();
 
 mix.scripts([
-    // 头像提醒
     'resources/assets/js/jquery.min.js',
     'resources/assets/js/notification.js',
     'resources/assets/js/jquery-ui.min.js',

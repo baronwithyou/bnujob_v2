@@ -94,6 +94,7 @@
                         this.errors.add('mobile', data.msg);
                     }
                 }).catch(error => {
+                    console.log(error);
                     Tool.errorPrompt('获取验证码失败,请稍后再试');
                 });
             },
