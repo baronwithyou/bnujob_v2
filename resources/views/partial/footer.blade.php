@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1">
-                <p><a href="http://www.miitbeian.gov.cn">粤ICP备17044003号</a></p>
+                <p><a href="http://www.miitbeian.gov.cn">粤ICP备17044003号-2</a></p>
             </div>
         </div>
     </div>

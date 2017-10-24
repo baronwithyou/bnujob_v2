@@ -32,7 +32,7 @@
             <span class="help-block"><strong v-show="errors.has('password')">{{ errors.first('password') }}</strong></span>
         </div>
         <span>已有账号？<a href="#auth-modal" data-toggle="modal">立即登录</a></span>
-        <button class="btn btn-register pull-right" @click="register"
+        <button class="btn btn-register pull-right" @click="register" id="simple-register-btn" data-type="expand-right"
                 :disabled="allowToSubmit">注册</button>
     </div>
 </template>
@@ -93,15 +93,19 @@
                     }
                     return false;
                 }
+                var l = Ladda.create(document.querySelector('#register-btn'));
+                l.start();
                 axios.post('/register',
                     {'name': this.name, 'mobile': this.mobile, 'verify_code': this.verify_code, 'password': this.password}).then(response => {
                     const data = response.data;
                     if (data.status) {
                         location.reload();
                     } else {
+                        l.stop();
                         Tool.errorPrompt(data.msg);
                     }
                 }).catch(error => {
+                    l.stop();
                     const errors = error.response.data.errors;
                     if (errors.name) {
                         this.errors.add('name', errors.name[0]);

@@ -70,5 +70,5 @@
         evt.preventDefault();
     }
 </script>
-@yield('javascripts')
+@yield('scripts')
 </html>

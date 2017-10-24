@@ -40,7 +40,7 @@
             <span class="help-block"><strong v-show="errors.has('password')">{{ errors.first('password') }}</strong></span>
         </div>
         <span>同意并接受 <a href="">《服务条款》</a></span>
-        <button class="btn btn-register pull-right" @click="register" :disabled="allowToSubmit">注册</button>
+        <button class="btn btn-primary pull-right ladda-button" data-style="expand-right" @click="register" :disabled="allowToSubmit" id="register-btn">注册</button>
     </div>
 </template>
 
@@ -132,14 +132,18 @@
                 } else {
                     params = {'name': this.name, 'email': this.email, 'password': this.password};
                 }
+                var l = Ladda.create(document.querySelector('#register-btn'));
+                l.start();
                 axios.post('/register', params).then(response => {
                     const data = response.data;
                     if (data.status) {
                         location.reload();
                     } else {
+                        l.stop();
                         Tool.errorPrompt(data.msg);
                     }
                 }).catch(error => {
+                    l.stop();
                     const errors = error.response.data.errors;
                     if (errors.name) {
                         this.errors.add('name', errors.name[0]);

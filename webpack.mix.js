@@ -22,6 +22,8 @@ mix.scripts([
     'resources/assets/js/clipboard.min.js',
     'resources/assets/js/jquery.dotdotdot.js',
     'resources/assets/js/xss.min.js',
+    'resources/assets/js/spin.min.js',
+    'resources/assets/js/ladda.min.js',
 ], 'public/js/all.js');
 
 mix.styles([
@@ -32,6 +34,7 @@ mix.styles([
     'resources/assets/css/crowd.css',
     // 'resources/assets/css/star-rating.min.css',
     'resources/assets/css/font-awesome.min.css',
+    'resources/assets/css/ladda-themeless.min.css',
     // 'resources/assets/css/search-form.css',
     'resources/assets/css/style.css',
 ], 'public/css/all.css').version();

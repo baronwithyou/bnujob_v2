@@ -12,7 +12,7 @@
                             <h4>注册新账号</h4>
                             <register-form></register-form>
                         </div>
-                        <div class="col-xs-12 col-md-5">
+                        <div class="col-xs-12 col-md-5 login-part">
                             <h4>登录</h4>
                             <login-form></login-form>
                             <div class="third-party">

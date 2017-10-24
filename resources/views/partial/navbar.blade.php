@@ -1,4 +1,3 @@
-<section class="app-red-top"></section>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -15,13 +14,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                {{--<li class="active"><a href="{{ route('index') }}">所有兼职 <span class="sr-only">(current)</span></a></li>--}}
+                <li class="active"><a href="{{ route('index') }}">所有兼职 <span class="sr-only">(current)</span></a></li>
             </ul>
             <ul class="nav navbar-nav">
                 <li><a href="javascript:void(0)" style="visibility: hidden"></a></li>
                 <li><a href="">丢卡狂魔集中营</a></li>
                 <li><a href="">讨论区</a></li>
-                {{--<li><a href="">二手市场</a></li>--}}
+                <li><a href="">二手市场</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -45,8 +44,8 @@
                     </li>
                 @else
                     <li role="separator" class="divider"></li>
-                    {{--<li><a href="#auth-modal" data-toggle="modal" class="list-btn-xs">立即登录</a></li>--}}
-                    {{--<li><a href="#auth-modal" data-toggle="modal" class="list-btn-xs">免费注册</a></li>--}}
+                    <li><a href="#auth-modal" data-toggle="modal" class="list-btn-xs">立即登录</a></li>
+                    <li><a href="#auth-modal" data-toggle="modal" class="list-btn-xs">免费注册</a></li>
                 @endif
             </ul>
 

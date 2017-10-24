@@ -3,13 +3,14 @@
 @section('title', 'Welcome')
 
 @section('top')
+    <section class="app-red-top"></section>
     @include('partial.navbar')
     @if(!Auth::check())
         @include('partial.banner')
     @endif
 @stop
 
-@section('content-primary')
+@section('content')
     <div class="col-xs-12 col-md-9">
         <div class="welcome-table-nav">
             <span class="fa fa-grav"></span> 所有商家
@@ -216,7 +217,7 @@
     @include('modal.job-modal')
 @stop
 
-@section('content')
+@section('content-aliyun')
     <div class="col-md-9" style="padding-top: 30px;">
         <div class="discard-area">
             <a href="" style="text-decoration: none;">
@@ -268,7 +269,7 @@
     <div class="col-md-3"></div>
 @stop
 
-@section('javascripts')
+@section('scripts')
     <script src="{{ asset('js/constellation.js') }}"></script>
     <script>
         $(function () {

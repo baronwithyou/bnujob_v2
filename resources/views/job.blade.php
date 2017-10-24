@@ -110,7 +110,7 @@
     </div>
 @stop
 
-@section('javascripts')
+@section('scripts')
     <script>
         $(function () {
             $('.similar-search .close').click(function () {

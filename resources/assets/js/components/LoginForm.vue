@@ -14,8 +14,8 @@
             </span>
         </div>
         <input type="checkbox" name="remember_token" checked id="remember"> <label for="remember">记住登录状态</label>
-        <button type="button" @click="login" class="btn btn-register pull-right"
-                :disabled="errors.has('username') || errors.has('password')">登录</button>
+        <button type="button" @click="login" class="btn btn-register pull-right ladda-button" data-style="expand-right"
+                :disabled="errors.has('username') || errors.has('password')" id="login-btn"><span class="ladda-label">登录</span></button>
     </div>
 </template>
 
@@ -38,13 +38,14 @@
                     }
                     return false;
                 }
+                var l = Ladda.create(document.querySelector('#login-btn'));
+                l.start();
                 axios.post('/login', {'username': this.username, 'password': this.password}).then(response => {
-                    const data = response.data;
                     location.reload();
-//                    Tool.welcomeBack("Welcome! :)", data.msg, data.data.avatar);
                 }).catch(error => {
                     const errors = error.response.data.errors;
                     this.errors.add('all', errors.mobile[0]);
+                    l.stop();
                 });
             }
         }
