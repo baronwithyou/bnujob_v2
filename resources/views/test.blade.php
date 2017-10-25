@@ -14,7 +14,6 @@
 </head>
 <body>
 <div id="app">
-    {{--<example></example>--}}
     <div style="width: 90%; margin: 0 auto; background: #fafafa;">
         <section style="height: 5px; background: #f8d615;"></section>
         <div style="padding: 2% 5%;">
@@ -26,10 +25,15 @@
         </div>
         <section style="height: 22px; background: #5eb1e7; color: #fff; text-align: center;">www.bnujob.cn</section>
     </div>
-
 </div>
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
 <script src="{{ mix('js/all.js') }}"></script>
+<script src="{{ asset('js/wangEditor.min.js') }}"></script>
+<script>
+    $(function () {
+        NProgress.set(0.4);
+    })
+</script>
 </html>
 

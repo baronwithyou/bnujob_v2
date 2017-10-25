@@ -4,17 +4,27 @@
 @stop
 
 @section('top')
-    <section>
-
+    <section style="background: #1C213F;">
+        <img src="{{ asset('images/ocean/certificate.jpg') }}" class="img img-responsive" alt="" style="margin: 0 auto;">
     </section>
 @stop
 
 @section('content')
-<div class="row">
+<div class="row" style="margin-top: 50px;">
     <div class="col-md-8 col-md-offset-2">
+        <h3>实名制认证</h3>
+        {!! Form::open() !!}
         <div class="form-group">
-            <a href="javascript:void(0)" id="form-submit" class="btn btn-primary ladda-button" data-style="contract-overlay" data-size="l"><span class="ladda-label">Submit form</span></a>
+            <label for="">真实姓名</label>
+            <input type="text" name="real_name" id="" class="form-control" placeholder="请输入真实姓名（如：李白）">
         </div>
+
+        <div class="from-group">
+            <label for="">身份证号</label>
+            <input type="text" name="credit_id" id="" class="form-control" placeholder="请输入身份证号（如：4414XXXXXXXXXXXX）">
+        </div>
+        <button type="button" class="btn btn-primary btn-block" style="margin-top: 20px;">下一步</button>
+        {!! Form::close() !!}
     </div>
 </div>
 @stop
@@ -22,11 +32,10 @@
 @section('scripts')
     <script>
         $(function() {
-            $('#form-submit').click(function(){
-                var l = Ladda.create(this);
-                l.start();
-                return false;
+            $('.btn-warning').click(function () {
+                NProgress.set(0.4);
             });
+
         });
     </script>
 @stop

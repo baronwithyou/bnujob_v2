@@ -24,6 +24,7 @@
   "dependencies": {
     "clipboard": "^1.7.1",
     "jquery.dotdotdot": "^3.0.3",
+    "nprogress": "^0.2.0",
     "vee-validate": "^2.0.0-rc.18",
     "wangeditor": "^3.0.10",
     "xss": "^0.3.4"

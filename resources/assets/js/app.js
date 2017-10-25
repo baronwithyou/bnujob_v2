@@ -13,6 +13,8 @@ window.Tool = require('./tool');
 
 window.Vue = require('vue');
 
+window.NProgress = require('nprogress');
+
 import zh_CN from '../locale/vee-validate/zh_CN';
 
 import VeeValidate, { Validator } from 'vee-validate';

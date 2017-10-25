@@ -35,6 +35,7 @@ mix.styles([
     // 'resources/assets/css/star-rating.min.css',
     'resources/assets/css/font-awesome.min.css',
     'resources/assets/css/ladda-themeless.min.css',
+    'node_modules/nprogress/nprogress.css',
     // 'resources/assets/css/search-form.css',
     'resources/assets/css/style.css',
 ], 'public/css/all.css').version();
