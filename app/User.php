@@ -20,7 +20,7 @@ class User extends \TCG\Voyager\Models\User
         'birthday', 'gender', 'age', 'grade', 'abstract', 'wechat', 'role_id', 'confirmation_token',
         'status', 'store_show', 'is_active', 'reputation', 'delivers_count', 'collects_count',
         'comments_count', 'likes_count', 'followings_count', 'followers_count', 'primary_resume_id',
-        'credit_id', 'config', 'remember_token', 'avatar'
+        'credit_id', 'config', 'remember_token', 'avatar', 'email_at'
     ];
 
     /**

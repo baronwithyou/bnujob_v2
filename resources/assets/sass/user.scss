@@ -8,6 +8,12 @@
     font-size: 15px;
     //color: #5eb1e7;
   }
+  .img-avatar {
+    width: 70%;
+    margin: 0 auto;
+    border: 2px solid #fff;
+    padding: 10px;
+  }
   .edit-banner-info {
     margin-top: 30px;
     a {
@@ -64,6 +70,20 @@
 
 .user-content {
   margin-top: 20px;
+  .black-sentence {
+    color: #000;
+  }
+  .follow-num {
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  .no-top {
+    margin-top: 10px;
+  }
+  .panel-heading {
+    background: #F5F5F5 !important;
+  }
   .panel-default {
     .list-title {
       padding: 0;
@@ -77,6 +97,7 @@
   .user-private-info {
     .btn-link {
       padding: 0;
+      text-decoration: none;
     }
     .user-avatar {
       border: 2px solid #5eb1e7;

@@ -38,7 +38,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('user.index') }}">个人中心</a></li>
-                            <li><a href="#">兼职状态</a></li>
+                            <li><a href="{{ route('user.deliver_status') }}">兼职状态</a></li>
                             <li><a href="javascript:void(0)" id="logout">登出</a></li>
                         </ul>
                     </li>

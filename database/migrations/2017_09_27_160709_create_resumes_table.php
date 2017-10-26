@@ -17,18 +17,20 @@ class CreateResumesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
 
-            $table->string('name');
-            $table->string('gender')->nullable();
-            $table->timestamp('birthday')->nullable();
-            $table->string('school')->nullable();
-            $table->string('province')->nullable();
-            $table->string('city')->nullable();
-            $table->string('address')->nullable();
+//            $table->string('name');
+//            $table->string('gender')->nullable();
+//            $table->timestamp('birthday')->nullable();
+//            $table->string('school')->nullable();
+//            $table->string('province')->nullable();
+//            $table->string('city')->nullable();
+//            $table->string('address')->nullable();
             $table->string('expect_job')->nullable()->comment('期望职位');
             $table->string('expect_salary')->nullable()->comment('期望薪资');
             $table->string('expect_day')->nullable()->comment('一周可上班的天数');
             $table->integer('education')->default(0)->comment('大专 = 1，本科 = 2，硕士 = 3，博士 = 4，其他 = 5');
             $table->text('cet')->nullable()->comment('46级成绩');
+            $table->integer('status')->comment('求职状态');
+            $table->integer('type')->comment('职位类型 1 => 全职、2 => 兼职、3 => 实习');
 
             // 教育背景
             $table->string('grade')->nullable()->comment('年级');

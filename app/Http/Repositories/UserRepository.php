@@ -60,10 +60,8 @@ class UserRepository
     public function emailToVerify()
     {
         $user = Auth::user();
-        $new_confirmation_token = str_random(40);
-        $user->confirmation_token = $new_confirmation_token;
         $user->email_at = Carbon::now();
         $user->save();
-        ActivateMail::send($user->id, $user->name, $new_confirmation_token ,$user->email);
+        ActivateMail::send($user->id, $user->name, $user->confirmation_token ,$user->email);
     }
 }

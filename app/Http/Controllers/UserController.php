@@ -42,6 +42,11 @@ class UserController extends Controller
         $this->userRepository->emailToVerify();
     }
 
+    public function deliverStatus()
+    {
+        return view('deliver_status');
+    }
+
     // api
     public function getConfig($user)
     {
