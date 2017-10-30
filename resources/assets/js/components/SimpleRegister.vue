@@ -2,17 +2,17 @@
     <div class="register">
         <div class="form-group" :class="{'has-error': errors.has('name')}">
             <input type="text" v-validate data-vv-rules="required" v-model="name" name="name"
-                   class="form-control" placeholder="真实姓名或常用昵称" id="name">
+                   @keyup.enter="register"  class="form-control" placeholder="真实姓名或常用昵称" id="name">
             <span class="help-block"><strong v-show="errors.has('name')">{{ errors.first('name') }}</strong></span>
         </div>
         <div class="form-group" :class="{'has-error': errors.has('mobile') || errors.has('verify_code')}">
-            <input type="text" v-validate data-vv-rules="required" v-model="mobile"
+            <input type="text" v-validate data-vv-rules="required" v-model="mobile" @keyup.enter="register"
                    name="mobile" class="form-control" placeholder="手机号(仅支持大陆手机号码)">
         </div>
         <div class="form-group" :class="{'has-error': errors.has('mobile') || errors.has('verify_code')}">
             <div class="input-group">
                 <input type="text" v-validate data-vv-rules="required|digits:6" v-model="verify_code"
-                       name="verify_code" placeholder="短信验证码" class="form-control" id="">
+                       @keyup.enter="register" name="verify_code" placeholder="短信验证码" class="form-control" id="">
                 <span class="input-group-addon" id="basic-addon2">
                     <button class="btn btn-link" @click="getVerifyCode" :disabled="disabled">获取验证码 <span v-show="disabled">({{ time }}秒后再试)</span></button>
                 </span>
@@ -27,7 +27,7 @@
             </span>
         </div>
         <div class="form-group" :class="{'has-error': errors.has('password')}">
-            <input type="password" v-validate data-vv-rules="required|min:6" v-model="password"
+            <input type="password" v-validate data-vv-rules="required|min:6" v-model="password" @keyup.enter="register"
                    class="form-control" placeholder="密码(不少于六位)" name="password" id="password">
             <span class="help-block"><strong v-show="errors.has('password')">{{ errors.first('password') }}</strong></span>
         </div>

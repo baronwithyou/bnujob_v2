@@ -1,13 +1,13 @@
 <template>
     <div>
         <div class="form-group" :class="{'has-error': errors.has('username') || errors.has('all')}">
-            <input type="text" v-validate data-vv-rules="required"  name="username"
+            <input type="text" v-validate data-vv-rules="required"  name="username" @keyup.enter="login"
                    :class="{'is-danger': errors.has('username') }" class="form-control" placeholder="11位手机号或邮箱" v-model="username">
             <span class="help-block"><strong v-show="errors.has('username')">{{ errors.first('username') }}</strong></span>
         </div>
         <div class="form-group" :class="{'has-error': errors.has('password') || errors.has('all')}">
             <input type="password" v-validate data-vv-rules="required"
-                   name="password" class="form-control" placeholder="密码" v-model="password">
+                   name="password" class="form-control" placeholder="密码" @keyup.enter="login" v-model="password">
             <span class="help-block">
                 <strong v-show="errors.has('password')">{{ errors.first('password') }}</strong>
                 <strong v-show="errors.has('all')">{{ errors.first('all') }}</strong>

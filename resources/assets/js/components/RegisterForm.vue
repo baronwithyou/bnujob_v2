@@ -2,7 +2,8 @@
     <div>
         <div class="form-group" :class="{'has-error': errors.has('name')}">
             <label for="name">用户名</label>
-            <input type="text" v-validate data-vv-rules="required" data-vv-as="用户名" :class="{'is-danger': errors.has('name') }"  name="name" class="form-control" placeholder="真实姓名或常用昵称" id="name" v-model="name">
+            <input type="text" v-validate data-vv-rules="required" data-vv-as="用户名" @keyup.enter="register"
+                   :class="{'is-danger': errors.has('name') }"  name="name" class="form-control" placeholder="真实姓名或常用昵称" id="name" v-model="name">
             <span class="help-block"><strong v-show="errors.has('name')">{{ errors.first('name') }}</strong></span>
         </div>
         <div class="form-group">
@@ -10,9 +11,11 @@
             <input type="radio" name="register_type" id="email-select" @click="changeSelectedType('email')"> <label for="email-select">用Email注册</label>
         </div>
         <div class="form-group" v-show="mobileSelected" :class="{'has-error': errors.has('mobile') || errors.has('verify_code')}">
-            <input type="text" name="mobile" v-validate data-vv-rules="required" v-model="mobile" class="form-control" placeholder="手机号(仅支持大陆手机号码)" style="margin-bottom: 15px;">
+            <input type="text" name="mobile" v-validate data-vv-rules="required" v-model="mobile"
+                   @keyup.enter="register" class="form-control" placeholder="手机号(仅支持大陆手机号码)" style="margin-bottom: 15px;">
             <div class="input-group">
-                <input type="text" name="verify_code" v-validate data-vv-rules="required" class="form-control" placeholder="短信验证码" id="verify_code" v-model="verify_code">
+                <input type="text" name="verify_code" v-validate data-vv-rules="required" class="form-control"
+                       @keyup.enter="register" placeholder="短信验证码" id="verify_code" v-model="verify_code">
                 <span class="input-group-addon">
                     <button class="btn btn-link" @click="getVerifyCode" :disabled="disabled">获取验证码 <span v-show="disabled">({{ time }}秒后再试)</span></button>
                 </span>
@@ -27,7 +30,8 @@
             </span>
         </div>
         <div class="form-group" v-show="mobileSelected === false" :class="{'has-error': errors.has('email')}" >
-            <input type="email" name="email" v-validate data-vv-rules="required|email" placeholder="part-time@bnujob.com" class="form-control" v-model="email">
+            <input type="email" name="email" v-validate data-vv-rules="required|email" @keyup.enter="register"
+                   placeholder="part-time@bnujob.com" class="form-control" v-model="email">
             <span class="help-block">
                 <strong v-show="errors.has('email')">
                     {{ errors.first('email') }}
@@ -36,7 +40,8 @@
         </div>
         <div class="form-group" :class="{'has-error': errors.has('password')}">
             <label for="password">密码</label>
-            <input type="password" name="password" v-validate data-vv-rules="required|min:6" id="password" class="form-control" placeholder="不少于六位" v-model="password">
+            <input type="password" name="password" v-validate data-vv-rules="required|min:6" @keyup.enter="register"
+                   id="password" class="form-control" placeholder="不少于六位" v-model="password">
             <span class="help-block"><strong v-show="errors.has('password')">{{ errors.first('password') }}</strong></span>
         </div>
         <span>同意并接受 <a href="">《服务条款》</a></span>
@@ -140,13 +145,19 @@
                         location.reload();
                     } else {
                         l.stop();
-                        Tool.errorPrompt(data.msg);
+                        this.errors.add('verify_code', data.msg);
                     }
                 }).catch(error => {
                     l.stop();
                     const errors = error.response.data.errors;
                     if (errors.name) {
                         this.errors.add('name', errors.name[0]);
+                    }
+                    if (errors.mobile) {
+                        this.errors.add('mobile', errors.mobile[0]);
+                    }
+                    if (errors.email) {
+                        this.errors.add('email', errors.email[0]);
                     }
                 });
             }

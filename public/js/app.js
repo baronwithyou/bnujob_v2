@@ -1884,6 +1884,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -1985,13 +1990,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     location.reload();
                 } else {
                     l.stop();
-                    Tool.errorPrompt(data.msg);
+                    _this2.errors.add('verify_code', data.msg);
                 }
             }).catch(function (error) {
                 l.stop();
                 var errors = error.response.data.errors;
                 if (errors.name) {
                     _this2.errors.add('name', errors.name[0]);
+                }
+                if (errors.mobile) {
+                    _this2.errors.add('mobile', errors.mobile[0]);
+                }
+                if (errors.email) {
+                    _this2.errors.add('email', errors.email[0]);
                 }
             });
         }
@@ -39399,6 +39410,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.name)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.register($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.name = $event.target.value
@@ -39481,6 +39496,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.mobile)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.register($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.mobile = $event.target.value
@@ -39510,6 +39529,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.verify_code)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.register($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.verify_code = $event.target.value
@@ -39580,6 +39603,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.email)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.register($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.email = $event.target.value
@@ -39625,6 +39652,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.password)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.register($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.password = $event.target.value
@@ -39736,6 +39767,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.name)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.register($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.name = $event.target.value
@@ -39776,6 +39811,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.mobile)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.register($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.mobile = $event.target.value
@@ -39810,6 +39849,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.verify_code)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.register($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.verify_code = $event.target.value
@@ -39878,6 +39921,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.password)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.register($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.password = $event.target.value
@@ -39954,6 +40001,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.username)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.login($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.username = $event.target.value
@@ -39994,6 +40045,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.password)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.login($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.password = $event.target.value
