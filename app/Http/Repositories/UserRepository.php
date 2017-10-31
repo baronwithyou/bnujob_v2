@@ -10,17 +10,14 @@ namespace App\Http;
 
 
 use App\Http\Mail\ActivateMail;
+use App\Resume;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserRepository
 {
-    public function create(array $attr)
-    {
-        return User::create($attr);
-    }
-
     public function checkMobileExists($mobile)
     {
         return User::where('mobile', $mobile)->first();
@@ -63,5 +60,33 @@ class UserRepository
         $user->email_at = Carbon::now();
         $user->save();
         ActivateMail::send($user->id, $user->name, $user->confirmation_token ,$user->email);
+    }
+
+    public function storeDetail(Request $request, $type)
+    {
+        $input = $request->all();
+        $user = Auth::user()->id;
+        $resume = Resume::where('user_id', $user)->first();
+        $detail = json_encode([
+            'start_at' => $input['start_at'],
+            'end_at' => $input['end_at'],
+            'description' => $input['description'],
+        ]);
+        if (!$resume) {
+            $resume = $this->createResume($detail, $type, $user);
+        } else {
+            $resume->$type = $detail;
+            $resume->save();
+        }
+        return $resume;
+    }
+
+    private function createResume($data, $type, $user)
+    {
+        $resume = Resume::create([
+            'user_id' => $user,
+            $type => $data
+        ]);
+        return $resume;
     }
 }

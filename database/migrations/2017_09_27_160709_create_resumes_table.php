@@ -29,8 +29,8 @@ class CreateResumesTable extends Migration
             $table->string('expect_day')->nullable()->comment('一周可上班的天数');
             $table->integer('education')->default(0)->comment('大专 = 1，本科 = 2，硕士 = 3，博士 = 4，其他 = 5');
             $table->text('cet')->nullable()->comment('46级成绩');
-            $table->integer('status')->comment('求职状态');
-            $table->integer('type')->comment('职位类型 1 => 全职、2 => 兼职、3 => 实习');
+            $table->integer('status')->nullable()->comment('求职状态');
+            $table->integer('type')->nullable()->comment('职位类型 1 => 全职、2 => 兼职、3 => 实习');
 
             // 教育背景
             $table->string('grade')->nullable()->comment('年级');

@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 Route::post('/user/config/{user}', 'UserController@getConfig')->middleware('api');
 
 Route::post('/user/config/update/{user}', 'UserController@updateConfig')->middleware('api');
+
+Route::get('/user/resume/{type}', 'UserController@resumeGet')->middleware('auth:api');

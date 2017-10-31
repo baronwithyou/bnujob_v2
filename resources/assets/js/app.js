@@ -56,6 +56,8 @@ Vue.component('login-form', require('./components/LoginForm.vue'));
 
 Vue.component('open-config', require('./components/OpenConfig.vue'));
 
+Vue.component('resume-toggle', require('./components/ResumeToggle.vue'));
+
 const app = new Vue({
     el: '#app'
 });

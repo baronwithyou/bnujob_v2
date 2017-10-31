@@ -41,8 +41,8 @@
     <div class="row user-content">
         <div class="col-md-2">
             <div class="row">
-                <div class="col-md-6" style="border-right: 1px solid #eeeeee;">关注了 <p class="follow-num">12</p></div>
-                <div class="col-md-6">粉丝 <p class="follow-num">32</p></div>
+                <div class="col-md-6" style="border-right: 1px solid #eeeeee;">关注了 <a href="javascript:void(0);" class="follow-num">12</a></div>
+                <div class="col-md-6">粉丝 <a href="javascript:void(0);" class="follow-num">32</a></div>
             </div>
             <hr class="no-top">
             <div class="panel panel-default">
@@ -102,6 +102,7 @@
                     </div>
                 </div>
             </div>
+            <resume-toggle title="实习经历" type="job_experience1"></resume-toggle>
             <div class="panel panel-default user-private-info">
                 <div class="panel-heading">
                     实习经历
@@ -152,3 +153,8 @@
     </div>
 @stop
 
+@section('scripts')
+    <script>
+
+    </script>
+@stop

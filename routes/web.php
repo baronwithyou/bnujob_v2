@@ -20,6 +20,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'UserController@index')->name('index');
 
         Route::get('/deliver_status', 'UserController@deliverStatus')->name('deliver_status');
+
+        Route::post('/store/detail/{type}', 'UserController@detailStore')->name('detail_store');
     });
 
     Route::post('/email/verify', 'UserController@emailToVerify')->name('email.verify');

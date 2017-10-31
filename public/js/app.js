@@ -2011,6 +2011,92 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ResumeToggle.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['title', 'type', 'user'],
+    mounted: function mounted() {
+        axios.post('/api/user/resume/' + this.type, { user: this.user }).then(function (response) {});
+    },
+    data: function data() {
+        return {
+            edit: false,
+            start_at: '',
+            end_at: '',
+            description: '',
+            default_start: '',
+            default_end: '',
+            default_description: ''
+        };
+    },
+
+    methods: {
+        toggle: function toggle() {
+            if (this.edit === true) {
+                this.edit = false;
+            } else {
+                this.edit = true;
+            }
+        },
+        save: function save() {
+            var _this = this;
+
+            axios.post('user/store/detail/' + this.type, { 'start_at': this.start_at, 'end_at': this.end_at, 'description': this.description }).then(function (response) {
+                var data = response.data;
+                if (data.status) {
+                    _this.edit = false;
+                } else {}
+            });
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/SimpleRegister.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -39968,6 +40054,159 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6c5769b0\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ResumeToggle.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "panel panel-default user-private-info"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_vm._v("\n        " + _vm._s(_vm.title) + "\n    ")]), _vm._v(" "), (_vm.edit) ? _c('div', {
+    staticClass: "panel-body"
+  }, [_c('div', {
+    staticClass: "form-inline"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "start_at"
+    }
+  }, [_vm._v("开始时间： ")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.start_at),
+      expression: "start_at"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "date",
+      "name": "start_at",
+      "id": "start_at"
+    },
+    domProps: {
+      "value": (_vm.start_at)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.start_at = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "end_at"
+    }
+  }, [_vm._v("结束时间： ")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.end_at),
+      expression: "end_at"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "date",
+      "name": "end_at",
+      "id": "end_at"
+    },
+    domProps: {
+      "value": (_vm.end_at)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.end_at = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group",
+    staticStyle: {
+      "margin-top": "10px"
+    }
+  }, [_c('textarea', {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate"
+    }, {
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.description),
+      expression: "description"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "description",
+      "data-vv-rules": "required|min:20",
+      "data-vv-as": "具体描述",
+      "id": "description",
+      "cols": "20",
+      "rows": "10",
+      "placeholder": "请输入具体描述"
+    },
+    domProps: {
+      "value": (_vm.description)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.description = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "pull-right"
+  }, [_c('button', {
+    staticClass: "btn btn-yellow",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.save
+    }
+  }, [_vm._v("保存")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.toggle
+    }
+  }, [_vm._v("取消")])])]) : _c('div', {
+    staticClass: "panel-body"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-xs-6"
+  }, [_vm._v(_vm._s(_vm.default_start))]), _vm._v(" "), _c('div', {
+    staticClass: "col-xs-6"
+  }, [_vm._v(_vm._s(_vm.default_start))])]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-xs-12"
+  }, [_vm._v("\n                " + _vm._s(_vm.default_description) + "\n            ")])]), _vm._v(" "), _c('a', {
+    attrs: {
+      "href": "javascript:void(0);"
+    },
+    on: {
+      "click": _vm.toggle
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-plus"
+  }), _vm._v(" 添加" + _vm._s(_vm.title))])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-6c5769b0", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-bca2d4e4\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/LoginForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50429,6 +50668,8 @@ Vue.component('login-form', __webpack_require__("./resources/assets/js/component
 
 Vue.component('open-config', __webpack_require__("./resources/assets/js/components/OpenConfig.vue"));
 
+Vue.component('resume-toggle', __webpack_require__("./resources/assets/js/components/ResumeToggle.vue"));
+
 var app = new Vue({
     el: '#app'
 });
@@ -50626,6 +50867,41 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-5a369a54", Component.options)
   } else {
     hotAPI.reload("data-v-5a369a54", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/ResumeToggle.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ResumeToggle.vue"),
+  /* template */
+  __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6c5769b0\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ResumeToggle.vue"),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "E:\\Code\\bnujob_v2\\resources\\assets\\js\\components\\ResumeToggle.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ResumeToggle.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6c5769b0", Component.options)
+  } else {
+    hotAPI.reload("data-v-6c5769b0", Component.options)
   }
 })()}
 

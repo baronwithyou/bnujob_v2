@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers;
 use App\Http\UserRepository;
+use App\Resume;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +39,23 @@ class UserController extends Controller
         return redirect('/')->with('login_success', ['title' => 'Welcome Back! :)', 'msg' => '邮箱激活成功，欢迎回来', 'avatar' => $user->avatar]);
     }
 
-    public function emailToVerify(Request $request)
+    public function detailStore(Request $request, $type) {
+        $resume = $this->userRepository->storeDetail($request, $type);
+        if ($resume) {
+            Helpers::ajaxSuccess('修改成功');
+            return;
+        }
+        Helpers::ajaxFail('修改失败');
+        return;
+    }
+
+    public function resumeGet($type)
+    {
+        $user = Auth::user()->id;
+        Resume::where('user_id', $user)->get([$type]);
+    }
+
+    public function emailToVerify()
     {
         $this->userRepository->emailToVerify();
     }
