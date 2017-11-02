@@ -44,7 +44,12 @@
                     location.reload();
                 }).catch(error => {
                     const errors = error.response.data.errors;
-                    this.errors.add('all', errors.mobile[0]);
+                    if (errors.mobile) {
+                        this.errors.add('all', errors.mobile[0]);
+                    }
+                    if (errors.email) {
+                        this.errors.add('all', errors.email[0]);
+                    }
                     l.stop();
                 });
             }

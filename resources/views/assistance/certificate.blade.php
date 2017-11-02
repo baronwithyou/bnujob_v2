@@ -5,7 +5,7 @@
 
 @section('top')
     <section style="background: #1C213F;">
-        <img src="{{ asset('images/ocean/certificate.jpg') }}" class="img img-responsive" alt="" style="margin: 0 auto;">
+{{--        <img src="{{ asset('images/ocean/certificate.jpg') }}" class="img img-responsive" alt="" style="margin: 0 auto;">--}}
     </section>
 @stop
 
