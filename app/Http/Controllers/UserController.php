@@ -29,14 +29,33 @@ class UserController extends Controller
         return view('user', compact('user'));
     }
 
+    public function activateEmail($token)
+    {
+        $user = User::where('confirmation_token', $token)->first();
+        if (!$user) {
+            return false;
+        }
+        $user->is_active = 1;
+        $user->save();
+        return $user;
+    }
+
+    public function updateConfirmationToken($token)
+    {
+        User::where('confirmation_token', $token)->update([
+            'confirmation_token' => str_random(40)
+        ]);
+        return;
+    }
+
     // 用户邮箱验证
     public function activate($token)
     {
-        $user = $this->userRepository->activateEmail($token);
+        $user = $this->activateEmail($token);
         if (!$user) {
             return redirect('/')->withErrors('链接错误或者已经失效');
         }
-        $this->userRepository->updateConfirmationToken($token);
+        $this->updateConfirmationToken($token);
         Auth::login($user);
         return redirect('/')->with('login_success', ['title' => 'Welcome Back! :)', 'msg' => '邮箱激活成功，欢迎回来', 'avatar' => $user->avatar]);
     }
