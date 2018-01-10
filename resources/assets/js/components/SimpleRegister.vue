@@ -2,7 +2,7 @@
     <div class="register">
         <div class="form-group" :class="{'has-error': errors.has('name')}">
             <input type="text" v-validate data-vv-rules="required" v-model="name" name="name"
-                   @keyup.enter="register"  class="form-control" placeholder="真实姓名或常用昵称" id="name">
+                   @keyup.enter="register"  class="form-control" placeholder="真实姓名或常用昵称">
             <span class="help-block"><strong v-show="errors.has('name')">{{ errors.first('name') }}</strong></span>
         </div>
         <div class="form-group" :class="{'has-error': errors.has('mobile') || errors.has('verify_code')}">
@@ -28,7 +28,7 @@
         </div>
         <div class="form-group" :class="{'has-error': errors.has('password')}">
             <input type="password" v-validate data-vv-rules="required|min:6" v-model="password" @keyup.enter="register"
-                   class="form-control" placeholder="密码(不少于六位)" name="password" id="password">
+                   class="form-control" placeholder="密码(不少于六位)" name="password">
             <span class="help-block"><strong v-show="errors.has('password')">{{ errors.first('password') }}</strong></span>
         </div>
         <span>已有账号？<a href="#auth-modal" data-toggle="modal">立即登录</a></span>

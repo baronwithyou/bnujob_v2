@@ -54,6 +54,7 @@ class CreateResumesTable extends Migration
 
             // 个人评价
             $table->text('evaluate')->nullable()->comment('个人评价');
+            $table->string('upload_location')->nullable()->comment('简历上传地址');
             $table->timestamps();
         });
     }

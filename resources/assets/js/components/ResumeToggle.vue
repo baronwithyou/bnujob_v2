@@ -4,15 +4,13 @@
             {{ title }}
         </div>
         <div class="panel-body"  v-if="edit">
-            <div class="form-inline">
-                <div class="form-group">
-                    <label for="start_at">开始时间： </label>
-                    <input type="date" name="start_at" id="start_at" v-model="start_at" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="end_at">结束时间： </label>
-                    <input type="date" name="end_at" id="end_at" v-model="end_at" class="form-control">
-                </div>
+            <div class="form-group">
+                <label for="start_at">开始时间： </label>
+                <input type="date" name="start_at" id="start_at" v-model="start_at" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="end_at">结束时间： </label>
+                <input type="date" name="end_at" id="end_at" v-model="end_at" class="form-control">
             </div>
             <div class="form-group" style="margin-top: 10px;">
                 <textarea name="description" v-validate data-vv-rules="required|min:20" data-vv-as="具体描述" v-model="description"
@@ -24,26 +22,31 @@
             </div>
         </div>
         <div class="panel-body" v-else>
-            <div class="row">
-                <div class="col-xs-6">{{ default_start }}</div>
-                <div class="col-xs-6">{{ default_start }}</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    {{ default_description }}
+            <div v-if="description">
+                <div class="row">
+                    <div class="col-xs-6">开始时间：{{ start_at }}</div>
+                    <div class="col-xs-6">结束时间：{{ end_at }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        描述： {{ description }}
+                    </div>
                 </div>
             </div>
-            <a href="javascript:void(0);" @click="toggle"><i class="fa fa-plus"></i> 添加{{ title }}</a>
+            <a href="javascript:void(0);" @click="toggle" v-else><i class="fa fa-plus"></i> 添加{{ title }}</a>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['title', 'type', 'user'],
+        props: ['title', 'type'],
         mounted() {
-            axios.post('/api/user/resume/' + this.type, {user: this.user}).then(response => {
-
+            axios.get('/api/user/resume/' + this.type).then(response => {
+                const data = response.data;
+                this.start_at = data.start_at;
+                this.end_at = data.end_at;
+                this.description = data.description;
             });
         },
         data() {
@@ -52,9 +55,6 @@
                 start_at: '',
                 end_at: '',
                 description: '',
-                default_start : '',
-                default_end: '',
-                default_description: ''
             }
         },
         methods: {
@@ -66,12 +66,12 @@
                 }
             },
             save() {
-                axios.post('user/store/detail/' + this.type, {'start_at': this.start_at, 'end_at': this.end_at, 'description': this.description}).then(response => {
+                axios.post('user/resume/' + this.type + '/update', {'start_at': this.start_at, 'end_at': this.end_at, 'description': this.description}).then(response => {
                     const data = response.data;
                     if (data.status) {
                         this.edit = false;
                     } else {
-
+                        swal("Error", "系统错误，请稍后再试", "warning");
                     }
                 });
             }

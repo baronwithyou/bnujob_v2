@@ -6,6 +6,7 @@ use App\Http\Helpers;
 use App\Http\Sms;
 use App\Http\UserRepository;
 use App\User;
+use Carbon\Carbon;
 use function GuzzleHttp\Psr7\str;
 use Illuminate\Support\Facades\Auth;
 use JavaScript;
@@ -48,7 +49,7 @@ class IndexController extends Controller
             return;
         }
 
-        if ($this->userRepository->checkMobileExists($mobile)) {
+        if (Helpers::checkMobileExists($mobile)) {
             Helpers::ajaxFail('该手机号已经被使用');
             return;
         }

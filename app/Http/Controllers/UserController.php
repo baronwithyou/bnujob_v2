@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Evaluate;
 use App\Http\Helpers;
 use App\Http\UserRepository;
 use App\Resume;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +41,7 @@ class UserController extends Controller
         return redirect('/')->with('login_success', ['title' => 'Welcome Back! :)', 'msg' => '邮箱激活成功，欢迎回来', 'avatar' => $user->avatar]);
     }
 
-    public function detailStore(Request $request, $type) {
+    public function resumeUpdate(Request $request, $type) {
         $resume = $this->userRepository->storeDetail($request, $type);
         if ($resume) {
             Helpers::ajaxSuccess('修改成功');
@@ -49,10 +51,52 @@ class UserController extends Controller
         return;
     }
 
-    public function resumeGet($type)
+    public function infoUpdate(Request $request) {
+        $result = $this->userRepository->update($request->all());
+        if ($result) {
+            Helpers::ajaxSuccess();
+            return;
+        }
+        Helpers::ajaxFail();
+        return;
+    }
+
+    // 推荐算法
+    public function getRecommendation()
     {
-        $user = Auth::user()->id;
-        Resume::where('user_id', $user)->get([$type]);
+        $evaluated = Evaluate::where('user_id', 1)->pluck('grade', 'job_id')->toArray();
+        $job_ids = array_keys($evaluated);
+        $other_evaluated = Evaluate::whereIn('job_id',$job_ids)->where('user_id', '<>', 1)->get([
+            'user_id', 'job_id', 'grade'
+        ]);
+        $others = [];
+        foreach ($other_evaluated as $item) {
+            $others[$item->user_id][$item->job_id] = $item->grade;
+        }
+        $tmp = 0;
+        foreach ($evaluated as $grade) {
+            $tmp += $grade * $grade;
+        }
+        $fix = sqrt($tmp);
+        foreach ($others as $user_id => $items) {
+            $top = $bottom = 0;
+            if (count($items) < count($job_ids)) {
+                $need = array_diff($job_ids, array_keys($items));
+                foreach ($need as $job_id) {
+                    $others[$user_id][$job_id] = 0;
+                }
+            }
+            foreach($others[$user_id] as $key => $value) {
+                $top += ($value * $evaluated[$key]);
+                $bottom += $value * $value;
+            }
+            $others[$user_id] = $top / sqrt($bottom) * $fix;
+        }
+        return $others;
+    }
+
+    private function getAverageGrade($job_id) {
+        return Evaluate::where('job_id', $job_id)->avg('grade');
     }
 
     public function emailToVerify()
@@ -84,5 +128,10 @@ class UserController extends Controller
         }
         $user->update(['config' => $config]);
         return $config;
+    }
+
+    public function resumeGet($type)
+    {
+        return optional(Auth::guard('api')->user()->resume)->$type;
     }
 }

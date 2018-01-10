@@ -18,14 +18,14 @@
             </ul>
             <ul class="nav navbar-nav">
                 <li><a href="javascript:void(0)" style="visibility: hidden"></a></li>
-                <li><a href="">丢卡狂魔集中营</a></li>
-                <li><a href="">讨论区</a></li>
-                <li><a href="">二手市场</a></li>
+                {{--<li><a href="">丢卡狂魔集中营</a></li>--}}
+                {{--<li><a href="">讨论区</a></li>--}}
+                {{--<li><a href="">二手市场</a></li>--}}
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
-                    <li><a href="{{ route('business.certificate') }}">我是商家</a></li>
+                    <li><a href="{{ route('business.certificate') }}">企业版</a></li>
                     <?php $user = Auth::user()?>
                     @if($user->isAdmin())
                         <li><a href="{{ route('voyager.dashboard') }}" style="font-size: 20px;"><i class="fa fa-hand-spock-o"></i> King</a></li>

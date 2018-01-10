@@ -17,7 +17,7 @@ class RedirectIfNotAdmin
     public function handle($request, Closure $next)
     {
         if (!Auth::user()->isAdmin()) {
-            return redirect()->back()->withErrors('Sorry，你的权限还不够 SSS');
+            return redirect()->back()->withErrors('Sorry，你的权限还不够');
         }
 
         return $next($request);

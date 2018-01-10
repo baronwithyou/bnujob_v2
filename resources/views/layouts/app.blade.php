@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="authorization" content="{{ Auth::check() ? 'Bearer '.Auth::user()->api_token : 'Bearer ' }}">
     <meta name="animate" content="{{ \App\Http\Helpers::getRandomAnimate() }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ mix('css/all.css') }}">
@@ -14,18 +15,20 @@
     @yield('stylesheets')
 </head>
 <body>
-<div id="app">
+<div>
     @if(url()->current() != url('/'))
         <div class="app-top">
             @include('partial.navbar')
         </div>
     @endif
-    @yield('top')
-    <div class="container" id="app">
+    <div id="app">
+        @yield('top')
+        @include('modal.auth-check')
+    </div>
+    <div class="container">
         @yield('content')
     </div>
     @include('partial.footer')
-    @include('modal.auth-check')
 </div>
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
@@ -33,7 +36,7 @@
 <script src="{{ asset('js/wangEditor.min.js') }}"></script>
 <script>
     $(function () {
-        @if(count($errors->all())> 0)
+        @if(count($errors->all()) > 0)
             Tool.errorPrompt('{{ $errors->first() }}');
         @endif
     });

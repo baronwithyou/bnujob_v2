@@ -2,6 +2,12 @@
 
 @section('title', '个人档案')
 
+@section('stylesheets')
+    <style>
+
+    </style>
+@stop
+
 @section('top')
 <section class="user-banner">
     <div class="container-fluid">
@@ -59,35 +65,92 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7">
+
+        <div class="col-md-7" id="private-info">
             <div class="panel panel-default user-private-info">
                 <div class="panel-heading">
                     个人档案
-                    <button class="btn btn-link pull-right"><i class="fa fa-edit"></i> 编辑</button>
+                    <button class="btn btn-link pull-right" @click="toggle"><i class="fa fa-edit"></i> 编辑</button>
                 </div>
-                <div class="panel-body">
-                    <div class="row">
+                <div class="panel-body" >
+                    <div class="row" v-if="!edit">
                         <div class="col-xs-3 hidden-xs">
                             <p>真人头像 <span class="fa fa-lock"></span></p>
                             <img src="{{ asset($user->avatar) }}" class="img img-responsive img-circle" alt="">
                         </div>
                         <div class="col-xs-5 col-md-4">
                             <p class="list-title">真实姓名 <span class="fa fa-lock"></span></p>
-                            <p>{{ $user->real_name ?? '暂无' }}</p>
+                            <p>@{{ real_name ? real_name : '暂无' }}</p>
                             <p class="list-title">出生日期</p>
-                            <p>{{ $user->birthday ?? '1970-01-01' }}</p>
+                            <p>@{{ birthday ? birthday : '1970-01-01' }}</p>
                             <p class="list-title">手机号码 <span class="fa fa-lock"></span></p>
-                            <p>{{ $user->mobile ?? '暂无' }}</p>
+                            <p>@{{ mobile ? mobile : '暂无' }}</p>
                             <p class="list-title">现居城市</p>
-                            <p>{{ $user->city ?? '暂无' }}</p>
+                            <p>@{{ city ? city : '暂无' }}</p>
                         </div>
                         <div class="col-xs-7 col-md-5">
                             <p class="list-title">性别</p>
-                            <p>保密</p>
+                            <p>@{{ gender != 0 ? (gender == 1 ? '男' : '女') : '保密' }}</p>
                             <p class="list-title">Email <span class="fa fa-lock"></span></p>
-                            <p>{{ $user->email ?? '暂无' }}</p>
+                            <p>@{{ email ? email : '暂无' }}</p>
                             <p class="list-title">通讯地址 <span class="fa fa-lock"></span></p>
-                            <p>{{ $user->address ?? '暂无' }}</p>
+                            <p>@{{ address ? address : '暂无' }}</p>
+                        </div>
+                    </div>
+                    <div v-else>
+                        <div class="row">
+                            <div class="col-md-3 hidden-xs">
+                                <p>真人头像 <span class="fa fa-lock"></span></p>
+                                <img src="{{ asset($user->avatar) }}" class="img img-responsive img-circle" alt="">
+                            </div>
+                            <div class="col-md-7 col-md-offset-1">
+                                <div class="form-group">
+                                    <p class="list-title">真实姓名 <span class="fa fa-lock"></span></p>
+                                    <input type="text" class="form-control" v-model="real_name">
+                                </div>
+                                <div class="form-group">
+                                    <p class="list-title">出生日期 <span class="fa fa-lock"></span></p>
+                                    <input type="date" class="form-control" v-model="birthday">
+                                </div>
+                                <div class="form-group">
+                                    <p class="list-title">手机号码 <span class="fa fa-lock"></span></p>
+                                    <input type="text" class="form-control" disabled v-model="mobile" v-if="mobile">
+                                    <div style="margin-bottom: 50px;" v-else>
+                                        <input type="text" class="form-control" style="width: 60%;float: left;" value="{{ $user->mobile }}">
+                                        <button class="btn btn-default" style="width: 38%;float: left;margin-left: 2%;">发送验证码</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p class="list-title">现居城市 <span class="fa fa-lock"></span></p>
+                                    <input type="text" class="form-control" v-model="city">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="form-group">
+                                    <p class="list-title">性别 <span class="fa fa-lock"></span></p>
+                                    <select name="gender" id="" class="form-control" v-model="gender">
+                                        <option value="0">未知</option>
+                                        <option value="1">男</option>
+                                        <option value="2">女</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <p class="list-title">Email <span class="fa fa-lock"></span></p>
+                                    <input type="text" class="form-control" v-model="email">
+                                </div>
+                                <div class="form-group">
+                                    <p class="list-title">通讯地址 <span class="fa fa-lock"></span></p>
+                                    <input type="text" class="form-control" v-model="address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="pull-right" style="margin: 0 30px 15px;">
+                                <button type="button" class="btn btn-yellow" @click="save">保存</button>
+                                <button type="button" class="btn btn-default" @click="toggle">取消</button>
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -103,31 +166,10 @@
                 </div>
             </div>
             <resume-toggle title="实习经历" type="job_experience1"></resume-toggle>
-            <div class="panel panel-default user-private-info">
-                <div class="panel-heading">
-                    实习经历
-                </div>
-                <div class="panel-body">
-                    <a href="">添加实习经历</a>
-                </div>
-            </div>
-            <div class="panel panel-default user-private-info">
-                <div class="panel-heading">
-                    校园经历
-                </div>
-                <div class="panel-body">
-                    <a href="">添加校园经历</a>
-                </div>
-            </div>
-            <div class="panel panel-default user-private-info">
-                <div class="panel-heading">
-                    作品
-                </div>
-                <div class="panel-body">
-                    <a href="">添加作品</a>
-                </div>
-            </div>
+            <resume-toggle title="校园经历" type="campus_experience1"></resume-toggle>
+            <resume-toggle title="作品" type="works1"></resume-toggle>
         </div>
+
         <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -155,6 +197,41 @@
 
 @section('scripts')
     <script>
-
+        new Vue({
+            el: "#private-info",
+            data: {
+                edit: false,
+                real_name: '{{ $user->real_name }}',
+                birthday: '{{ $user->birthday }}',
+                mobile: '{{ $user->mobile }}',
+                city: '{{ $user->city }}',
+                gender: '{{ $user->gender }}',
+                email: '{{ $user->email }}',
+                address: '{{ $user->address }}',
+                verify_code: ''
+            },
+            methods: {
+                toggle: function() {
+                    this.edit = !this.edit;
+                },
+                save: function () {
+                    var params = {
+                        real_name: this.real_name,
+                        birthday: this.birthday,
+                        mobile: this.mobile,
+                        city: this.city,
+                        gender: this.gender,
+                        email: this.email,
+                        address: this.address
+                    };
+                    axios.post('/user/private/info/update', params).then(response => {
+                        const data = response.data;
+                        if (data.status) {
+                            this.edit = false;
+                        }
+                    });
+                }
+            }
+        });
     </script>
 @stop

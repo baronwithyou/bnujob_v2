@@ -21,7 +21,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/deliver_status', 'UserController@deliverStatus')->name('deliver_status');
 
-        Route::post('/store/detail/{type}', 'UserController@detailStore')->name('detail_store');
+        Route::post('/resume/{type}/update', 'UserController@resumeUpdate')->name('resume_update');
+
+        Route::post('private/info/update', 'UserController@infoUpdate')->name('info_update');
     });
 
     Route::post('/email/verify', 'UserController@emailToVerify')->name('email.verify');
@@ -49,6 +51,6 @@ Route::get('auth/{service}', 'Auth\OAuthController@redirectToProvider')->name('a
 Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallback');
 
 // 测试
-Route::get('/test', 'IndexController@test');
+Route::get('/test', 'UserController@getRecommendation');
 
 

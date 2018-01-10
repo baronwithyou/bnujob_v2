@@ -51,4 +51,9 @@ class Helpers
             'swing', 'tada', 'wobble'];
         return $animation[rand(0, count($animation) - 1)];
     }
+
+    public static function checkMobileExists($mobile)
+    {
+        return User::where('mobile', $mobile)->first();
+    }
 }

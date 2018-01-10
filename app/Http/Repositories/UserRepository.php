@@ -9,6 +9,7 @@
 namespace App\Http;
 
 
+use App\Evaluate;
 use App\Http\Mail\ActivateMail;
 use App\Resume;
 use App\User;
@@ -18,21 +19,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserRepository
 {
-    public function checkMobileExists($mobile)
-    {
-        return User::where('mobile', $mobile)->first();
-    }
-
-    public function activateEmail($token)
-    {
-        $user = User::where('confirmation_token', $token)->first();
-        if (!$user) {
-            return false;
-        }
-        $user->is_active = 1;
-        $user->save();
-        return $user;
-    }
 
     public function needToActivate()
     {
@@ -46,13 +32,7 @@ class UserRepository
         return true;
     }
 
-    public function updateConfirmationToken($token)
-    {
-        User::where('confirmation_token', $token)->update([
-            'confirmation_token' => str_random(40)
-        ]);
-        return;
-    }
+
 
     public function emailToVerify()
     {
@@ -62,6 +42,12 @@ class UserRepository
         ActivateMail::send($user->id, $user->name, $user->confirmation_token ,$user->email);
     }
 
+    /**
+     * @param Request $request
+     * @param $type
+     * @return mixed
+     * 保存用户简历信息
+     */
     public function storeDetail(Request $request, $type)
     {
         $input = $request->all();
@@ -78,7 +64,7 @@ class UserRepository
             $resume->$type = $detail;
             $resume->save();
         }
-        return $resume;
+        return true;
     }
 
     private function createResume($data, $type, $user)
@@ -88,5 +74,13 @@ class UserRepository
             $type => $data
         ]);
         return $resume;
+    }
+
+
+    public function update($data) {
+        $num = Auth::user()->update($data);
+        if ($num)
+            return true;
+        return false;
     }
 }

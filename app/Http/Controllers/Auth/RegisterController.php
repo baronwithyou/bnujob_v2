@@ -85,13 +85,14 @@ class RegisterController extends Controller
             'confirmation_token' => str_random(40),
             'active' => 0,
             'config' => json_encode(['open_type' => 'modal']),
+            'api_token' => str_random(60),
         ];
         if (isset($data['email'])) {
             $attr['email'] = $data['email'];
         } else {
             $attr['mobile'] = $data['mobile'];
         }
-        return $this->repository->create($attr);
+        return User::create($attr);
     }
 
     public function register(Request $request)

@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('company')->nullable();
             $table->string('website')->nullable();
             $table->timestamp('birthday')->nullable();
-            $table->string('gender')->nullable()->comment('男 = F, 女 = M');
+            $table->integer('gender')->default(0)->comment('未知 = 0, 男 = 1, 女 = 2');
             $table->smallInteger('age')->nullable();
             $table->string('grade')->nullable()->comment('所在年级');
             $table->string('abstract')->nullable()->comment('个人简介');
@@ -50,6 +50,7 @@ class CreateUsersTable extends Migration
             $table->integer('followers_count')->default(0)->comment('粉丝数');
             $table->integer('primary_resume_id')->nullable()->comment('默认简历');
             $table->string('credit_id')->nullable()->comment('实名认证之后才可注册商家账号');
+            $table->string('api_token', 64)->unique();
 
             $table->text('config')->nullable();
             $table->rememberToken();
