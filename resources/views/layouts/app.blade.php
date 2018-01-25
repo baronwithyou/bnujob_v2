@@ -25,9 +25,7 @@
         @yield('top')
         @include('modal.auth-check')
     </div>
-    <div class="container">
-        @yield('content')
-    </div>
+    @yield('content')
     @include('partial.footer')
 </div>
 </body>

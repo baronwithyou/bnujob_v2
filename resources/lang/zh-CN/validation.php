@@ -146,6 +146,8 @@ return [
         'time'                  => '时间',
         'available'             => '可用的',
         'size'                  => '大小',
+        'real_name'             => '真实姓名',
+        'identity'             => '身份证号',
     ],
 
 ];

@@ -15,7 +15,7 @@
                    @keyup.enter="register" class="form-control" placeholder="手机号(仅支持大陆手机号码)" style="margin-bottom: 15px;">
             <div class="input-group">
                 <input type="text" name="verify_code" v-validate data-vv-rules="required" class="form-control"
-                       @keyup.enter="register" placeholder="短信验证码" id="verify_code" v-model="verify_code">
+                       @keyup.enter="register" placeholder="短信验证码" v-model="verify_code">
                 <span class="input-group-addon">
                     <button class="btn btn-link" @click="getVerifyCode" :disabled="disabled">获取验证码 <span v-show="disabled">({{ time }}秒后再试)</span></button>
                 </span>

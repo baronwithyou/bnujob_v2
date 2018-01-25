@@ -29,7 +29,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/email/verify', 'UserController@emailToVerify')->name('email.verify');
 
     Route::group(['prefix' => 'business', 'as' => 'business.'], function () {
+        Route::get('/', 'BusinessController@index')->name('index');
+
         Route::get('/certificate', 'BusinessController@certificate')->name('certificate');
+
+        Route::post('/certificate_first', 'BusinessController@certificateFirst')->name('certificate_first')->middleware('auth');
+
+        Route::post('/certificate_second', 'BusinessController@certificateSecond')->name('certificate_second')->middleware('auth');
+
+        Route::get('/publish', 'BusinessController@publish')->name('publish');
     });
 
     // 后台voyager
@@ -51,6 +59,6 @@ Route::get('auth/{service}', 'Auth\OAuthController@redirectToProvider')->name('a
 Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallback');
 
 // 测试
-Route::get('/test', 'UserController@getRecommendation');
+Route::get('/test', 'BusinessController@test');
 
 

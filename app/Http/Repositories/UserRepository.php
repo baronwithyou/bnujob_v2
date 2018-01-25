@@ -6,16 +6,15 @@
  * Time: 9:30
  */
 
-namespace App\Http;
+namespace App\Http\Repositories;
 
-
+use Auth;
 use App\Evaluate;
 use App\Http\Mail\ActivateMail;
 use App\Resume;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserRepository
 {

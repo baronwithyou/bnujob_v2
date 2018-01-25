@@ -40,4 +40,8 @@ class User extends \TCG\Voyager\Models\User
     public function resume() {
         return $this->hasOne("App\Resume", "user_id", 'id');
     }
+
+    public function hasBusiness() {
+        return Business::where('user_id', $this->id)->first();
+    }
 }

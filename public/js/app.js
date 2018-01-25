@@ -39873,8 +39873,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text",
       "name": "verify_code",
       "data-vv-rules": "required",
-      "placeholder": "短信验证码",
-      "id": "verify_code"
+      "placeholder": "短信验证码"
     },
     domProps: {
       "value": (_vm.verify_code)

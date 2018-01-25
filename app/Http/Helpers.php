@@ -9,6 +9,8 @@
 namespace App\Http;
 
 
+use App\User;
+
 class Helpers
 {
     public static function isMobile($mobile)
@@ -55,5 +57,13 @@ class Helpers
     public static function checkMobileExists($mobile)
     {
         return User::where('mobile', $mobile)->first();
+    }
+
+    public static function checkVerifyMatch($verify_code)
+    {
+        if (session()->has('verify_code')) {
+            return $verify_code == session()->get('verify_code');
+        }
+        return false;
     }
 }

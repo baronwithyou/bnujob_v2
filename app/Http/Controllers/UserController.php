@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Evaluate;
 use App\Http\Helpers;
-use App\Http\UserRepository;
-use App\Resume;
+use App\Http\Repositories\UserRepository;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

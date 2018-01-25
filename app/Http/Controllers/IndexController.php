@@ -4,12 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Helpers;
 use App\Http\Sms;
-use App\Http\UserRepository;
-use App\User;
-use Carbon\Carbon;
-use function GuzzleHttp\Psr7\str;
-use Illuminate\Support\Facades\Auth;
-use JavaScript;
+use App\Http\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -54,6 +49,7 @@ class IndexController extends Controller
             return;
         }
 
+        session()->put('mobile', $mobile);
         $verify_code = Helpers::getRandomVerifyCode();
 
         if (config('app.debug')) {
