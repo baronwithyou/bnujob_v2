@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Helpers;
 use App\Http\Sms;
 use App\Http\Repositories\UserRepository;
+use App\Job;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-
-
     /**
      * IndexController constructor.
      */
+    private $userRepository;
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
@@ -23,7 +23,9 @@ class IndexController extends Controller
     {
         $needToActivate = $this->userRepository->needToActivate();
 
-        return view('welcome', compact('needToActivate'));
+        $jobs = Job::orderBy('created_at', 'desc')->get();
+
+        return view('welcome', compact('needToActivate', 'jobs'));
     }
 
     public function test()
@@ -31,10 +33,7 @@ class IndexController extends Controller
         return view('test');
     }
 
-    public function jobDetail($id)
-    {
-        return view('job');
-    }
+
 
     public function getVerifyCode(Request $request)
     {

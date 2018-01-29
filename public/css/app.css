@@ -522,6 +522,10 @@ body {
   padding: 0;
 }
 
+.job-comment .comment-grade-btn .clicked {
+  background: #ccc;
+}
+
 .comment-edit .btn {
   margin-top: 10px;
 }

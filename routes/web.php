@@ -33,11 +33,19 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/certificate', 'BusinessController@certificate')->name('certificate');
 
-        Route::post('/certificate_first', 'BusinessController@certificateFirst')->name('certificate_first')->middleware('auth');
+        Route::post('/certificate_first', 'BusinessController@certificateFirst')->name('certificate_first');
 
-        Route::post('/certificate_second', 'BusinessController@certificateSecond')->name('certificate_second')->middleware('auth');
+        Route::post('/certificate_second', 'BusinessController@certificateSecond')->name('certificate_second');
 
         Route::get('/publish', 'BusinessController@publish')->name('publish');
+
+        Route::post('/publish/store', 'BusinessController@publishStore')->name('publish.store');
+    });
+
+    Route::group(['prefix' => 'job', 'as' => 'job.'], function () {
+        Route::post('/comment/store', 'JobController@commentStore')->name('comment.store');
+
+        Route::post('/comment/like/update', 'JobController@commentLikeUpdate')->name('comment.like.update');
     });
 
     // 后台voyager
@@ -48,7 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
-Route::get('/job/{id}', 'IndexController@jobDetail')->name('job');
+Route::get('/job/{id}', 'JobController@jobDetail')->name('job');
 
 Route::post('/get-verify-code', 'IndexController@getVerifyCode')->name('get-verify-code');
 

@@ -60,6 +60,8 @@ Vue.component('open-config', require('./components/OpenConfig.vue'));
 
 Vue.component('resume-toggle', require('./components/ResumeToggle.vue'));
 
+Vue.component('comment', require('./components/Comment.vue'));
+
 const app = new Vue({
     el: '#app'
 });

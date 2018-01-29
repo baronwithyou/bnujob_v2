@@ -44,4 +44,44 @@ class User extends \TCG\Voyager\Models\User
     public function hasBusiness() {
         return Business::where('user_id', $this->id)->first();
     }
+
+    public function getBusiness() {
+        if (!$this->hasBusiness())
+            return 0;
+        return Business::where('user_id', $this->id)->first()->id;
+    }
+
+    // 推荐算法
+    public function getRecommendation()
+    {
+        $evaluated = Evaluate::where('user_id', $this->id)->pluck('grade', 'job_id')->toArray();
+        $job_ids = array_keys($evaluated);
+        $other_evaluated = Evaluate::whereIn('job_id', $job_ids)->where('user_id', '<>', $this->id)->get([
+            'user_id', 'job_id', 'grade'
+        ]);
+        $others = [];
+        foreach ($other_evaluated as $item) {
+            $others[$item->user_id][$item->job_id] = $item->grade;
+        }
+        $tmp = 0;
+        foreach ($evaluated as $grade) {
+            $tmp += $grade * $grade;
+        }
+        $fix = sqrt($tmp);
+        foreach ($others as $user_id => $items) {
+            $top = $bottom = 0;
+            if (count($items) < count($job_ids)) {
+                $need = array_diff($job_ids, array_keys($items));
+                foreach ($need as $job_id) {
+                    $others[$user_id][$job_id] = 0;
+                }
+            }
+            foreach($others[$user_id] as $key => $value) {
+                $top += ($value * $evaluated[$key]);
+                $bottom += $value * $value;
+            }
+            $others[$user_id] = $top / sqrt($bottom) * $fix;
+        }
+        return $others;
+    }
 }

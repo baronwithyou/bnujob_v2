@@ -16,21 +16,6 @@ $(function () {
         content: '点击查询兼职信息'
     });
 
-    var E = window.wangEditor;
-    var editor = new E('#job-comment-editor');
-    editor.customConfig.menus = [
-        'head',  // 标题
-        'bold',  // 粗体
-        'link',  // 插入链接
-        'list',  // 列表
-        'quote',  // 引用
-        'image',  // 插入图片
-        'code',  // 插入代码
-        'undo',  // 撤销
-        'redo'  // 重复
-    ];
-    editor.create();
-
     $('.glyphicon-remove-circle').on('click', function () {
         $('.welcome-banner').hide('normal');
     });

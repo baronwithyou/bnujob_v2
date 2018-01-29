@@ -19,3 +19,5 @@ Route::post('/user/config/update/{user}', 'UserController@updateConfig')->middle
 
 Route::get('/user/resume/{type}', 'UserController@resumeGet')->middleware('auth:api');
 
+Route::post('/user/like/{comment_id}', 'UserController@userLikeComment')->middleware('auth:api');
+

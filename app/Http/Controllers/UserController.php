@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Evaluate;
 use App\Http\Helpers;
-use App\Http\Repositories\UserRepository;
+    use App\Http\Repositories\UserRepository;
+use App\Like;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,40 +79,6 @@ class UserController extends Controller
         return;
     }
 
-    // 推荐算法
-    public function getRecommendation()
-    {
-        $evaluated = Evaluate::where('user_id', 1)->pluck('grade', 'job_id')->toArray();
-        $job_ids = array_keys($evaluated);
-        $other_evaluated = Evaluate::whereIn('job_id',$job_ids)->where('user_id', '<>', 1)->get([
-            'user_id', 'job_id', 'grade'
-        ]);
-        $others = [];
-        foreach ($other_evaluated as $item) {
-            $others[$item->user_id][$item->job_id] = $item->grade;
-        }
-        $tmp = 0;
-        foreach ($evaluated as $grade) {
-            $tmp += $grade * $grade;
-        }
-        $fix = sqrt($tmp);
-        foreach ($others as $user_id => $items) {
-            $top = $bottom = 0;
-            if (count($items) < count($job_ids)) {
-                $need = array_diff($job_ids, array_keys($items));
-                foreach ($need as $job_id) {
-                    $others[$user_id][$job_id] = 0;
-                }
-            }
-            foreach($others[$user_id] as $key => $value) {
-                $top += ($value * $evaluated[$key]);
-                $bottom += $value * $value;
-            }
-            $others[$user_id] = $top / sqrt($bottom) * $fix;
-        }
-        return $others;
-    }
-
     private function getAverageGrade($job_id) {
         return Evaluate::where('job_id', $job_id)->avg('grade');
     }
@@ -127,6 +94,14 @@ class UserController extends Controller
     }
 
     // api
+    public function userLikeComment($comment_id)
+    {
+        $record = Like::where('comment_id', $comment_id)->where('liking_id', Auth::guard('api')->user()->id)->first();
+        if ($record)
+            return $record->type;
+        return 'nothing';
+    }
+
     public function getConfig($user)
     {
 //        $user = Auth::user();

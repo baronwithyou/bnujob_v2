@@ -26,7 +26,8 @@ class BusinessController extends Controller
         if (!Auth::user()->hasBusiness())
             return redirect()->route('business.certificate');
 
-        return view('business');
+        $business = Business::where('user_id', Auth::user()->id)->first();
+        return view('business', compact('business'));
     }
 
     public function publish()
@@ -42,7 +43,31 @@ class BusinessController extends Controller
         return view('assistance.certificate');
     }
 
-    public function certificateFirst(Request $request) {
+    public function publishStore(Request $request)
+    {
+        $this->validate($request, [
+            'contact' => 'required',
+            'salary' => 'required|digits_between:1,10000',
+            'description' => 'required',
+            'required' => 'required',
+            'name' => 'required',
+            'address' => 'required'
+        ], [], [
+            'address' => '工作地址',
+            'salary' => '薪资',
+            'description' => '工作描述',
+            'required' => '岗位需求',
+            'name' => '工作名称',
+            'contact' => '联系方式',
+        ]);
+        $data = $request->all();
+        $this->businessRepository->createJob($data);
+        Helpers::ajaxSuccess('发布成功');
+        return;
+    }
+
+    public function certificateFirst(Request $request)
+    {
         $all = $request->all();
         // 身份证验证
         $identity = new Identity();
@@ -109,6 +134,8 @@ class BusinessController extends Controller
     }
 
     public function test() {
+        $s = Business::find(10)->abstract;
+        return nl2br($s);
 //        Business::create([
 //            'user_id' => 1,
 //            'name' => '金拱门',

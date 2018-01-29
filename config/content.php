@@ -21,4 +21,10 @@ return [
         'printing' => '印刷类',
         'other' => '其他',
     ],
+    'location' => [
+        'haihua' => '海华',
+        'yanhua' => '燕华',
+        'yuehua' => '粤华',
+        'jinghua' => '京华',
+    ]
 ];

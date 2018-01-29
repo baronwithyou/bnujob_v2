@@ -1615,6 +1615,127 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Comment.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['c', 'a', 't', 'u', 'c_id', 'is_c', 'p', 'is_m'],
+    data: function data() {
+        return {
+            agree_count: this.a,
+            content: this.c,
+            time: this.t,
+            user_id: this.u,
+            comment_id: this.c_id,
+            is_check: this.is_c,
+            poster: this.p,
+            is_me: this.is_m,
+            is_increase: false,
+            is_decrease: false,
+            edit: false
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.post('/api/user/like/' + this.comment_id, {}).then(function (response) {
+            var data = response.data;
+            if (data === 'like') _this.is_increase = true;else if (data === 'dislike') _this.is_decrease = true;
+        });
+    },
+
+    methods: {
+        increase: function increase() {
+            var _this2 = this;
+
+            if (!this.checkAuth()) return false;
+            axios.post('/job/comment/like/update', { user_id: this.user_id, comment_id: this.comment_id, type: 'like' }).then(function (response) {
+                var data = response.data;
+                if (data.status) {
+                    if (_this2.is_decrease === true) _this2.is_decrease = false;else _this2.is_increase = true;
+                    _this2.agree_count++;
+                }
+            });
+        },
+        decrease: function decrease() {
+            var _this3 = this;
+
+            if (!this.checkAuth()) return false;
+            axios.post('/job/comment/like/update', { user_id: this.user_id, comment_id: this.comment_id, type: 'dislike' }).then(function (response) {
+                var data = response.data;
+                if (data.status) {
+                    if (_this3.is_increase === true) _this3.is_increase = false;else _this3.is_decrease = true;
+                    _this3.agree_count--;
+                }
+            });
+        },
+        checkAuth: function checkAuth() {
+            if (!this.is_check) {
+                swal({
+                    title: "未核实身份",
+                    text: "你还未登录，是否跳转至登录页面!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                }).then(function (yse) {
+                    if (yse) {
+                        $('#auth-modal').modal('show');
+                    }
+                });
+                return false;
+            }
+            return true;
+        },
+        editToggle: function editToggle() {
+            this.edit = !this.edit;
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Example.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -39628,6 +39749,96 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2666ad60\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Comment.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('div', {
+    staticClass: "row hover-area"
+  }, [_c('div', {
+    staticClass: "col-xs-2 col-md-1"
+  }, [_c('div', {
+    staticClass: "comment-grade-btn pull-right"
+  }, [_c('button', {
+    staticClass: "btn btn-default",
+    class: {
+      'clicked': _vm.is_increase
+    },
+    attrs: {
+      "disabled": _vm.is_increase
+    },
+    on: {
+      "click": _vm.increase
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-chevron-up"
+  })]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-default"
+  }, [_vm._v(_vm._s(_vm.agree_count))]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-default",
+    class: {
+      'clicked': _vm.is_decrease
+    },
+    attrs: {
+      "disabled": _vm.is_decrease
+    },
+    on: {
+      "click": _vm.decrease
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-chevron-down"
+  })])])]), _vm._v(" "), (!_vm.edit) ? _c('div', {
+    staticClass: "col-xs-10 col-md-11"
+  }, [_c('div', {
+    staticClass: "comment-detail"
+  }, [_c('div', {
+    staticClass: "comment-content"
+  }, [_c('p', [_vm._v(_vm._s(_vm.content))])]), _vm._v(" "), _c('div', {
+    staticClass: "comment-info"
+  }, [_c('small', [_vm._v(_vm._s(_vm.poster) + " 发布 ")]), _vm._v(" "), _c('small', [_vm._v(_vm._s(_vm.time) + " 前回答")]), _vm._v(" "), _c('small', [(_vm.is_me) ? _c('a', {
+    staticStyle: {
+      "color": "#000"
+    },
+    attrs: {
+      "href": "javascript:void(0)"
+    },
+    on: {
+      "click": _vm.editToggle
+    }
+  }, [_vm._v("编辑")]) : _vm._e()])])])]) : _c('div', {
+    staticClass: "col-xs-10 col-md-11"
+  }, [_c('textarea', {
+    staticClass: "form-control",
+    staticStyle: {
+      "min-height": "140px"
+    }
+  }, [_vm._v(_vm._s(_vm.content))]), _vm._v(" "), _c('div', {
+    staticClass: "pull-right",
+    staticStyle: {
+      "margin-top": "5px"
+    }
+  }, [_c('button', {
+    staticClass: "btn btn-xs btn-default",
+    on: {
+      "click": _vm.editToggle
+    }
+  }, [_vm._v("取消")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-xs btn-primary",
+    staticStyle: {
+      "margin": "0 0 0 5px"
+    }
+  }, [_vm._v("保存")])])])]), _vm._v(" "), _c('hr')])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2666ad60", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-353752eb\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Example.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50942,6 +51153,8 @@ Vue.component('open-config', __webpack_require__("./resources/assets/js/componen
 
 Vue.component('resume-toggle', __webpack_require__("./resources/assets/js/components/ResumeToggle.vue"));
 
+Vue.component('comment', __webpack_require__("./resources/assets/js/components/Comment.vue"));
+
 var app = new Vue({
     el: '#app'
 });
@@ -51005,6 +51218,41 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Comment.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/_babel-loader@7.1.2@babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Comment.vue"),
+  /* template */
+  __webpack_require__("./node_modules/_vue-loader@11.3.4@vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2666ad60\"}!./node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Comment.vue"),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/user/Documents/programs/project/Code/bnujob_v2/resources/assets/js/components/Comment.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Comment.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2666ad60", Component.options)
+  } else {
+    hotAPI.reload("data-v-2666ad60", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 
@@ -51238,20 +51486,6 @@ $(function () {
     $('.search-wrapper').tooltip({
         content: '点击查询兼职信息'
     });
-
-    var E = window.wangEditor;
-    var editor = new E('#job-comment-editor');
-    editor.customConfig.menus = ['head', // 标题
-    'bold', // 粗体
-    'link', // 插入链接
-    'list', // 列表
-    'quote', // 引用
-    'image', // 插入图片
-    'code', // 插入代码
-    'undo', // 撤销
-    'redo' // 重复
-    ];
-    editor.create();
 
     $('.glyphicon-remove-circle').on('click', function () {
         $('.welcome-banner').hide('normal');

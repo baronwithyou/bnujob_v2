@@ -9,6 +9,7 @@
 namespace App\Http;
 
 
+use App\Comment;
 use App\User;
 
 class Helpers
@@ -64,6 +65,14 @@ class Helpers
         if (session()->has('verify_code')) {
             return $verify_code == session()->get('verify_code');
         }
+        return false;
+    }
+
+    public static function checkCommented($user_id, $job_id)
+    {
+        $record = Comment::where('job_id', $job_id)->where('user_id', $user_id)->first();
+        if ($record)
+            return true;
         return false;
     }
 }

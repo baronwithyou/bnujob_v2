@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Http\UserRepository;
+use App\Http\Repositories\UserRepository;
 use Illuminate\Auth\Events\Registered;
 use Symfony\Component\Console\Helper\Helper;
 
