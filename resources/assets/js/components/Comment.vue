@@ -56,13 +56,15 @@
             }
         },
         mounted() {
-            axios.post('/api/user/like/' + this.comment_id, {}).then(response => {
-                const data = response.data;
-                if (data === 'like')
-                    this.is_increase = true;
-                else if (data === 'dislike')
-                    this.is_decrease = true;
-            });
+            if (this.is_check) {
+                axios.post('/api/user/like/' + this.comment_id, {}).then(response => {
+                    const data = response.data;
+                    if (data === 'like')
+                        this.is_increase = true;
+                    else if (data === 'dislike')
+                        this.is_decrease = true;
+                });
+            }
         },
         methods: {
             increase: function () {
@@ -96,18 +98,7 @@
             },
             checkAuth: function () {
                 if (!this.is_check) {
-                    swal({
-                        title: "未核实身份",
-                        text: "你还未登录，是否跳转至登录页面!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    }).then((yse) => {
-                        if (yse) {
-                            $('#auth-modal').modal('show');
-                        }
-                    });
-                    return false;
+                    $('#auth-modal').modal('show');
                 }
                 return true;
             },

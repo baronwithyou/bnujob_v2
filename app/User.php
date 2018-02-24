@@ -45,10 +45,10 @@ class User extends \TCG\Voyager\Models\User
         return Business::where('user_id', $this->id)->first();
     }
 
-    public function getBusiness() {
+    public function business() {
         if (!$this->hasBusiness())
             return 0;
-        return Business::where('user_id', $this->id)->first()->id;
+        return Business::where('user_id', $this->id)->first();
     }
 
     // 推荐算法

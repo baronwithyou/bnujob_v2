@@ -40,6 +40,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/publish', 'BusinessController@publish')->name('publish');
 
         Route::post('/publish/store', 'BusinessController@publishStore')->name('publish.store');
+
+        Route::post('/profile/update', 'BusinessController@updateProfile')->name('profile.update');
+
+        Route::post('/avatar/store', 'BusinessController@avatarStore')->name('avatar.store');
     });
 
     Route::group(['prefix' => 'job', 'as' => 'job.'], function () {
@@ -54,6 +58,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware(['admin']);
     });
+
+    Route::post('/image/upload', 'IndexController@uploadImage')->name('image.upload');
 });
 
 Route::get('/job/{id}', 'JobController@jobDetail')->name('job');

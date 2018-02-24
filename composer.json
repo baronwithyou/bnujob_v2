@@ -21,7 +21,8 @@
         "rap2hpoutre/laravel-log-viewer": "^0.10.4",
         "socialiteproviders/manager": "^3.2",
         "tcg/voyager": "^1.0",
-        "yunpian/yunpian-php-sdk": "~1.0"
+        "yunpian/yunpian-php-sdk": "~1.0",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",

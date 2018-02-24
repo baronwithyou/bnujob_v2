@@ -5,7 +5,7 @@
 @section('stylesheets')
     <style>
         .publish-area {
-            background: #eeeeee;
+            /*background: #eeeeee;*/
         }
 
         .publish-area .row {
@@ -36,7 +36,7 @@
         .publish-area .btn-send {
             position: absolute;
             bottom: 40px;
-            right: 0;
+            left: 0;
             width: 15%;
             height: 50px;
         }
@@ -57,11 +57,15 @@
     </div>
 </div>
 <div class="container-fluid publish-area" id="publish">
-    <div class="row">
-        <h3>填写兼职详情</h3>
-    </div>
     <div class="row" style="position: relative;">
-        <div class="col-md-10" style="padding-right: 0;">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="{{ route('business.index') }}" class="list-group-item">商家信息</a>
+                <a href="{{ route('business.publish') }}" class="list-group-item active">发布简历</a>
+                <a href="#" class="list-group-item">简历审核</a>
+            </div>
+        </div>
+        <div class="col-md-9" style="padding-right: 0;">
             <div class="row input-area">
                 <div class="col-md-6">
                     <div class="form-group" :class="{'has-error': errors.has('name')}">
@@ -117,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <img src="{{ asset('images/stopcock.png') }}" style="margin-left: -7px" class="img" alt="">
+        {{--<img src="{{ asset('images/stopcock.png') }}" style="margin-left: -7px" class="img" alt="">--}}
         <button class="btn btn-yellow btn-block btn-send" @click="send">发送</button>
     </div>
 </div>

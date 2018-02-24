@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "clipboard": "^1.7.1",
+    "echarts": "^4.0.2",
     "jquery.dotdotdot": "^3.0.3",
     "nprogress": "^0.2.0",
     "sweetalert": "^2.1.0",

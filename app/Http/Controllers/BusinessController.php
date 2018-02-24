@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Business;
-use App\User;
 use Auth;
 use App\Http\Repositories\BusinessRepository;
 use App\Http\Helpers;
 use App\Http\Identity;
 use App\Http\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Image;
+use Storage;
 
 class BusinessController extends Controller
 {
@@ -91,7 +92,8 @@ class BusinessController extends Controller
             'credit_id' => $all['identity'],
             'is_new' => $all['is_new'],
             'verify_code' => $all['verify_code'],
-            'mobile' => $all['mobile']
+            'mobile' => $all['mobile'],
+            'avatar' => 'images/404.png'
         ];
 
         session()->put('first', $first);
@@ -133,20 +135,53 @@ class BusinessController extends Controller
         return;
     }
 
+    public function avatarStore(Request $request)
+    {
+        //加入权限判断
+        $input = $request->all();
+        $user  = Auth::user()->business();
+
+        if (isset($input['is_default_avatar']) and $input['is_default_avatar']) {
+            $user->avatar = $input['image'];
+            $user->save();
+            return Helpers::ajaxSuccess();
+        }
+
+        try {
+            $crop_img = Image::make($input['image']);
+
+            //裁剪的一些参数
+            $width  = intval($input['selectArray']['w'] / $input['display_size']['0'] * $crop_img->width());
+            $height = intval($input['selectArray']['h'] / $input['display_size']['1'] * $crop_img->height());
+
+            $x = intval($input['selectArray']['x'] / $input['display_size']['0'] * $crop_img->width());
+            $y = intval($input['selectArray']['y'] / $input['display_size']['1'] * $crop_img->height());
+
+            $crop_img->crop($width, $height, $x, $y);
+
+            Storage::put('public/business/' . $crop_img->basename, $crop_img->stream());
+
+            $user->avatar = 'storage/business/' . $crop_img->basename;
+            $user->save();
+            return Helpers::ajaxSuccess(null, ['url' => $user->avatar]);
+        } catch (Exception $e) {
+            return Helpers::ajaxFail('裁剪异常，请重试');
+        }
+    }
+
     public function test() {
         $s = Business::find(10)->abstract;
         return nl2br($s);
-//        Business::create([
-//            'user_id' => 1,
-//            'name' => '金拱门',
-//            'mobile' => '13106803427',
-//            'type' => 'catering',
-//            'abstract' => '123123'
-//        ]);
-//        session()->forget('first');
-//        session()->forget('first_pass');
-//        $identity = new Identity();
-//        dump(session()->get('first'));
-//        dump($identity->isChinaIDCard('441424199709151014'));
+    }
+
+    public function updateProfile(Request $request) {
+        $data = $request->all();
+        if (is_null($data['abstract']) || is_null($data['type'])) {
+            Helpers::ajaxFail('请填写简介');
+            return;
+        }
+        $this->businessRepository->update($data);
+        Helpers::ajaxSuccess();
+        return;
     }
 }

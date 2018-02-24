@@ -33,7 +33,49 @@ class IndexController extends Controller
         return view('test');
     }
 
+    private function checkFileType($file, $types)
+    {
+        if (in_array($file->getMimeType(), $types)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    private function checkFileSize($file, $size)
+    {
+        if ($file->getSize() < $size) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function uploadImage(Request $request) {
+        $file_types = ['image/png', 'image/jpeg'];
+        $temp_dir   = 'uploads/temp/';
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+            //上传图片
+            $image = $request->file('file');
+            if (!$this->checkFileType($image, $file_types)) {
+                Helpers::ajaxFail('文件类型错误，请上传jpg或png格式的文件');
+                return;
+            }
+            if (!$this->checkFileSize($image, 2 * 1024 * 1024)) {
+                Helpers::ajaxFail('文件太大，请上传2MB以内的文件');
+                return;
+            }
+            $new_name = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move($temp_dir, $new_name);
+            $file     = $temp_dir . $new_name;
+
+            Helpers::ajaxSuccess($file);
+            return;
+        }
+
+        Helpers::ajaxFail('文件上传出错，请重试');
+        return;
+    }
 
     public function getVerifyCode(Request $request)
     {

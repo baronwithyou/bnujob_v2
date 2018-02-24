@@ -26,4 +26,8 @@ class BusinessRepository
         $data['required'] = htmlentities($data['required']);
         Job::create($data);
     }
+
+    public function update($data) {
+        Business::find($data['id'])->update($data);
+    }
 }

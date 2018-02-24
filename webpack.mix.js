@@ -21,9 +21,10 @@ mix.scripts([
     'resources/assets/js/overhang.min.js',
     'resources/assets/js/clipboard.min.js',
     'resources/assets/js/jquery.dotdotdot.js',
-    'resources/assets/js/xss.min.js',
+    // 'resources/assets/js/xss.min.js',
     'resources/assets/js/spin.min.js',
     'resources/assets/js/ladda.min.js',
+    'resources/assets/js/jquery.Jcrop.min.js',
 ], 'public/js/all.js');
 
 mix.styles([
@@ -35,7 +36,8 @@ mix.styles([
     // 'resources/assets/css/star-rating.min.css',
     'resources/assets/css/font-awesome.min.css',
     'resources/assets/css/ladda-themeless.min.css',
-    'node_modules/nprogress/nprogress.css',
+    // 'node_modules/nprogress/nprogress.css',
     // 'resources/assets/css/search-form.css',
     'resources/assets/css/style.css',
+    'resources/assets/css/jquery.Jcrop.min.css',
 ], 'public/css/all.css').version();

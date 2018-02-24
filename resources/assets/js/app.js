@@ -15,11 +15,13 @@ window.Vue = require('vue');
 
 window.NProgress = require('nprogress');
 
+window.echarts = require('echarts');
+
+require('sweetalert');
+
 import zh_CN from '../locale/vee-validate/zh_CN';
 
 import VeeValidate, { Validator } from 'vee-validate';
-
-import swal from 'sweetalert';
 
 Validator.addLocale(zh_CN);
 

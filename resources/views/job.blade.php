@@ -100,18 +100,24 @@
             editor.create();
             $('.btn-submit').click(function () {
                 const content = editor.txt.text();
-                @if(!isset($commented))
-                    $.post('{{ route('job.comment.store') }}', { content: content, job_id: '{{ $job->id }}' }, function (data) {
-                        data = JSON.parse(data);
-                        if (data.status) {
-                            swal('Good job!', data.msg, 'success');
-                            editor.txt.html(' ');
-                        }
-                    });
+                if (content == '' || content == null) {
+                    return false;
+                }
+                @if(Auth::check())
+                    @if(!isset($commented))
+                        $.post('{{ route('job.comment.store') }}', { content: content, job_id: '{{ $job->id }}' }, function (data) {
+                            data = JSON.parse(data);
+                            if (data.status) {
+                                swal('Good job!', data.msg, 'success');
+                                editor.txt.html(' ');
+                            }
+                        });
+                    @else
+                        swal('你已经评论过该兼职', '每个用户只能发布一个评论');
+                    @endif
                 @else
-                    swal('你已经评论过该兼职', '每个用户只能发布一个评论');
+                    $('#auth-modal').modal('show');
                 @endif
-
             })
         });
     </script>
