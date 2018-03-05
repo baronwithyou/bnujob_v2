@@ -21,9 +21,11 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/deliver_status', 'UserController@deliverStatus')->name('deliver_status');
 
-        Route::post('/resume/{type}/update', 'UserController@resumeUpdate')->name('resume_update');
+        Route::post('/resume/{type}/update', 'UserController@jsonResumeUpdate')->name('json_resume_update');
 
         Route::post('private/info/update', 'UserController@infoUpdate')->name('info_update');
+
+        Route::post('/resume/normal/update/{type}', 'UserController@normalResumeUpdate')->name('normal_resume_update');
     });
 
     Route::post('/email/verify', 'UserController@emailToVerify')->name('email.verify');
@@ -50,6 +52,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/comment/store', 'JobController@commentStore')->name('comment.store');
 
         Route::post('/comment/like/update', 'JobController@commentLikeUpdate')->name('comment.like.update');
+
+        Route::post('/deliver', 'JobController@deliver')->name('deliver');
     });
 
     // 后台voyager

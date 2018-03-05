@@ -16,11 +16,11 @@ class CreateLikesTable extends Migration
         Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('liking_id')->comment('同意的人');
-            $table->unsignedInteger('liker_id')->comment('被同意的人');
+//            $table->unsignedInteger('liker_id')->comment('被同意的人');
             $table->unsignedInteger('comment_id');
 
             $table->foreign('liking_id')->references('id')->on('users');
-            $table->foreign('liker_id')->references('id')->on('users');
+//            $table->foreign('liker_id')->references('id')->on('users');
             $table->foreign('comment_id')->references('id')->on('comments');
 
             $table->timestamps();

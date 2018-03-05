@@ -15,10 +15,10 @@ class CreateDeliversTable extends Migration
     {
         Schema::create('delivers', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('resume_id');
             $table->unsignedInteger('job_id');
-
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->enum('status', ['pass', 'fail', 'tentative'])->default('tentative');
+            $table->foreign('resume_id')->references('id')->on('resumes');
             $table->foreign('job_id')->references('id')->on('jobs');
             $table->timestamps();
         });

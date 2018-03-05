@@ -51,6 +51,10 @@ class User extends \TCG\Voyager\Models\User
         return Business::where('user_id', $this->id)->first();
     }
 
+    public function hasPrimaryResume() {
+        return !is_null($this->primary_resume_id) ? true : false;
+    }
+
     // 推荐算法
     public function getRecommendation()
     {
@@ -60,6 +64,7 @@ class User extends \TCG\Voyager\Models\User
             'user_id', 'job_id', 'grade'
         ]);
         $others = [];
+        // 获取已操作过的用户id、兼职id以及评分
         foreach ($other_evaluated as $item) {
             $others[$item->user_id][$item->job_id] = $item->grade;
         }
@@ -77,7 +82,7 @@ class User extends \TCG\Voyager\Models\User
                 }
             }
             foreach($others[$user_id] as $key => $value) {
-                $top += ($value * $evaluated[$key]);
+                $top += $value * $evaluated[$key];
                 $bottom += $value * $value;
             }
             $others[$user_id] = $top / sqrt($bottom) * $fix;

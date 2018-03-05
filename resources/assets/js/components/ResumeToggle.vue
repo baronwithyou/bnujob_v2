@@ -44,9 +44,11 @@
         mounted() {
             axios.get('/api/user/resume/' + this.type).then(response => {
                 const data = response.data;
-                this.start_at = data.start_at;
-                this.end_at = data.end_at;
-                this.description = data.description;
+                if (data) {
+                    this.start_at = data.start_at;
+                    this.end_at = data.end_at;
+                    this.description = data.description;
+                }
             });
         },
         data() {

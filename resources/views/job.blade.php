@@ -21,8 +21,7 @@
                 </div>
                 <div class="col-xs-4 col-md-3">
                     <div class="deliver-area">
-                        <button class="btn btn-yellow">投递</button>
-                        <span><strong>{{ $job->delivered_count }}</strong> 人投递</span>
+                        <record-btn ct="{{ $job->delivered_count }}" dd="{{ $delivered }}" j_id="{{ $job->id }}" is_c="{{ Auth::check() }}"></record-btn>
                     </div>
                     <div class="collect-area">
                         <button class="btn btn-default">收藏</button>

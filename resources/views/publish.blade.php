@@ -61,7 +61,7 @@
         <div class="col-md-3">
             <div class="list-group">
                 <a href="{{ route('business.index') }}" class="list-group-item">商家信息</a>
-                <a href="{{ route('business.publish') }}" class="list-group-item active">发布简历</a>
+                <a href="{{ route('business.publish') }}" class="list-group-item active">发布兼职</a>
                 <a href="#" class="list-group-item">简历审核</a>
             </div>
         </div>

@@ -25,7 +25,8 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('user', compact('user'));
+        $resume = $user->resume;
+        return view('user', compact('user', 'resume'));
     }
 
     public function activateEmail($token)
@@ -59,8 +60,15 @@ class UserController extends Controller
         return redirect('/')->with('login_success', ['title' => 'Welcome Back! :)', 'msg' => '邮箱激活成功，欢迎回来', 'avatar' => $user->avatar]);
     }
 
-    public function resumeUpdate(Request $request, $type) {
-        $resume = $this->userRepository->storeDetail($request, $type);
+//    更改resume表 json数据
+    public function jsonResumeUpdate(Request $request, $type) {
+        $input = $request->all();
+        $detail = json_encode([
+            'start_at' => $input['start_at'],
+            'end_at' => $input['end_at'],
+            'description' => $input['description'],
+        ]);
+        $resume = $this->userRepository->resumeStoreUpdate($type, $detail);
         if ($resume) {
             Helpers::ajaxSuccess('修改成功');
             return;
@@ -69,6 +77,22 @@ class UserController extends Controller
         return;
     }
 
+    public function normalResumeUpdate(Request $request, $type) {
+        $data = $request->input('content');
+        $resume = $this->userRepository->resumeStoreUpdate($type, $data);
+        if ($resume) {
+            Helpers::ajaxSuccess('修改成功');
+            return;
+        }
+        Helpers::ajaxFail('修改失败');
+        return;
+    }
+
+    public function batchResumeUpdate(Request $request) {
+
+    }
+
+    // 更改user表
     public function infoUpdate(Request $request) {
         $result = $this->userRepository->update($request->all());
         if ($result) {
@@ -102,25 +126,25 @@ class UserController extends Controller
         return 'nothing';
     }
 
-    public function getConfig($user)
-    {
+//    public function getConfig($user)
+//    {
 //        $user = Auth::user();
-        return $user->config;
-    }
-
-    public function updateConfig($user)
-    {
+//        return $user->config;
+//    }
+//
+//    public function updateConfig($user)
+//    {
 //        $user = Auth::user();
-        $config = json_decode($user->config);
-        $open_type = $config->open_type;
-        if ($open_type == 'modal') {
-            $config = json_encode(['open_type' => 'normal']);
-        } else {
-            $config = json_encode(['open_type' => 'modal']);
-        }
-        $user->update(['config' => $config]);
-        return $config;
-    }
+//        $config = json_decode($user->config);
+//        $open_type = $config->open_type;
+//        if ($open_type == 'modal') {
+//            $config = json_encode(['open_type' => 'normal']);
+//        } else {
+//            $config = json_encode(['open_type' => 'modal']);
+//        }
+//        $user->update(['config' => $config]);
+//        return $config;
+//    }
 
     public function resumeGet($type)
     {

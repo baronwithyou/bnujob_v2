@@ -23,7 +23,7 @@
                 <p><span class="fa fa-map-marker"></span><a href="">填写现居城市</a></p>
                 <p><span class="fa fa-graduation-cap"></span><a href="">填写所在院校</a></p>
                 <p><span class="fa fa-building-o"></span><a href="">填写所在年级</a></p>
-                <p><span class="fa fa-building-o"></span><a href="">填写</a></p>
+                {{--<p><span class="fa fa-building-o"></span><a href="">填写</a></p>--}}
             </div>
         </div>
         <div class="hidden-xs col-md-5">
@@ -47,9 +47,9 @@
     <div class="container">
         <div class="row user-content">
             <div class="col-md-2">
-                <div class="row">
-                    <div class="col-md-6" style="border-right: 1px solid #eeeeee;">关注了 <a href="javascript:void(0);" class="follow-num">12</a></div>
-                    <div class="col-md-6">粉丝 <a href="javascript:void(0);" class="follow-num">32</a></div>
+                <div class="row hidden-xs">
+                    <div class="col-md-6" style="border-right: 1px solid #eeeeee;">收藏 <a href="javascript:void(0);" class="follow-num">{{ $user->collects_count }}</a></div>
+                    <div class="col-md-6">投递了 <a href="javascript:void(0);" class="follow-num">{{ $user->delivers_count }}</a></div>
                 </div>
                 <hr class="no-top">
                 <div class="panel panel-default">
@@ -68,6 +68,10 @@
             </div>
 
             <div class="col-md-7" id="private-info">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    编辑校园情况、求职设置、以及各种经历即可默认创建简历！ <strong>简历越丰富，成功的几率越大!</strong>
+                </div>
                 <div class="panel panel-default user-private-info">
                     <div class="panel-heading">
                         个人档案
@@ -104,48 +108,37 @@
                                     <p>真人头像 <span class="fa fa-lock"></span></p>
                                     <img src="{{ asset($user->avatar) }}" class="img img-responsive img-circle" alt="">
                                 </div>
-                                <div class="col-md-7 col-md-offset-1">
-                                    <div class="form-group">
-                                        <p class="list-title">真实姓名 <span class="fa fa-lock"></span></p>
-                                        <input type="text" class="form-control" v-model="real_name">
-                                    </div>
-                                    <div class="form-group">
-                                        <p class="list-title">出生日期 <span class="fa fa-lock"></span></p>
-                                        <input type="date" class="form-control" v-model="birthday">
-                                    </div>
-                                    <div class="form-group">
-                                        <p class="list-title">手机号码 <span class="fa fa-lock"></span></p>
-                                        <input type="text" class="form-control" disabled v-model="mobile" v-if="mobile">
-                                        <div style="margin-bottom: 50px;" v-else>
-                                            <input type="text" class="form-control" style="width: 60%;float: left;" value="{{ $user->mobile }}">
-                                            <button class="btn btn-default" style="width: 38%;float: left;margin-left: 2%;">发送验证码</button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <p class="list-title">现居城市 <span class="fa fa-lock"></span></p>
-                                        <input type="text" class="form-control" v-model="city">
-                                    </div>
+                                <div class="col-xs-5 col-md-4">
+                                    <p class="list-title">真实姓名 <span class="fa fa-lock"></span></p>
+                                    <p><input type="text" placeholder="真实姓名" class="form-control" v-model="real_name"></p>
+                                    <p class="list-title">出生日期</p>
+                                    <p><input type="date" placeholder="出生日期" class="form-control" v-model="birthday"></p>
+                                    <p class="list-title">手机号码 <span class="fa fa-lock"></span></p>
+                                    <p>@{{ mobile ? mobile : '暂无' }}</p>
+                                    <p class="list-title">现居城市</p>
+                                    <p><input type="text" placeholder="现居城市" class="form-control" v-model="city"></p>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <div class="form-group">
-                                        <p class="list-title">性别 <span class="fa fa-lock"></span></p>
+                                <div class="col-xs-7 col-md-5">
+                                    <p class="list-title">性别</p>
+                                    <p>
                                         <select name="gender" id="" class="form-control" v-model="gender">
+                                            <option value="" disabled>请选择</option>
                                             <option value="0">未知</option>
                                             <option value="1">男</option>
                                             <option value="2">女</option>
                                         </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <p class="list-title">Email <span class="fa fa-lock"></span></p>
-                                        <input type="text" class="form-control" v-model="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <p class="list-title">通讯地址 <span class="fa fa-lock"></span></p>
-                                        <input type="text" class="form-control" v-model="address">
-                                    </div>
+                                    </p>
+                                    <p class="list-title">Email <span class="fa fa-lock"></span></p>
+                                    <p><input type="text" placeholder="Email" class="form-control" v-model="email"></p>
+                                    <p class="list-title">通讯地址 <span class="fa fa-lock"></span></p>
+                                    <p><input type="text" placeholder="通讯地址" class="form-control" v-model="address"></p>
                                 </div>
+                                {{--<p class="list-title">手机号码 <span class="fa fa-lock"></span></p>--}}
+                                {{--<input type="text" class="form-control" disabled v-model="mobile" v-if="mobile">--}}
+                                {{--<div style="margin-bottom: 50px;" v-else>--}}
+                                    {{--<input type="text" class="form-control" style="width: 60%;float: left;" value="{{ $user->mobile }}">--}}
+                                    {{--<button class="btn btn-default" style="width: 38%;float: left;margin-left: 2%;">发送验证码</button>--}}
+                                {{--</div>--}}
                             </div>
                             <div class="row">
                                 <div class="pull-right" style="margin: 0 30px 15px;">
@@ -155,14 +148,31 @@
                             </div>
                         </div>
                         <hr>
-                        <p>技能爱好 <button class="btn btn-link pull-right"><i class="fa fa-edit"></i> 编辑</button></p>
-                        <div class="skill">
-                            暂时没有技能爱好
+                        <p>技能爱好 <button class="btn btn-link pull-right" @click="skillToggle"><i class="fa fa-edit"></i> 编辑</button></p>
+                        <div v-if="!skill_edit">
+                            <p v-if="!skill_content">暂时没有技能爱好</p>
+                            <p v-else>@{{ skill_content }}</p>
+                        </div>
+                        <div v-else>
+                            <textarea name="" cols="10" rows="10" v-model="skill_content" class="form-control" placeholder="请输入技能爱好"></textarea>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-yellow btn-xs" @click="skillSave">保存</button>
+                                <button type="button" class="btn btn-default btn-xs" @click="skillToggle">取消</button>
+                            </div>
+                            <hr>
                         </div>
                         <hr>
-                        <p>个人介绍 <button class="btn btn-link pull-right"><i class="fa fa-edit"></i> 编辑</button></p>
-                        <div class="introduction">
-                            暂时没有个人介绍
+                        <p>个人介绍 <button class="btn btn-link pull-right" @click="introductionToggle"><i class="fa fa-edit"></i> 编辑</button></p>
+                        <div v-if="!introduction_edit">
+                            <p v-if="!introduction_content">暂时没有个人介绍</p>
+                            <p v-else>@{{ introduction_content }}</p>
+                        </div>
+                        <div v-else>
+                            <textarea name="" cols="10" rows="10" v-model="introduction_content" class="form-control" placeholder="请输入个人介绍"></textarea>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-yellow btn-xs" @click="introductionSave">保存</button>
+                                <button type="button" class="btn btn-default btn-xs" @click="introductionToggle">取消</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -172,6 +182,9 @@
             </div>
 
             <div class="col-md-3">
+                <div class="panel panel-default">
+
+                </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         求职设置 <span class="fa fa-lock"></span>
@@ -210,7 +223,12 @@
                 gender: '{{ $user->gender }}',
                 email: '{{ $user->email }}',
                 address: '{{ $user->address }}',
-                verify_code: ''
+                verify_code: '',
+
+                skill_edit: false,
+                introduction_edit: false,
+                introduction_content: '{{ optional($resume)->evaluate }}',
+                skill_content: '{{ optional($resume)->skill }}',
             },
             methods: {
                 toggle: function() {
@@ -230,6 +248,33 @@
                         const data = response.data;
                         if (data.status) {
                             this.edit = false;
+                        }
+                    });
+                },
+                skillToggle: function () {
+                    this.skill_edit = !this.skill_edit;
+                },
+                introductionToggle: function () {
+                    this.introduction_edit = !this.introduction_edit;
+                },
+                skillSave: function () {
+                    this.resumeSave('skill');
+                },
+                introductionSave: function () {
+                    this.resumeSave('evaluate');
+                },
+                resumeSave: function (type) {
+                    var content = this.skill_content;
+                    if (type == 'evaluate')
+                        content = this.introduction_content;
+                    axios.post('user/resume/normal/update/' + type, {content: content}).then(response => {
+                        const data = response.data;
+//                        console.log(data);
+                        if (data.status) {
+                            if (type == 'evaluate')
+                                this.introduction_edit = false;
+                            else
+                                this.skill_edit = false;
                         }
                     });
                 }

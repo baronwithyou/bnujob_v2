@@ -13,7 +13,20 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-
+        'App\Events\DeliverEvent' => [
+            'App\Listeners\IncrementDeliverListener',
+        ],
+        // 自增model中的value
+        'App\Events\IncrementEvent' => [
+            'App\Listeners\IncrementListener',
+        ],
+        'App\Events\DecrementEvent' => [
+            'App\Listeners\DecrementListener',
+        ],
+        // 自增Evaluate表中的grade
+        'App\Events\ChangeEvaluateEvent' => [
+            'App\Listeners\ChangeEvaluateListener',
+        ],
     ];
 
     /**

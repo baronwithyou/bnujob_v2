@@ -50,7 +50,7 @@ Vue.use(VeeValidate, {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+// Vue.component('example', require('./components/Example.vue'));
 
 Vue.component('register-form', require('./components/RegisterForm.vue'));
 
@@ -58,11 +58,15 @@ Vue.component('simple-register', require('./components/SimpleRegister.vue'));
 
 Vue.component('login-form', require('./components/LoginForm.vue'));
 
-Vue.component('open-config', require('./components/OpenConfig.vue'));
+// Vue.component('open-config', require('./components/OpenConfig.vue'));
 
 Vue.component('resume-toggle', require('./components/ResumeToggle.vue'));
 
 Vue.component('comment', require('./components/Comment.vue'));
+
+Vue.component('record-btn', require('./components/DeliverBtn.vue'));
+
+// Vue.component('introduction', require('./components/Introduction.vue'));
 
 const app = new Vue({
     el: '#app'

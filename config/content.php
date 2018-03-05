@@ -26,5 +26,11 @@ return [
         'yanhua' => '燕华',
         'yuehua' => '粤华',
         'jinghua' => '京华',
+    ],
+    'operate_grade' => [
+        'deliver' => 0.4,
+        'collect' => 0.3,
+        'comment' => 0.2,
+        'like' => 0.1
     ]
 ];

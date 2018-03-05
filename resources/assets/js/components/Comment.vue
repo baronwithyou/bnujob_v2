@@ -18,8 +18,7 @@
                         <p>{{ content }}</p>
                     </div>
                     <div class="comment-info">
-                        <small>{{ poster }} 发布 </small>
-                        <small>{{ time }} 前回答</small>
+                        <small>{{ poster }} 于 {{ time }} 发布 </small>
                         <small><a href="javascript:void(0)" style="color: #000" @click="editToggle" v-if="is_me">编辑</a></small>
                     </div>
                 </div>

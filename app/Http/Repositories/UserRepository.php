@@ -47,21 +47,18 @@ class UserRepository
      * @return mixed
      * 保存用户简历信息
      */
-    public function storeDetail(Request $request, $type)
+    public function resumeStoreUpdate($type, $data)
     {
-        $input = $request->all();
         $user = Auth::user()->id;
         $resume = Resume::where('user_id', $user)->first();
-        $detail = json_encode([
-            'start_at' => $input['start_at'],
-            'end_at' => $input['end_at'],
-            'description' => $input['description'],
-        ]);
         if (!$resume) {
-            $resume = $this->createResume($detail, $type, $user);
+            $this->createResume($data, $type, $user);
         } else {
-            $resume->$type = $detail;
-            $resume->save();
+//            $resume->$type = $data;
+//            $resume->save();
+            $resume->update([
+                $type => $data
+            ]);
         }
         return true;
     }
