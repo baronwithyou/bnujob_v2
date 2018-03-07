@@ -93,7 +93,7 @@ class BusinessController extends Controller
             'is_new' => $all['is_new'],
             'verify_code' => $all['verify_code'],
             'mobile' => $all['mobile'],
-            'avatar' => 'images/404.png'
+//            'avatar' => 'images/404.png'
         ];
 
         session()->put('first', $first);
@@ -117,6 +117,7 @@ class BusinessController extends Controller
         $first_data = session()->get('first');
         $all['user_id'] = Auth::user()->id;
         $all['mobile'] = $first_data['mobile'];
+        $all['avatar'] = 'images/404.png';
 //        $business_exists = User::find($all['user_id']);
         if (!session()->has('first_pass')) {
             Helpers::ajaxFail('请先进行实名认证');

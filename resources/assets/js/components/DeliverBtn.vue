@@ -20,7 +20,7 @@
             click: function () {
                 if (!this.is_check) {
                     $('#auth-modal').modal('show');
-                    return false;j
+                    return false;
                 }
                 if (this.delivered == 0) {
                     swal("投递后将无法撤销，是否同意此操作?", {

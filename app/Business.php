@@ -8,7 +8,7 @@ class Business extends Model
 {
     //
     protected $fillable = [
-        'name', 'user_id', 'mobile', 'province', 'city', 'address', 'school',
+        'name', 'user_id', 'mobile', 'province', 'city', 'address', 'school', 'avatar',
         'type', 'abstract', 'status', 'collected_count', 'delivered_count', 'passes_count'
     ];
 }

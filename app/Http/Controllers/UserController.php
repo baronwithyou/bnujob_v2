@@ -69,6 +69,9 @@ class UserController extends Controller
             'description' => $input['description'],
         ]);
         $resume = $this->userRepository->resumeStoreUpdate($type, $detail);
+        Auth::user()->update([
+            'primary_resume_id' => $resume->id
+        ]);
         if ($resume) {
             Helpers::ajaxSuccess('修改成功');
             return;

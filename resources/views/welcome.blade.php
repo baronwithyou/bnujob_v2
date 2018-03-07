@@ -54,7 +54,7 @@
                                         <small class="pull-right">{{ $job->business->name }}</small>
                                     </div>
                                     <div class="col-xs-3 col-md-2">
-                                        <img src="{{ $job->business->avatar }}" class="img img-responsive" alt="">
+                                        <img src="{{ asset($job->business->avatar) }}" class="img img-responsive" alt="">
                                     </div>
                                 </a>
                             </div>
@@ -72,7 +72,7 @@
                                         <small class="pull-right">{{ $job->business->name }}</small>
                                     </div>
                                     <div class="col-xs-3 col-md-2">
-                                        <img src="{{ $job->business->avatar }}" class="img img-responsive" alt="">
+                                        <img src="{{ asset($job->business->avatar) }}" class="img img-responsive" alt="">
                                     </div>
                                 </a>
                             </div>
@@ -90,7 +90,7 @@
                                         <small class="pull-right">{{ $job->business->name }}</small>
                                     </div>
                                     <div class="col-xs-3 col-md-2">
-                                        <img src="{{ $job->business->avatar }}" class="img img-responsive" alt="">
+                                        <img src="{{ asset($job->business->avatar) }}" class="img img-responsive" alt="">
                                     </div>
                                 </a>
                             </div>
