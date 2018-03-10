@@ -91,7 +91,12 @@ class JobController extends Controller
             return;
         }
         $job_id = $request->input('job_id');
-        $record = Deliver::where('user_id', $user_id)->where('job_id', $job_id)->first();
+        $business = Job::find($job_id)->business;
+        if ($user->id == $business->user_id) {
+            Helpers::ajaxFail('无法投递自己的创建的商家');
+            return;
+        }
+        $record = Deliver::where('resume_id', $user->primary_resume_id)->where('job_id', $job_id)->first();
         if (!is_null($record)) {
             Helpers::ajaxFail('你已经投递过该职位，请勿重新申请');
             return;

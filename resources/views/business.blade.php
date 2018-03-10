@@ -34,12 +34,13 @@
     <div class="container">
         <div class="row" style="margin-top: 50px;">
             <div class="col-md-3 col-md-offset-1">
+                <div id="stat-chart" style="width: 100%;height:330px;"></div>
                 <div class="list-group">
                     <a href="{{ route('business.index') }}" class="list-group-item active">商家信息</a>
                     <a href="{{ route('business.publish') }}" class="list-group-item">发布兼职</a>
+                    <a href="#" class="list-group-item">所有兼职</a>
                     <a href="#" class="list-group-item">简历审核</a>
                 </div>
-                <div id="stat-chart" style="width: 100%;height:330px;"></div>
             </div>
             <div class="col-md-7">
                 <h2>Publish profile</h2>

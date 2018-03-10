@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Deliver extends Model
 {
-    protected $fillable = [ 'user_id', 'job_id' ];
+    protected $fillable = [ 'resume_id', 'job_id', 'status' ];
 }

@@ -81,6 +81,7 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
+
     protected function setUsername(Request $request)
     {
         if (strpos($request->username, '@')) {

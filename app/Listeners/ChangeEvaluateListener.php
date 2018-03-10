@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Evaluate;
+use App\Events\ChangeEvaluateEvent;
 use App\Events\IncrementEvaluateEvent;
 use App\Events\IncrementEvent;
 use Illuminate\Queue\InteractsWithQueue;
@@ -23,10 +24,10 @@ class ChangeEvaluateListener
     /**
      * Handle the event.
      *
-     * @param  IncrementEvaluateEvent  $event
+     * @param  ChangeEvaluateEvent  $event
      * @return void
      */
-    public function handle(IncrementEvaluateEvent $event)
+    public function handle(ChangeEvaluateEvent $event)
     {
         $user_id = $event->getUserId();
         $job_id = $event->getJobId();

@@ -30,8 +30,8 @@ class DeliverEvent
 
     public function __construct($user_id, $job_id)
     {
-        $this->business = Business::where('user_id', $user_id)->first();
         $this->job = Job::find($job_id);
+        $this->business = $this->job->business;
         $this->user = User::find($user_id);
         $this->user_id = $user_id;
         $this->job_id = $job_id;

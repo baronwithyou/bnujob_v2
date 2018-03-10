@@ -28,7 +28,7 @@ mix.scripts([
 ], 'public/js/all.js');
 
 mix.styles([
-    // 'resources/assets/css/animate.min.css',
+    'resources/assets/css/animate.min.css',
     'resources/assets/css/notification.css',
     'resources/assets/css/jquery-ui.min.css',
     'resources/assets/css/overhang.min.css',

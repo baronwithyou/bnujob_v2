@@ -52,7 +52,7 @@ class UserRepository
         $user = Auth::user()->id;
         $resume = Resume::where('user_id', $user)->first();
         if (!$resume) {
-            $this->createResume($data, $type, $user);
+            return $this->createResume($data, $type, $user);
         } else {
 //            $resume->$type = $data;
 //            $resume->save();
@@ -60,7 +60,7 @@ class UserRepository
                 $type => $data
             ]);
         }
-        return true;
+        return $resume;
     }
 
     private function createResume($data, $type, $user)
