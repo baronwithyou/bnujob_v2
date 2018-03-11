@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \Carbon\Carbon::setLocale('zh');
         Schema::defaultStringLength(191);
         Validator::extend('is_mobile', function ($attribute, $value, $parameters, $validator) {
             return Helpers::isMobile($value);

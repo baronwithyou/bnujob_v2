@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Deliver;
 use App\Evaluate;
 use App\Http\Helpers;
     use App\Http\Repositories\UserRepository;
@@ -66,7 +67,7 @@ class UserController extends Controller
         $detail = json_encode([
             'start_at' => $input['start_at'],
             'end_at' => $input['end_at'],
-            'description' => $input['description'],
+            'description' => htmlentities($input['description']),
         ]);
         $resume = $this->userRepository->resumeStoreUpdate($type, $detail);
         Auth::user()->update([
@@ -117,7 +118,8 @@ class UserController extends Controller
 
     public function deliverStatus()
     {
-        return view('deliver_status');
+        $user = Auth::user();
+        return view('deliver_status', compact('user'));
     }
 
     // api
@@ -127,6 +129,12 @@ class UserController extends Controller
         if ($record)
             return $record->type;
         return 'nothing';
+    }
+
+    public function receiveUpdate($deliver_id) {
+        Deliver::find($deliver_id)->update(['receive' => 1]);
+        Helpers::ajaxSuccess();
+        return;
     }
 
 //    public function getConfig($user)

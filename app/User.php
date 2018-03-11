@@ -46,13 +46,28 @@ class User extends \TCG\Voyager\Models\User
     }
 
     public function business() {
-        if (!$this->hasBusiness())
-            return 0;
-        return Business::where('user_id', $this->id)->first();
+        return $this->hasOne(Business::class);
+//        if (!$this->hasBusiness())
+//            return 0;
+//        return Business::where('user_id', $this->id)->first();
     }
 
     public function hasPrimaryResume() {
         return !is_null($this->primary_resume_id) ? true : false;
+    }
+
+    public function delivers() {
+        return $this->hasMany(Deliver::class, 'resume_id', 'primary_resume_id')->orderBy('created_at', 'desc');
+    }
+
+    public function unCheckMsg() {
+        $delivers = $this->delivers;
+        $count = 0;
+        foreach ($delivers as $deliver) {
+            if ($deliver->status != 'tentative' && $deliver->receive == 0)
+                $count++;
+        }
+        return $count;
     }
 
     // 推荐算法

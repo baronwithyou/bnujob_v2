@@ -70,6 +70,50 @@
 
 .user-content {
   margin-top: 20px;
+  .deliver-status {
+    .table {
+      .able-click {
+        background: #FCF8E3;
+        cursor: pointer;
+      }
+    }
+  }
+  .list-group  {
+    .list-group-item {
+      padding: 4px 15px;
+      margin-bottom: 3px;
+      border: 0;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+    .active {
+      background: #eee;
+      color: #000;
+    }
+  }
+  .panel-resume-progress {
+    background: #FCF8E3;
+    border: 1px solid #FBEED5;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 10px;
+    .panel-heading {
+      font-family: -apple-system,"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","WenQuanYi Micro Hei","Microsoft Yahei",sans-serif;
+      color: #8A6D3B;
+      padding: 0;
+      background: transparent !important;
+      border-bottom: 0 !important;
+    }
+    .panel-body {
+      padding: 5px 0 0;
+      .progress {
+        margin-bottom: 5px;
+        height: 20px;
+      }
+    }
+  }
   .black-sentence {
     color: #000;
   }

@@ -17,4 +17,8 @@ class Job extends Model
     public function comments() {
         return $this->hasMany(Comment::class);
     }
+
+    public function delivers() {
+        return $this->hasMany(Deliver::class)->with('user');
+    }
 }

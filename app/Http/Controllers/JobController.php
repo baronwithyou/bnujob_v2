@@ -23,7 +23,6 @@ class JobController extends Controller
 
         $comments = Comment::where('job_id', $id)->orderBy('agree_count', 'desc')->orderBy('created_at', 'desc')->get();
 
-
         if (Auth::check() && $user = Auth::user()) {
             $resumes = $user->resume()->pluck('id');
             $record = Deliver::where('job_id', $id)->whereIn('resume_id', $resumes)->first();

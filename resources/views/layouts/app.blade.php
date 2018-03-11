@@ -37,6 +37,14 @@
         @if(count($errors->all()) > 0)
             Tool.errorPrompt('{{ $errors->first() }}');
         @endif
+
+        @auth
+            @if(($count = Auth::user()->unCheckMsg()) > 0 && url()->current() != route('user.deliver_status'))
+            Notification.create(
+                '通知', '你有 <a href="{{ route('user.deliver_status') }}">{{ $count }} 条未读信息</a>', '{{ asset(Auth::user()->avatar) }}', 'bounceInLeft', 1, 10, function() {}
+            );
+            @endif
+        @endauth
     });
     function searchToggle(obj, evt){
         var container = $(obj).closest('.search-wrapper');

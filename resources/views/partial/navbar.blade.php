@@ -28,7 +28,7 @@
                     <li><a href="{{ route('business.certificate') }}">企业版</a></li>
                     <?php $user = Auth::user()?>
                     @if($user->isAdmin())
-                        <li><a href="{{ route('voyager.dashboard') }}" style="font-size: 20px;"><i class="fa fa-hand-spock-o"></i> King</a></li>
+                        <li><a href="{{ route('voyager.dashboard') }}">后台管理</a></li>
                     @endif
                     <li><a href="#"><span class="fa fa-bell-o" style="font-size: 20px;"></span></a></li>
                     <li class="dropdown">

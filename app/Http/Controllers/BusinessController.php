@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Business;
+use App\Deliver;
+use App\Job;
 use Auth;
 use App\Http\Repositories\BusinessRepository;
 use App\Http\Helpers;
@@ -24,11 +26,20 @@ class BusinessController extends Controller
 
     public function index(Request $request)
     {
-        if (!Auth::user()->hasBusiness())
+        $user = Auth::user();
+        if (!$user->hasBusiness())
             return redirect()->route('business.certificate');
 
-        $business = Business::where('user_id', Auth::user()->id)->first();
-        return view('business', compact('business'));
+        $business = $user->business;
+        $jobs = $business->jobs;
+        $tentative = 0;
+        foreach ($jobs as $job) {
+            foreach ($job->delivers as $deliver)
+                if ($deliver->status == 'tentative')
+                    $tentative++;
+        }
+
+        return view('business', compact('business', 'tentative'));
     }
 
     public function publish()
@@ -140,7 +151,7 @@ class BusinessController extends Controller
     {
         //加入权限判断
         $input = $request->all();
-        $user  = Auth::user()->business();
+        $user  = Auth::user()->business;
 
         if (isset($input['is_default_avatar']) and $input['is_default_avatar']) {
             $user->avatar = $input['image'];
@@ -182,6 +193,45 @@ class BusinessController extends Controller
             return;
         }
         $this->businessRepository->update($data);
+        Helpers::ajaxSuccess();
+        return;
+    }
+
+    public function allJobs() {
+        $user = Auth::user();
+        $jobs = $user->business->jobs;
+        return view('all_jobs', compact('jobs'));
+    }
+
+    public function resumeCheck($job_id) {
+        $delivers = [];
+        if (isset($job_id)) {
+            $delivers = Job::find($job_id)->delivers;
+        }
+        $pass = [];
+        $fail = [];
+        $tentative = [];
+        if(!is_null($delivers)) {
+            foreach ($delivers as $deliver) {
+                switch ($deliver->status) {
+                    case 'pass':
+                        $pass[] = $deliver; break;
+                    case 'fail':
+                        $fail[] = $deliver; break;
+                    default:
+                        $tentative[] = $deliver; break;
+                }
+            }
+        }
+
+        return view('check', compact('pass', 'fail', 'tentative'));
+    }
+
+    public function resumeCheckUpdate(Request $request) {
+        $all = $request->all();
+        $record = Deliver::where('resume_id', $all['resume_id'])->where('job_id', $all['job_id'])->first();
+        $record->status = $all['type'];
+        $record->save();
         Helpers::ajaxSuccess();
         return;
     }

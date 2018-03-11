@@ -2,6 +2,7 @@
     <div class="panel panel-default user-private-info">
         <div class="panel-heading">
             {{ title }}
+            <button class="btn btn-link pull-right" @click="toggle" style="padding: 0;"><i class="fa fa-edit"></i> 编辑</button>
         </div>
         <div class="panel-body"  v-if="edit">
             <div class="form-group">

@@ -4,29 +4,7 @@
 
 @section('stylesheets')
     <style>
-        /*.publish-area {*/
-            /*background: #eeeeee;*/
-        /*}*/
 
-        /*.publish-area .row {*/
-            /*margin:0 55px;*/
-        /*}*/
-
-        /*.publish-top .publish-img {*/
-            /*-webkit-border-radius: 5px;*/
-            /*-moz-border-radius: 5px;*/
-            /*border-radius: 5px;*/
-            /*width: 100px;*/
-            /*float: left;*/
-            /*padding: 20px;*/
-            /*display: inline-block;*/
-        /*}*/
-        /*.publish-top .publish-title {*/
-            /*display: inline-block;*/
-        /*}*/
-        /*.footer {*/
-            /*margin-top: 0;*/
-        /*}*/
     </style>
 @stop
 
@@ -38,8 +16,12 @@
                 <div class="list-group">
                     <a href="{{ route('business.index') }}" class="list-group-item active">商家信息</a>
                     <a href="{{ route('business.publish') }}" class="list-group-item">发布兼职</a>
-                    <a href="#" class="list-group-item">所有兼职</a>
-                    <a href="#" class="list-group-item">简历审核</a>
+                    <a href="{{ route('business.all_jobs') }}" class="list-group-item">所有兼职
+                        @if($tentative > 0)
+                            <span class="badge">{{ $tentative }}</span>
+                        @endif
+                    </a>
+                    {{--<a href="{{ route('business.resume.check') }}" class="list-group-item">简历审核</a>--}}
                 </div>
             </div>
             <div class="col-md-7">
@@ -206,6 +188,12 @@
                 } else {
                 }
             });
+
+            @if($tentative > 0)
+            Notification.create(
+                '通知', '你有 {{ $tentative }} 条投递信息', '{{ asset('images/user.jpg') }}', 'bounceInLeft', 4, 10, function() {}
+            );
+            @endif
         });
     </script>
 @stop

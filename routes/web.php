@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('private/info/update', 'UserController@infoUpdate')->name('info_update');
 
         Route::post('/resume/normal/update/{type}', 'UserController@normalResumeUpdate')->name('normal_resume_update');
+
+        Route::post('/receive/{deliver_id}', 'UserController@receiveUpdate')->name('receive.update');
     });
 
     Route::post('/email/verify', 'UserController@emailToVerify')->name('email.verify');
@@ -46,6 +48,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/profile/update', 'BusinessController@updateProfile')->name('profile.update');
 
         Route::post('/avatar/store', 'BusinessController@avatarStore')->name('avatar.store');
+
+        Route::get('/all_jobs', 'BusinessController@allJobs')->name('all_jobs');
+
+        Route::get('/resume/check/{job_id?}', 'BusinessController@resumeCheck')->name('resume.check');
+
+        Route::post('/resume/check/update', 'BusinessController@resumeCheckUpdate')->name('resume.check.update');
     });
 
     Route::group(['prefix' => 'job', 'as' => 'job.'], function () {
