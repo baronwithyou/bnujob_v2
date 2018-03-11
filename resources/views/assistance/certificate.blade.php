@@ -4,28 +4,34 @@
 
 @section('stylesheets')
     <style>
-        .certificate-area {
-            height: 700px;
-            background: #5eb1e7;
-            color: #fff;
-            position: relative;
+        #certificate-area .col-md-6{
+            margin-top: 20px;
+            border: 2px dashed rgba(27,31,35,0.3);
+            padding: 20px;
         }
-        .certificate-area .water-weed {
-            position: absolute;
-            bottom: 0;
-            background: url("{{ asset('images/ocean/bottom1.png') }}");
-            background-repeat: repeat-x;
+        #certificate-area .tips {
+            min-height: 56px;
+            padding: 10px;
+            border: solid 1px #0366d6;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
             width: 100%;
         }
-        .certificate-area .margin-60 {
-            margin-top: 60px;
+        #certificate-area .tips h4 {
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+            color: #0366d6;
+            margin: 1px 20px 3px 0;
+            font-size: 16px;
+            line-height: 1.2
         }
-        .certificate-area .img-fish {
-            margin: 50px 0 0 150px;
-            display: inline-block;
+        #certificate-area .tips .left-part {
+            float: left;
+            width: 36%;
         }
-        .footer {
-            margin: 0;
+        #certificate-area .tips .right-part {
+            width: 54%;
+            float: left;
         }
     </style>
 @stop
@@ -34,56 +40,62 @@
     <div class="certificate-area">
         <div class="container">
             <div class="row">
-                <div id="certificate-area">
-                    <div class="col-md-6 col-md-offset-1  margin-60" v-if="first" >
-                        <h2>实名制认证</h2>
-                        {!! Form::open() !!}
-                        <div class="form-group" :class="{'has-error': errors.has('real_name')}">
-                            <label for="real_name">真实姓名</label>
-                            <input type="text" v-validate data-vv-rules="required" data-vv-as="真实姓名" name="real_name"
-                                   :class="{'is-danger': errors.has('real_name') }"  class="form-control" placeholder="真实姓名（如：哈利波特）" v-model="real_name">
-                            <span class="help-block"><strong v-show="errors.has('real_name')">@{{ errors.first('real_name') }}</strong></span>
-                        </div>
+                <div class="col-md-6 col-md-offset-1" style="padding: 0;">
+                    <ul class="nav nav-tabs" style="margin-top: 20px;">
+                        <li role="presentation" class="active"><a href="#">实名制认证</a></li>
+                    </ul>
+                </div>
+            </div>
 
-                        <div class="form-group" :class="{'has-error': errors.has('identity')}">
-                            <label for="identity">身份证号</label>
-                            <input type="text" v-validate data-vv-rules="required" data-vv-as="身份证号" name="identity"
-                                   :class="{'is-danger': errors.has('identity') }"  class="form-control" placeholder="身份证号（如：4414XXXXXXXXXXXX）" v-model="identity">
-                            <span class="help-block"><strong v-show="errors.has('identity')">@{{ errors.first('identity') }}</strong></span>
-                        </div>
+            <div class="row" id="certificate-area">
+                <div class="col-md-6 col-md-offset-1" v-if="first" >
+                    {!! Form::open() !!}
+                    <div class="form-group" :class="{'has-error': errors.has('real_name')}">
+                        <label for="real_name">真实姓名</label>
+                        <input type="text" v-validate data-vv-rules="required" data-vv-as="真实姓名" name="real_name"
+                               :class="{'is-danger': errors.has('real_name') }"  class="form-control" placeholder="真实姓名（如：哈利波特）" v-model="real_name">
+                        <span class="help-block"><strong v-show="errors.has('real_name')">@{{ errors.first('real_name') }}</strong></span>
+                    </div>
 
-                        <label for="" style="margin-right: 10px;">商家手机号</label>
-                        <label for="new_mobile"><input type="radio" name="mobile_select" id="new_mobile" :checked="is_new"  @click="toggle('new')"> 使用新手机号</label>
-                        <label for="default_mobile" v-if="mobile"><input type="radio" name="mobile_select" style="margin-left: 20px;" :checked="!is_new" id="default_mobile" @click="toggle('default')"> 使用账号绑定手机号</label>
+                    <div class="form-group" :class="{'has-error': errors.has('identity')}">
+                        <label for="identity">身份证号</label>
+                        <input type="text" v-validate data-vv-rules="required" data-vv-as="身份证号" name="identity"
+                               :class="{'is-danger': errors.has('identity') }"  class="form-control" placeholder="身份证号（如：4414XXXXXXXXXXXX）" v-model="identity">
+                        <span class="help-block"><strong v-show="errors.has('identity')">@{{ errors.first('identity') }}</strong></span>
+                    </div>
 
-                        <div v-if="is_new" :class="{'has-error': errors.has('mobile') || errors.has('verify_code')}">
-                            <input type="text" name="mobile" v-validate data-vv-rules="required" v-model="mobile"
-                                   class="form-control" placeholder="手机号(仅支持大陆手机号码)" style="margin-bottom: 15px;">
-                            <div class="input-group">
-                                <input type="text" name="verify_code" v-validate data-vv-rules="required" class="form-control"
-                                       placeholder="短信验证码" v-model="verify_code">
-                                <span class="input-group-addon">
-                                <button type="button" class="btn btn-link" @click="getVerifyCode" :disabled="disabled">获取验证码 <span v-show="disabled">(@{{ time }}秒后再试)</span></button>
-                            </span>
-                            </div>
-                            <span class="help-block">
-                            <strong v-show="errors.has('mobile')">
-                                @{{ errors.first('mobile') }}
-                            </strong>
-                            <strong v-show="errors.has('verify_code')">
-                                @{{ errors.first('verify_code') }}
-                            </strong>
+                    <label for="" style="margin-right: 10px;">商家手机号</label>
+                    <label for="new_mobile"><input type="radio" name="mobile_select" id="new_mobile" :checked="is_new"  @click="toggle('new')"> 使用新手机号</label>
+                    <label for="default_mobile" v-if="mobile"><input type="radio" name="mobile_select" style="margin-left: 20px;" :checked="!is_new" id="default_mobile" @click="toggle('default')"> 使用账号绑定手机号</label>
+
+                    <div v-if="is_new" :class="{'has-error': errors.has('mobile') || errors.has('verify_code')}">
+                        <input type="text" name="mobile" v-validate data-vv-rules="required" v-model="mobile"
+                               class="form-control" placeholder="手机号(仅支持大陆手机号码)" style="margin-bottom: 15px;">
+                        <div class="input-group">
+                            <input type="text" name="verify_code" v-validate data-vv-rules="required" class="form-control"
+                                   placeholder="短信验证码" v-model="verify_code">
+                            <span class="input-group-addon">
+                            <button type="button" class="btn btn-link" @click="getVerifyCode" :disabled="disabled">获取验证码 <span v-show="disabled">(@{{ time }}秒后再试)</span></button>
                         </span>
                         </div>
-                        <div class="form-group" v-else>
-                            <input type="text" name="" class="form-control" disabled placeholder="{{ Auth::user()->mobile }}" v-model="mobile">
-                        </div>
-                        <div class="class">
-                            <button type="button" @click="nextStep" class="btn btn-yellow btn-block">下一步</button>
-                        </div>
-                        {!! Form::close() !!}
+                        <span class="help-block">
+                        <strong v-show="errors.has('mobile')">
+                            @{{ errors.first('mobile') }}
+                        </strong>
+                        <strong v-show="errors.has('verify_code')">
+                            @{{ errors.first('verify_code') }}
+                        </strong>
+                    </span>
                     </div>
-                    <div class="col-md-6 col-md-offset-1" v-else>
+                    <div class="form-group" v-else>
+                        <input type="text" name="" class="form-control" disabled placeholder="{{ Auth::user()->mobile }}" v-model="mobile">
+                    </div>
+                    <div class="class">
+                        <button type="button" @click="nextStep" class="btn btn-yellow btn-block">下一步</button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                <div class="col-md-6 col-md-offset-1" v-else>
                         <h2>详细信息</h2>
                         <div class="form-group" :class="{'has-error': errors.has('name')}">
                             <label for="name">店铺名称</label>
@@ -126,28 +138,22 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-5">
-                    <img src="{{ asset('images/lighthouse.png') }}" class="img img-responsive" alt="">
-                    <img src="{{ asset('images/fish.png') }}" class="img img-responsive img-fish" alt="">
-                    <img src="{{ asset('images/ocean/fishes.png') }}" class="fishes" alt="">
+                <div class="col-md-4">
+                    <div class="panel panel-default tips">
+                        <div class="panel-body">
+                            <div class="left-part">
+                                <span class="fa fa-5x fa-ravelry"></span>
+                            </div>
+                            <div class="right-part">
+                                <h4>冷知识</h4>
+                                <p>长颈鹿的角叫长颈鹿角</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="water-weed">
-            <img src="{{ asset('images/ocean/bottom2.png') }}" class="coral1" alt="">
-            <img src="{{ asset('images/ocean/bottom3.png') }}" class="sea-weed1" alt="">
-            <img src="{{ asset('images/ocean/bottom2.png') }}" class="coral1" alt="">
-            <img src="{{ asset('images/ocean/bottom3.png') }}" class="sea-weed1" alt="">
-            <img src="{{ asset('images/ocean/bottom2.png') }}" class="coral1" alt="">
-            <img src="{{ asset('images/ocean/bottom3.png') }}" class="sea-weed1" alt="">
-            <img src="{{ asset('images/ocean/bottom2.png') }}" class="coral1" alt="">
-            <img src="{{ asset('images/ocean/bottom2.png') }}" class="coral1" alt="">
-            <img src="{{ asset('images/ocean/bottom3.png') }}" class="sea-weed1" alt="">
-            <img src="{{ asset('images/ocean/bottom2.png') }}" class="coral1" alt="">
-            <img src="{{ asset('images/ocean/bottom2.png') }}" class="coral1" alt="">
-            <img src="{{ asset('images/ocean/bottom3.png') }}" class="sea-weed1" alt="">
-        </div>
+
     </div>
 @stop
 

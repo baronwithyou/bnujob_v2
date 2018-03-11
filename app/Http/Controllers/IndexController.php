@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Deliver;
 use App\Http\Helpers;
 use App\Http\Sms;
 use App\Http\Repositories\UserRepository;
 use App\Job;
+use App\User;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -25,12 +27,23 @@ class IndexController extends Controller
 
         $jobs = Job::orderBy('created_at', 'desc')->get();
 
-        return view('welcome', compact('needToActivate', 'jobs'));
+        $recommendation = [];
+        if (\Auth::check()) {
+            $similar_users = \Auth::user()->getRecommendation();
+            foreach ($similar_users as $user => $grade) {
+                $recommendation[] = User::find($user)->getHighEvaluate();
+            }
+        } else {
+            $recommendation = Job::orderBy('delivered_count', 'desc')->limit(5)->get();
+        }
+
+        return view('welcome', compact('needToActivate', 'jobs', 'recommendation'));
     }
 
     public function test()
     {
-        return view('test');
+        dump(\Auth::user()->getRecommendation());
+//        return view('test');
     }
 
     private function checkFileType($file, $types)

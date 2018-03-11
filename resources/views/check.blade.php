@@ -13,32 +13,41 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="jumbotron" style="margin-top: 30px;">
-                <h2>未审核</h2>
-                @include('partial.table', ['delivers' => $tentative, 'part' => false])
-            </div>
+<div class="container business-info">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-3" style="padding-left: 60px; ">
+            @include('partial.business_info', $business)
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="jumbotron">
-                <h4 class="text-success">已通过</h4>
-                @include('partial.table', ['delivers' => $pass, 'part' => true])
+        <div class="col-md-9" style="padding-right: 60px;">
+            @include('partial.business_nav')
+            <div class="panel panel-default" style="margin-top: 20px;">
+                <div class="panel-body">
+                    <h4>未审核</h4>
+                    @include('partial.table', ['delivers' => $tentative, 'part' => false])
+                </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="jumbotron">
-                <h4 class="text-danger">未通过</h4>
-                @include('partial.table', ['delivers' => $fail, 'part' => true])
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4 class="text-success">已通过</h4>
+                            @include('partial.table', ['delivers' => $pass, 'part' => true])
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4 class="text-danger">未通过</h4>
+                            @include('partial.table', ['delivers' => $fail, 'part' => true])
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+\@endsection
 
 @section('scripts')
     <script>

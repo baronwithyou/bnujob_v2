@@ -1,0 +1,18 @@
+.business-info {
+  .business-nav {
+    font-size: 13px;
+    color: #eee;
+    li {
+      > a {
+        padding: 10px 10px;
+        border-radius: 0;
+        color: #000;
+      }
+    }
+    .active {
+      >a{
+        border-top: 3px solid #5eb1e7;
+      }
+    }
+  }
+}

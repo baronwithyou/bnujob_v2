@@ -156,9 +156,10 @@ body {
 .welcome-recommend .full-area {
   margin-top: 2px;
   padding-top: 5px;
-  height: 60px;
+  height: 80px;
   display: block;
   position: relative;
+  border-bottom: 1px solid #eee;
 }
 
 .welcome-recommend .full-area > .left-area {
@@ -170,8 +171,8 @@ body {
 
 .welcome-recommend .full-area > .left-area img {
   float: left;
-  height: 40px;
-  width: 40px;
+  height: 45px;
+  width: 45px;
 }
 
 .welcome-recommend .full-area > .right-area {
@@ -190,7 +191,7 @@ body {
 
 .welcome-recommend .full-area > .right-area > .label {
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   right: 0;
   background: #5eb1e7;
 }
@@ -590,6 +591,21 @@ body {
 #job-comment-editor .w-e-text-container {
   height: 200px !important;
   border-radius: 0 0 5px 5px;
+}
+
+.business-info .business-nav {
+  font-size: 13px;
+  color: #eee;
+}
+
+.business-info .business-nav li > a {
+  padding: 10px 10px;
+  border-radius: 0;
+  color: #000;
+}
+
+.business-info .business-nav .active > a {
+  border-top: 3px solid #5eb1e7;
 }
 
 /*!

@@ -17,7 +17,8 @@ class CreateEvaluatesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('job_id');
-            $table->decimal('grade', 2, 2)->default(0)->comment('分数');
+//            $table->decimal('grade', 3, 2)->default(0)->comment('分数');
+            $table->integer('grade')->default(0);
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('job_id')->references('id')->on('jobs');

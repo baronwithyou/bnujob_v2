@@ -19,7 +19,7 @@ class BusinessRepository
     }
 
     public function createJob(Array $data) {
-        if (($business_id = Auth::user()->business()->id) != 0) {
+        if (($business_id = Auth::user()->business->id) != 0) {
             $data['business_id'] = $business_id;
         }
         $data['description'] = htmlentities($data['description']);

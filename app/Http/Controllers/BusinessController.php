@@ -31,20 +31,14 @@ class BusinessController extends Controller
             return redirect()->route('business.certificate');
 
         $business = $user->business;
-        $jobs = $business->jobs;
-        $tentative = 0;
-        foreach ($jobs as $job) {
-            foreach ($job->delivers as $deliver)
-                if ($deliver->status == 'tentative')
-                    $tentative++;
-        }
 
-        return view('business', compact('business', 'tentative'));
+        return view('business', compact('business'));
     }
 
     public function publish()
     {
-        return view('publish');
+        $business = Auth::user()->business;
+        return view('publish', compact('business'));
     }
 
     public function certificate()
@@ -199,32 +193,36 @@ class BusinessController extends Controller
 
     public function allJobs() {
         $user = Auth::user();
-        $jobs = $user->business->jobs;
-        return view('all_jobs', compact('jobs'));
+        $business = $user->business;
+        $jobs = $business->jobs;
+        return view('all_jobs', compact('jobs', 'business'));
     }
 
     public function resumeCheck($job_id) {
-        $delivers = [];
-        if (isset($job_id)) {
-            $delivers = Job::find($job_id)->delivers;
-        }
         $pass = [];
         $fail = [];
         $tentative = [];
-        if(!is_null($delivers)) {
-            foreach ($delivers as $deliver) {
-                switch ($deliver->status) {
-                    case 'pass':
-                        $pass[] = $deliver; break;
-                    case 'fail':
-                        $fail[] = $deliver; break;
-                    default:
-                        $tentative[] = $deliver; break;
+        $business = Auth::user()->business;
+        if (isset($job_id)) {
+            $delivers = Job::find($job_id)->delivers;
+            $pass = [];
+            $fail = [];
+            $tentative = [];
+            if(!is_null($delivers)) {
+                foreach ($delivers as $deliver) {
+                    switch ($deliver->status) {
+                        case 'pass':
+                            $pass[] = $deliver; break;
+                        case 'fail':
+                            $fail[] = $deliver; break;
+                        default:
+                            $tentative[] = $deliver; break;
+                    }
                 }
             }
         }
 
-        return view('check', compact('pass', 'fail', 'tentative'));
+        return view('check', compact('pass', 'fail', 'tentative', 'business'));
     }
 
     public function resumeCheckUpdate(Request $request) {

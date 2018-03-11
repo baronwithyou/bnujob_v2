@@ -85,6 +85,6 @@ Route::get('auth/{service}', 'Auth\OAuthController@redirectToProvider')->name('a
 Route::get('auth/{service}/callback', 'Auth\OAuthController@handleProviderCallback');
 
 // 测试
-Route::get('/test', 'BusinessController@test');
+Route::get('/test', 'IndexController@test');
 
 

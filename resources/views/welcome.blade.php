@@ -103,30 +103,20 @@
             <div class="welcome-recommend">
                 <span class="fa fa-heart-o"></span> Part-time 推荐
                 <span class="pull-right"><a href="" class="more">more <span class="fa fa-angle-double-right"></span></a></span>
-                <div class="full-area">
-                    <div class="left-area">
-                        <img src="{{ asset('images/avatars/user1.png') }}" class="img img-responsive" alt="">
+                @foreach($recommendation as $rec)
+                    <div class="full-area">
+                        <div class="left-area">
+                            <img src="{{ asset($rec->business->avatar) }}" class="img img-responsive" alt="">
+                        </div>
+                        <div class="right-area">
+                            <a href="{{ route('job', $rec->id) }}">
+                                <p>{{ $rec->name }}</p>
+                                <small>{{ $rec->business->name }}</small>
+                            </a>
+                            <span class="label">{{ $rec->address }}</span>
+                        </div>
                     </div>
-                    <div class="right-area">
-                        <a href="">
-                            <p>前端开发实习生</p>
-                            <small>Github专卖店</small>
-                        </a>
-                        <span class="label">上周六8点</span>
-                    </div>
-                </div>
-                <div class="full-area">
-                    <div class="left-area">
-                        <img src="{{ asset('images/avatars/user1.png') }}" class="img img-responsive" alt="">
-                    </div>
-                    <div class="right-area">
-                        <a href="">
-                            <p>前端开发实习生</p>
-                            <small>Github专卖店</small>
-                        </a>
-                        <span class="label">上周六8点</span>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

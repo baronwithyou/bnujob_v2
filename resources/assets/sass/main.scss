@@ -140,9 +140,10 @@ body {
   .full-area {
     margin-top: 2px;
     padding-top: 5px;
-    height: 60px;
+    height: 80px;
     display: block;
     position: relative;
+    border-bottom: 1px solid #eee;
     //border-left: 2px dotted #5eb1e7;
     > .left-area {
       float: left;
@@ -151,8 +152,8 @@ body {
       padding: 5px 15px 5px 15px;
       img {
         float: left;
-        height: 40px;
-        width: 40px;
+        height: 45px;
+        width: 45px;
       }
     }
     > .right-area {
@@ -167,7 +168,7 @@ body {
       }
       > .label {
         position: absolute;
-        bottom: 0;
+        bottom: 5px;
         right: 0;
         background: #5eb1e7;
       }

@@ -70,38 +70,43 @@ class User extends \TCG\Voyager\Models\User
         return $count;
     }
 
+    public function getHighEvaluate() {
+        $job_id = Evaluate::where('user_id', $this->id)->orderBy('grade', 'desc')->value('job_id');
+        return Job::find($job_id);
+    }
+
     // 推荐算法
     public function getRecommendation()
     {
         $evaluated = Evaluate::where('user_id', $this->id)->pluck('grade', 'job_id')->toArray();
         $job_ids = array_keys($evaluated);
+        // 选出其他对该用户打过分的信息
         $other_evaluated = Evaluate::whereIn('job_id', $job_ids)->where('user_id', '<>', $this->id)->get([
             'user_id', 'job_id', 'grade'
         ]);
         $others = [];
         // 获取已操作过的用户id、兼职id以及评分
         foreach ($other_evaluated as $item) {
-            $others[$item->user_id][$item->job_id] = $item->grade;
+            $others[$item->user_id][$item->job_id] = $item->grade ;
         }
         $tmp = 0;
+        // 总和该用户评分的平方
         foreach ($evaluated as $grade) {
             $tmp += $grade * $grade;
         }
         $fix = sqrt($tmp);
-        foreach ($others as $user_id => $items) {
-            $top = $bottom = 0;
-            if (count($items) < count($job_ids)) {
-                $need = array_diff($job_ids, array_keys($items));
-                foreach ($need as $job_id) {
-                    $others[$user_id][$job_id] = 0;
-                }
+        $result = [];
+
+        foreach ($others as $user_id => $other) {
+            $top = 0;
+            $bottom = 0;
+            foreach ($other as $job_id => $grade) {
+                $top += $grade * $evaluated[$job_id]; //分子
+                $bottom += $grade * $grade; // 分母
             }
-            foreach($others[$user_id] as $key => $value) {
-                $top += $value * $evaluated[$key];
-                $bottom += $value * $value;
-            }
-            $others[$user_id] = $top / sqrt($bottom) * $fix;
+            $result[$user_id] = $top / sqrt($bottom) / $fix;
         }
-        return $others;
+        arsort($result);
+        return $result; // 返回的是['user_id' => cos(差值)]
     }
 }

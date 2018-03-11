@@ -8,7 +8,7 @@
 
 namespace App\Http;
 
-
+use Auth;
 use App\Comment;
 use App\User;
 
@@ -78,9 +78,23 @@ class Helpers
 
     // 展示用户简历json数据
     public static function displayJsonData($data) {
-        if (is_null($data))
+        if (is_null($data) || empty($data))
             return '暂无';
         $all = json_decode($data);
         return $all->start_at ."-" .$all->end_at ."<br>" .nl2br(htmlentities($all->description));
+    }
+
+    public static function getDeliverMeg() {
+        if (!Auth::check() || !Auth::user()->hasBusiness())
+            return false;
+        $user = Auth::user();
+        $jobs = $user->business->jobs;
+        $tentative = 0;
+        foreach ($jobs as $job) {
+            foreach ($job->delivers as $deliver)
+                if ($deliver->status == 'tentative')
+                    $tentative++;
+        }
+        return $tentative;
     }
 }

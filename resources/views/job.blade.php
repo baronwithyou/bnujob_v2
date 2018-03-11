@@ -35,9 +35,9 @@
             <div class="col-md-9">
                 <div class="job-detail">
                     <h4 class="detail-title">工作描述</h4>
-                    <p style="margin-left: 20px">{!! nl2br($job->description) !!}</p>
+                    <p style="margin-left: 20px; word-break: break-all;">{!! nl2br($job->description) !!}</p>
                     <h4 class="detail-title">岗位需求</h4>
-                    <p style="margin-left: 20px">{!! nl2br($job->required) !!}</p>
+                    <p style="margin-left: 20px; word-break: break-all;">{!! nl2br($job->required) !!}</p>
                     <hr>
                 </div>
                 <div class="job-comment">
