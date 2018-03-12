@@ -6,6 +6,9 @@
                 60%
             </div>
         </div>
-        <button class="btn btn-xs btn-default">上传附件简历</button>
+        <div class="upload-area">
+            <input type="file" name="" id="" class="input-file">
+            <button class="btn btn-xs btn-default">上传附件简历</button>
+        </div>
     </div>
 </div>

@@ -70,6 +70,28 @@
 
 .user-content {
   margin-top: 20px;
+  .panel-resume-progress {
+    .upload-area {
+      position:relative;
+      display:inline-block;
+      zoom:1;
+      cursor:pointer;
+      overflow:hidden;
+      vertical-align:middle;
+      .input-file {
+        position:absolute;
+        right:0;top:0;
+        _zoom:30;
+        font-size:300px\9;
+        height:100%;
+        _height:auto;
+        opacity:0;
+        filter:alpha(opacity=0);
+        -ms-filter:"alpha(opacity=0)";
+        cursor:pointer;
+      }
+    }
+  }
   .deliver-status {
     .table {
       .able-click {
