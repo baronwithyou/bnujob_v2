@@ -45,6 +45,62 @@
             );
             @endif
         @endauth
+
+            var img_url = '';
+        $('#avatar-upload').on('change', function (e) {
+            var formData = new FormData();
+            formData.append('file', $(e.target)[0].files[0]);
+            console.log(formData);
+            $.ajax({
+                url: '{{ route('image.upload') }}',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    res = JSON.parse(res);
+                    if (res.status == 1) {
+                        img_url = res.msg;
+                        $('#upload-avatar .img-area').append('<img id="post-upload-image" class="img img-responsive" src="/' + res.msg + '">');
+                        setTimeout(function () {
+                            jcropApi = $.Jcrop('#post-upload-image', {
+                                aspectRatio: 1,
+                                allowResize: true,
+                                allowSelect: false,
+                                setSelect: [0, 0, 200, 200]
+                            });
+                        }, 1000);
+                    } else {
+                        swal("Error!", res.msg, "error");
+                    }
+                }
+            });
+        });
+
+        $('#upload-avatar #img-upload-btn').on('click', function () {
+            if (img_url) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('business.avatar.store') }}',
+                    data: {
+                        image: img_url,
+                        selectArray: jcropApi.tellSelect(),
+                        display_size: jcropApi.getWidgetSize(),
+                    },
+                    success: function (res) {
+                        var res = JSON.parse(res);
+                        if (res.status == 1) {
+                            $('#upload-avatar').modal('hide');
+                            $('#img-show').attr('src', res.data.url);
+                        } else {
+                            swal("Error!", res.msg, "error");
+                        }
+                    }
+                });
+            } else {
+            }
+        });
     });
     function searchToggle(obj, evt){
         var container = $(obj).closest('.search-wrapper');

@@ -27,14 +27,17 @@ class IndexController extends Controller
 
         $jobs = Job::orderBy('created_at', 'desc')->get();
 
-        $recommendation = [];
+        $job_ids = [];
         if (\Auth::check()) {
             $similar_users = \Auth::user()->getRecommendation();
             foreach ($similar_users as $user => $grade) {
-                $recommendation[] = User::find($user)->getHighEvaluate();
+                $job_ids[] = User::find($user)->getHighEvaluate();
             }
-        } else {
-            $recommendation = Job::orderBy('delivered_count', 'desc')->limit(5)->get();
+        }
+        $job_ids = array_unique($job_ids);
+        $recommendation = Job::whereIn('id', $job_ids)->get();
+        if (count($job_ids) < 5){
+            $recommendation = $recommendation->merge(Job::orderBy('delivered_count', 'desc')->limit(5 - count($job_ids))->get());
         }
 
         return view('welcome', compact('needToActivate', 'jobs', 'recommendation'));

@@ -198,16 +198,14 @@ class BusinessController extends Controller
         return view('all_jobs', compact('jobs', 'business'));
     }
 
-    public function resumeCheck($job_id) {
+    public function resumeCheck($job_id = 0) {
         $pass = [];
         $fail = [];
         $tentative = [];
         $business = Auth::user()->business;
-        if (isset($job_id)) {
+        $has_job_name = false;
+        if ($job_id != 0) {
             $delivers = Job::find($job_id)->delivers;
-            $pass = [];
-            $fail = [];
-            $tentative = [];
             if(!is_null($delivers)) {
                 foreach ($delivers as $deliver) {
                     switch ($deliver->status) {
@@ -220,9 +218,27 @@ class BusinessController extends Controller
                     }
                 }
             }
+        } else {
+            $has_job_name = true;
+            $jobs = $business->jobs;
+            foreach ($jobs as $job) {
+                $delivers = $job->delivers;
+                if(!is_null($delivers)) {
+                    foreach ($delivers as $deliver) {
+                        switch ($deliver->status) {
+                            case 'pass':
+                                $pass[] = $deliver; break;
+                            case 'fail':
+                                $fail[] = $deliver; break;
+                            default:
+                                $tentative[] = $deliver; break;
+                        }
+                    }
+                }
+            }
         }
 
-        return view('check', compact('pass', 'fail', 'tentative', 'business'));
+        return view('check', compact('pass', 'fail', 'tentative', 'business', 'has_job_name'));
     }
 
     public function resumeCheckUpdate(Request $request) {

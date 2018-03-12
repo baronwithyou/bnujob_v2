@@ -23,25 +23,19 @@
             <div class="panel panel-default" style="margin-top: 20px;">
                 <div class="panel-body">
                     <h4>未审核</h4>
-                    @include('partial.table', ['delivers' => $tentative, 'part' => false])
+                    @include('partial.table', ['delivers' => $tentative, 'part' => false, 'hash_job_name' => $has_job_name])
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h4 class="text-success">已通过</h4>
-                            @include('partial.table', ['delivers' => $pass, 'part' => true])
-                        </div>
-                    </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4 class="text-success">已通过</h4>
+                    @include('partial.table', ['delivers' => $pass, 'part' => true, 'hash_job_name' => $has_job_name])
                 </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h4 class="text-danger">未通过</h4>
-                            @include('partial.table', ['delivers' => $fail, 'part' => true])
-                        </div>
-                    </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4 class="text-danger">未通过</h4>
+                    @include('partial.table', ['delivers' => $fail, 'part' => true, 'hash_job_name' => $has_job_name])
                 </div>
             </div>
         </div>

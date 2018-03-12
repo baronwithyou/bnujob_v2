@@ -6,7 +6,7 @@
                 <h4 class="modal-title">简历详情</h4>
             </div>
             <div class="modal-body">
-                <div class="container">
+                <div class="container" style="width: 100% !important;">
                     <div class="row">
                         <?php $user = $deliver->user; $resume = $user->resume; ?>
                         <h4><strong>真实姓名：</strong>{{ $user->real_name ?? '暂无'}}</h4>

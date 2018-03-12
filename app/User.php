@@ -71,8 +71,7 @@ class User extends \TCG\Voyager\Models\User
     }
 
     public function getHighEvaluate() {
-        $job_id = Evaluate::where('user_id', $this->id)->orderBy('grade', 'desc')->value('job_id');
-        return Job::find($job_id);
+        return Evaluate::where('user_id', $this->id)->orderBy('grade', 'desc')->value('job_id');
     }
 
     // 推荐算法
