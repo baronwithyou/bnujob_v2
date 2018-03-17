@@ -3,14 +3,15 @@
 use Faker\Generator as Faker;
 
 $factory->define(\App\Job::class, function (Faker $faker) {
+    $location = ['haihua', 'yanhua', 'jinghua', 'yuehua'];
     return [
         'name' => $faker->name,
-        'business_id' => rand(10, \App\Business::all()->count() + 9),
+        'business_id' => \App\Business::inRandomOrder()->value('id'),
         'description' => str_random(200),
         'required' => str_random(200),
-        'contact' => '13632850638',
-        'address' => str_random(10),
-        'location' => array_random(array_keys(config('content.location'))),
-        'salary' => rand(200, 500),
+        'contact' => '13143466866',
+        'address' => str_random(20),
+        'location' => array_random($location),
+        'salary' => rand(100, 300),
     ];
 });

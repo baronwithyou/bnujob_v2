@@ -104,6 +104,8 @@
                 });
             },
             register() {
+                var l = Ladda.create(document.querySelector('#register-btn'));
+                l.start();
                 var errors = 0;
                 if (!this.name) {
                     this.errors.add('name', '用户名 是必须的.');
@@ -129,6 +131,7 @@
                     }
                 }
                 if (errors > 0) {
+                    l.stop();
                     return false;
                 }
                 var params;
@@ -137,8 +140,6 @@
                 } else {
                     params = {'name': this.name, 'email': this.email, 'password': this.password};
                 }
-                var l = Ladda.create(document.querySelector('#register-btn'));
-                l.start();
                 axios.post('/register', params).then(response => {
                     const data = response.data;
                     if (data.status) {

@@ -62,6 +62,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/comment/like/update', 'JobController@commentLikeUpdate')->name('comment.like.update');
 
         Route::post('/deliver', 'JobController@deliver')->name('deliver');
+
+        Route::post('/collect', 'JobController@collect')->name('collect');
     });
 
     // 后台voyager

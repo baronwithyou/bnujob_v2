@@ -34,7 +34,7 @@
                                     <td>{{ $job->name }}</td>
                                     <td>{{ $job->salary }}</td>
                                     <td>{{ config('content.location.'.$job->location)." ".$job->address }}</td>
-                                    <td>{{ $job->created_at->diffForHumans() }}</td>
+                                    <td>{{ optional($job->created_at)->diffForHumans() }}</td>
                                     <td>
                                         <button class="btn btn-xs btn-success">详情</button>
                                         <?php $count = 0;?>

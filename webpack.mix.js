@@ -19,7 +19,7 @@ mix.scripts([
     'resources/assets/js/notification.js',
     'resources/assets/js/jquery-ui.min.js',
     'resources/assets/js/overhang.min.js',
-    'resources/assets/js/clipboard.min.js',
+    // 'resources/assets/js/clipboard.min.js',
     'resources/assets/js/jquery.dotdotdot.js',
     // 'resources/assets/js/xss.min.js',
     'resources/assets/js/spin.min.js',

@@ -167,9 +167,9 @@ class BusinessController extends Controller
 
             Storage::put('public/business/' . $crop_img->basename, $crop_img->stream());
 
-            $user->avatar = 'storage/business/' . $crop_img->basename;
+            $user->avatar = '/storage/business/' . $crop_img->basename;
             $user->save();
-            return Helpers::ajaxSuccess(null, ['url' => $user->avatar]);
+            return Helpers::ajaxSuccess('', ['url' => $user->avatar]);
         } catch (Exception $e) {
             return Helpers::ajaxFail('裁剪异常，请重试');
         }

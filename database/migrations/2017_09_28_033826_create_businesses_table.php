@@ -22,7 +22,7 @@ class CreateBusinessesTable extends Migration
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('school')->nullable();
-//            $table->string('tag')->comment('标签');
+            $table->string('tag')->comment('标签')->nullable();
             $table->string('type')->comment('公司类型 国企还是私企还是个体户');
             $table->text('abstract')->comment('公司简介');
             $table->smallInteger('status')->default(0)->comment('状态 默认开启（审核是否通过）');

@@ -120,59 +120,7 @@
             </div>
         </div>
     </div>
-    @include('modal.job-modal')
-@stop
-
-@section('content-aliyun')
-    <div class="col-md-9" style="padding-top: 30px;">
-        <div class="discard-area">
-            <a href="" style="text-decoration: none;">
-                <h4>我又丢卡啦！！！！（规定字数）</h4>
-                <p>我又丢卡了！！！
-                    大概在丽泽湖里面，有没有好心人帮我捞一下！！！！范德萨范德萨范德萨法第三方打分的萨芬撒大发送到防守打法是打发打范德萨发</p>
-                <p><small>地点：丽泽A231</small><small style="margin-left: 20px;">联系方式： 13106803427</small><small class="pull-right">发布时间： 15小时之前</small></p>
-            </a>
-        </div>
-        <hr>
-        <div class="discard-area">
-            <a href="" style="text-decoration: none;">
-                <h4>我又丢卡啦！！！！（规定字数）</h4>
-                <p>我又丢卡了！！！
-                    大概在丽泽湖里面，有没有好心人帮我捞一下！！！！fdsfsdffdsfsdadfdsfdsfadsfdsafsadasdfasdfsdafsdafdsafdsafsadfsadfsadfasdf
-                fdsafdsafsadfadf</p>
-                <p><small>地点：丽泽A231</small><small style="margin-left: 20px;">联系方式： 13106803427</small><small class="pull-right">发布时间： 15小时之前</small></p>
-            </a>
-        </div>
-        <hr>
-        <div class="discard-area">
-            <a href="" style="text-decoration: none;">
-                <h4>我又丢卡啦！！！！（规定字数）</h4>
-                <p>我又丢卡了！！！
-                    大概在丽泽湖里面，有没有好心人帮我捞一下！！！！</p>
-                <p><small>地点：丽泽A231</small><small style="margin-left: 20px;">联系方式： 13106803427</small><small class="pull-right">发布时间： 15小时之前</small></p>
-            </a>
-        </div>
-        <hr>
-        <div class="discard-area">
-            <a href="" style="text-decoration: none;">
-                <h4>我又丢卡啦！！！！（规定字数）</h4>
-                <p>我又丢卡了！！！
-                    大概在丽泽湖里面，有没有好心人帮我捞一下！！！！</p>
-                <p><small>地点：丽泽A231</small><small style="margin-left: 20px;">联系方式： 13106803427</small><small class="pull-right">发布时间： 15小时之前</small></p>
-            </a>
-        </div>
-        <hr>
-        <div class="discard-area">
-            <a href="" style="text-decoration: none;">
-                <h4>我又丢卡啦！！！！（规定字数）</h4>
-                <p>我又丢卡了！！！
-                    大概在丽泽湖里面，有没有好心人帮我捞一下！！！！</p>
-                <p><small>地点：丽泽A231</small><small style="margin-left: 20px;">联系方式： 13106803427</small><small class="pull-right">发布时间： 15小时之前</small></p>
-            </a>
-        </div>
-        <hr>
-    </div>
-    <div class="col-md-3"></div>
+    {{--@include('modal.job-modal')--}}
 @stop
 
 @section('scripts')

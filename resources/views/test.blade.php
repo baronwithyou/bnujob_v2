@@ -18,10 +18,11 @@
         <section style="height: 5px; background: #f8d615;"></section>
         <div style="padding: 2% 5%;">
             <h3>bnu <span style="color: #5eb1e7;">job</span></h3>
-            <p>海绵宝宝%id%号： %name%</p>
-            <p>你好啊</p>
+            <p>亲爱的用户： %name%</p>
+            <p>你好</p>
             <p>请尽快点击此链接以完成激活 <a style="text-decoration: none;" href="%url%">%url%</a></p>
             <p>对网站有任何兴趣 请联系我 martinhacker1@outlook.com</p>
+            <p>如果对技术有兴趣可以看我的博客，不定时更新 <a href="https://githubbaron.github.io/blog.github.io/">GO!</a></p>
         </div>
         <section style="height: 22px; background: #5eb1e7; color: #fff; text-align: center;">www.bnujob.cn</section>
     </div>

@@ -17,7 +17,7 @@ class JobsTableSeeder extends Seeder
             'name' => str_random(10),
             'description' => str_random(50),
             'required' => str_random(50),
-            'location' => 'haihua',
+            'location' => array_random($location),
             'salary' => 500,
             'contact' => '13106803427',
             'address' => '广东深圳',

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Deliver;
+use App\Evaluate;
 use App\Http\Helpers;
 use App\Http\Sms;
 use App\Http\Repositories\UserRepository;
 use App\Job;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -25,19 +27,22 @@ class IndexController extends Controller
     {
         $needToActivate = $this->userRepository->needToActivate();
 
-        $jobs = Job::orderBy('created_at', 'desc')->get();
+        $jobs = Job::orderBy('created_at', 'desc')->with('business')->limit(30)->get();
 
         $job_ids = [];
         if (\Auth::check()) {
             $similar_users = \Auth::user()->getRecommendation();
+            $i = 0;
             foreach ($similar_users as $user => $grade) {
+                if ($i++ > 5)
+                    break;
                 $job_ids[] = User::find($user)->getHighEvaluate();
             }
         }
         $job_ids = array_unique($job_ids);
-        $recommendation = Job::whereIn('id', $job_ids)->get();
+        $recommendation = Job::whereIn('id', $job_ids)->limit(5)->with('business')->get();
         if (count($job_ids) < 5){
-            $recommendation = $recommendation->merge(Job::orderBy('delivered_count', 'desc')->limit(5 - count($job_ids))->get());
+            $recommendation = $recommendation->merge(Job::orderBy('delivered_count', 'desc')->limit(5 - count($job_ids))->with('business')->get());
         }
 
         return view('welcome', compact('needToActivate', 'jobs', 'recommendation'));
@@ -45,8 +50,25 @@ class IndexController extends Controller
 
     public function test()
     {
-        dump(\Auth::user()->getRecommendation());
+        $user = \Auth::user();
+//        $job_id = Evaluate::where('user_id', $user->id)->orderBy('job_id')->pluck('job_id');
+//        dump(Evaluate::where('user_id', 12)->whereIn('job_id', $job_id)->orderBy('job_id')->pluck('grade', 'job_id'));
+
+//        dump($user->getRecommendation());
 //        return view('test');
+
+//        for ($i = 0; $i < 210; $i++) {
+//            do {
+//                $user_id = User::inRandomOrder()->value('id');
+//                $job_id = Job::inRandomOrder()->value('id');
+//                $record = Evaluate::where('user_id', $user_id)->where('job_id', $job_id)->first();
+//            } while(!is_null($record) && Evaluate::count() < 1000);
+//            Evaluate::create([
+//                'grade' => rand(0, 10),
+//                'user_id' => $user_id,
+//                'job_id' => $job_id
+//            ]);
+//        }
     }
 
     private function checkFileType($file, $types)

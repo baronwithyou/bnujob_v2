@@ -2,6 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
+use App\User;
+use App\Job;
+use App\Evaluate;
+
 class EvaluatesTableSeeder extends Seeder
 {
     /**
@@ -11,10 +15,16 @@ class EvaluatesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('evaluates')->insert([
-            'user_id' => \App\User::inRandomOrder()->value('id'),
-            'job_id' => \App\Job::inRandomOrder()->value('id'),
-            'grade' => rand(0, 5)
-        ]);
+        do {
+            $user_id = User::inRandomOrder()->value('id');
+            $job_id = Job::inRandomOrder()->value('id');
+            $record = Evaluate::where('user_id', $user_id)->where('job_id', $job_id)->first();
+        } while(!is_null($record) && Evaluate::count() < 1000);
+        $data = [
+            'grade' => rand(0, 10),
+            'user_id' => $user_id,
+            'job_id' => $job_id
+        ];
+        DB::table('evaluates')->insert($data);
     }
 }

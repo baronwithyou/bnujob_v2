@@ -27,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ChangeEvaluateEvent' => [
             'App\Listeners\ChangeEvaluateListener',
         ],
+        'App\Events\CollectEvent' => [
+            'App\Listeners\UpdateCollectListener'
+        ]
     ];
 
     /**

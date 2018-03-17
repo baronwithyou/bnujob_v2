@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Collect;
 use App\Comment;
 use App\Deliver;
 use App\Evaluate;
@@ -82,9 +83,9 @@ class JobController extends Controller
      * @param Request $request
      */
     public function deliver(Request $request) {
-        $user_id = Auth::user()->id;
+        $user = Auth::user();
+        $user_id = $user->id;
         // 投递之前检查是否有简历
-        $user = User::find($user_id);
         if (!$user->hasPrimaryResume()) {
             Helpers::ajaxFail('你还没有简历，请到个人中心完善简历');
             return;
@@ -108,5 +109,25 @@ class JobController extends Controller
         event(new DeliverEvent($user_id, $job_id));
         Helpers::ajaxSuccess();
         return;
+    }
+
+    public function collect(Request $request) {
+        $job_id = $request->input('job_id');
+        $user = Auth::user();
+        $business = Job::find($job_id)->business;
+        if ($user->id == $business->user_id) {
+            Helpers::ajaxFail('无法收藏自己的兼职');
+            return;
+        }
+        $record = Collect::where('user_id', $user->id)->where('job_id', $job_id)->first();
+        if (!is_null($record)) {
+            $record->delete();
+        } else {
+            Collect::create([
+                'job_id' => $job_id,
+                'user_id' => $user->id
+            ]);
+        }
+        event();
     }
 }

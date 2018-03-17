@@ -60,6 +60,10 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasMany(Deliver::class, 'resume_id', 'primary_resume_id')->orderBy('created_at', 'desc');
     }
 
+    public function evaluates() {
+        return $this->hasMany(Evaluate::class);
+    }
+
     public function unCheckMsg() {
         $delivers = $this->delivers;
         $count = 0;
@@ -103,6 +107,8 @@ class User extends \TCG\Voyager\Models\User
                 $top += $grade * $evaluated[$job_id]; //分子
                 $bottom += $grade * $grade; // 分母
             }
+            if($bottom == 0)
+                continue;
             $result[$user_id] = $top / sqrt($bottom) / $fix;
         }
         arsort($result);
