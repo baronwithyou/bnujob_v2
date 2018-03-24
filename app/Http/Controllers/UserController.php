@@ -7,9 +7,11 @@ use App\Evaluate;
 use App\Http\Helpers;
     use App\Http\Repositories\UserRepository;
 use App\Like;
+use App\Resume;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -122,6 +124,41 @@ class UserController extends Controller
         return view('deliver_status', compact('user'));
     }
 
+    public function resumeUpload(Request $request) {
+        $user = Auth::user();
+        $file = $request->file('file');
+        if (!$this->checkFileSize($file, 5 * 1024 * 1024)) {
+            Helpers::ajaxFail('文件太大，请上传5MB以内的文件');
+            return;
+        }
+        $originName = $file->getClientOriginalName();
+        $path = Storage::putFile('public/resumes', $file);
+        if (!empty($user->resume)) {
+            $resume = $user->resume;
+            $resume->update([
+                'resume_name' => $originName,
+                'upload_location' => substr($path, 6)
+            ]);
+        } else {
+            Resume::create([
+                'user_id' => $user->id,
+                'resume_name' => $originName,
+                'upload_location' => substr($path, 6)
+            ]);
+        }
+        Helpers::ajaxSuccess('', ['path' => $path, 'name' => $originName]);
+        return;
+    }
+
+    private function checkFileSize($file, $size)
+    {
+        if ($file->getSize() < $size) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // api
     public function userLikeComment($comment_id)
     {
@@ -137,28 +174,14 @@ class UserController extends Controller
         return;
     }
 
-//    public function getConfig($user)
-//    {
-//        $user = Auth::user();
-//        return $user->config;
-//    }
-//
-//    public function updateConfig($user)
-//    {
-//        $user = Auth::user();
-//        $config = json_decode($user->config);
-//        $open_type = $config->open_type;
-//        if ($open_type == 'modal') {
-//            $config = json_encode(['open_type' => 'normal']);
-//        } else {
-//            $config = json_encode(['open_type' => 'modal']);
-//        }
-//        $user->update(['config' => $config]);
-//        return $config;
-//    }
-
     public function resumeGet($type)
     {
         return optional(Auth::guard('api')->user()->resume)->$type;
+    }
+
+    public function resumeDownload() {
+        $resume = Resume::where('user_id', Auth::user()->id)->first();
+        $location = $resume->upload_location;
+        return response()->download(public_path().'/storage'.$location, $resume->resume_name);
     }
 }

@@ -41,7 +41,7 @@
                             <hr>
                             <p><strong>附件简历：</strong>
                                 @if($resume->upload_location)
-                                    <a href=""></a>
+                                    <a href="{{ asset($resume->upload_location) }}">下载</a>
                                 @else
                                     暂无
                                 @endif

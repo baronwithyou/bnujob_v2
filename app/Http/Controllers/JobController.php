@@ -29,9 +29,10 @@ class JobController extends Controller
             $record = Deliver::where('job_id', $id)->whereIn('resume_id', $resumes)->first();
             if (!is_null($record))
                 $delivered = 1;
+            $is_collected = !empty(Collect::where('user_id', $user->id)->where('job_id', $id)->first());
         }
 
-        return view('job', compact('job', 'comments', 'delivered'));
+        return view('job', compact('job', 'comments', 'delivered', 'is_collected'));
     }
 
     public function commentStore(Request $request)
@@ -90,6 +91,10 @@ class JobController extends Controller
             Helpers::ajaxFail('你还没有简历，请到个人中心完善简历');
             return;
         }
+        if($user->hasTooMuchDeliver()) {
+            Helpers::ajaxFail('你已超过了每日投递数量，请完善个人资料或者明天再投递');
+            return;
+        }
         $job_id = $request->input('job_id');
         $business = Job::find($job_id)->business;
         if ($user->id == $business->user_id) {
@@ -128,6 +133,8 @@ class JobController extends Controller
                 'user_id' => $user->id
             ]);
         }
-        event();
+//        event();
+        Helpers::ajaxSuccess();
+        return;
     }
 }

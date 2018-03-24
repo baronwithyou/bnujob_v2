@@ -66,6 +66,8 @@ Vue.component('comment', require('./components/Comment.vue'));
 
 Vue.component('record-btn', require('./components/DeliverBtn.vue'));
 
+Vue.component('collect-btn', require('./components/CollectBtn.vue'));
+
 // Vue.component('introduction', require('./components/Introduction.vue'));
 
 const app = new Vue({

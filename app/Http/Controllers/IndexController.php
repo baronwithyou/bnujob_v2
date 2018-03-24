@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Deliver;
 use App\Evaluate;
 use App\Http\Helpers;
@@ -25,6 +26,7 @@ class IndexController extends Controller
 
     public function index()
     {
+//        dump(Deliver::where('resume_id', Auth::user()->primary_resume_id)->whereDate('created_at', Carbon::now()->toDateString())->count());
         $needToActivate = $this->userRepository->needToActivate();
 
         $jobs = Job::orderBy('created_at', 'desc')->with('business')->limit(30)->get();

@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group" :class="{'has-error': errors.has('salary')}">
                                 <label for="salary" style="display: block;">薪资</label>
-                                <input type="text" class="form-control" v-validate data-vv-rules="required" data-vv-as="薪资" name="salary"
+                                <input type="text" class="form-control" v-validate data-vv-rules="required|decimal:1" data-vv-as="薪资" name="salary"
                                        placeholder="薪资" :class="{'is-danger': errors.has('salary') }" v-model="salary" style="width: 70%; display: inline-block;"> / 天
                                 <span class="help-block"><strong v-show="errors.has('salary')">@{{ errors.first('salary') }}</strong></span>
                             </div>

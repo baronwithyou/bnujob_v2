@@ -240,5 +240,34 @@
                 }
             }
         });
+        $(function() {
+            $('.input-file').on('change', function (e) {
+                var formData = new FormData();
+                formData.append('file', $(e.target)[0].files[0]);
+                $.ajax({
+                    url: '{{ route('user.resume.upload') }}',
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function () {
+                        swal('Info', '正在上传，请稍等', 'info');
+                    },
+                    success: function (res) {
+                        res = JSON.parse(res);
+                        if (res.status == 1) {
+                            const data = res.data;
+                            const a = $('#resume-show').find('a');
+                            a.attr(data.path);
+                            a.html(data.name);
+                            swal('Success', '上传成功', 'success');
+                        } else {
+                            swal("Error!", res.msg, "error");
+                        }
+                    }
+                });
+            });
+        })
     </script>
 @stop

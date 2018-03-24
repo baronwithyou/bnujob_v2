@@ -6,8 +6,11 @@
                 60%
             </div>
         </div>
+        <div id="resume-show">
+            <a href="{{ route('user.resume.download') }}">{{ $resume->resume_name }}</a>
+        </div>
         <div class="upload-area">
-            <input type="file" name="" id="" class="input-file">
+            <input type="file" name="resume" id="" class="input-file" accept=".doc,.docx,application/pdf">
             <button class="btn btn-xs btn-default">上传附件简历</button>
         </div>
     </div>

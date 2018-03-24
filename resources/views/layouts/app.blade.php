@@ -46,11 +46,10 @@
             @endif
         @endauth
 
-            var img_url = '';
+        var img_url = '';
         $('#avatar-upload').on('change', function (e) {
             var formData = new FormData();
             formData.append('file', $(e.target)[0].files[0]);
-            console.log(formData);
             $.ajax({
                 url: '{{ route('image.upload') }}',
                 type: 'POST',

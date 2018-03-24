@@ -28,6 +28,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/resume/normal/update/{type}', 'UserController@normalResumeUpdate')->name('normal_resume_update');
 
         Route::post('/receive/{deliver_id}', 'UserController@receiveUpdate')->name('receive.update');
+
+        Route::post('/resume/upload', 'UserController@resumeUpload')->name('resume.upload');
+
+        Route::get('/resume/download', 'UserController@resumeDownload')->name('resume.download');
     });
 
     Route::post('/email/verify', 'UserController@emailToVerify')->name('email.verify');

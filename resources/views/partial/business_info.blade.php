@@ -3,7 +3,7 @@
 </a>
 <h4 style="font-weight: bolder;">{{ $business->name }}</h4>
 <p>{{ config('content.location.'.$business->address) }}</p>
-<p>{{ $business->abstract }}</p>
+<p style="word-break: break-all;">{{ $business->abstract }}</p>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="upload-avatar">
     <div class="modal-dialog" role="document">

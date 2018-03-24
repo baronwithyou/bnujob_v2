@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -78,6 +79,14 @@ class User extends \TCG\Voyager\Models\User
         return Evaluate::where('user_id', $this->id)->orderBy('grade', 'desc')->value('job_id');
     }
 
+    public function hasTooMuchDeliver() {
+        $count = Deliver::where('resume_id', $this->primary_resume_id)->whereDate('created_at', Carbon::now()->toDateString())->count();
+        if ($count > (5 + ($this->reputation / 20))) {
+            return true;
+        }
+        return false;
+    }
+
     // 推荐算法
     public function getRecommendation()
     {
@@ -109,7 +118,8 @@ class User extends \TCG\Voyager\Models\User
             }
             if($bottom == 0)
                 continue;
-            $result[$user_id] = $top / sqrt($bottom) / $fix;
+            if ($bottom != 0 && $fix != 0)
+                $result[$user_id] = $top / sqrt($bottom) / $fix;
         }
         arsort($result);
         return $result; // 返回的是['user_id' => cos(差值)]

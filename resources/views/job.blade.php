@@ -24,8 +24,9 @@
                         <record-btn ct="{{ $job->delivered_count }}" dd="{{ $delivered }}" j_id="{{ $job->id }}" is_c="{{ Auth::check() }}"></record-btn>
                     </div>
                     <div class="collect-area">
-                        <button class="btn btn-default">收藏</button>
-                        <span><strong>{{ $job->collected_count }}</strong> 人收藏</span>
+                        <collect-btn c="{{ $job->collected_count }}" j_id="{{ $job->id }}"  is_c="{{ Auth::check() }}" is_cl="{{ $is_collected }}"></collect-btn>
+                        {{--<button class="btn btn-default">收藏</button>--}}
+                        {{--<span><strong>{{ $job->collected_count }}</strong> 人收藏</span>--}}
                     </div>
                 </div>
             </div>
@@ -106,9 +107,11 @@
                     @if(!isset($commented))
                         $.post('{{ route('job.comment.store') }}', { content: content, job_id: '{{ $job->id }}' }, function (data) {
                             data = JSON.parse(data);
-                            if (data.status) {
+                            if (data.status == 1) {
                                 swal('Good job!', data.msg, 'success');
                                 editor.txt.html(' ');
+                            } else {
+                                swal('Sorry', data.msg, 'error');
                             }
                         });
                     @else
