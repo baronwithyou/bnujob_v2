@@ -30,6 +30,7 @@
             </div>
 
             <div class="col-md-7" id="private-info">
+                {{ $user->getResumeColumnCount() }}
                 <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     编辑校园情况、求职设置、以及各种经历即可默认创建简历！ <strong>简历越丰富，成功的几率越大!</strong>

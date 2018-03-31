@@ -87,6 +87,22 @@ class User extends \TCG\Voyager\Models\User
         return false;
     }
 
+    public function getResumeColumnCount() {
+        if (empty($this->resume)) {
+            return 0;
+        }
+        $count = 0;
+        $all = 0;
+        $except = ['id', 'user_id', 'created_at', 'updated_at'];
+        foreach ($this->resume as $name => $column) {
+            $all++;
+            if (!empty($column) && !in_array($column, $except)) {
+                $count++;
+            }
+        }
+        return $count / $all * 100;
+    }
+
     // 推荐算法
     public function getRecommendation()
     {

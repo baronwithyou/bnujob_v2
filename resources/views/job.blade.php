@@ -21,10 +21,10 @@
                 </div>
                 <div class="col-xs-4 col-md-3">
                     <div class="deliver-area">
-                        <record-btn ct="{{ $job->delivered_count }}" dd="{{ $delivered }}" j_id="{{ $job->id }}" is_c="{{ Auth::check() }}"></record-btn>
+                        <record-btn ct="{{ $job->delivered_count }}" j_id="{{ $job->id }}" is_c="{{ Auth::check() }}" @auth dd="{{ $delivered }}" @endauth></record-btn>
                     </div>
                     <div class="collect-area">
-                        <collect-btn c="{{ $job->collected_count }}" j_id="{{ $job->id }}"  is_c="{{ Auth::check() }}" is_cl="{{ $is_collected }}"></collect-btn>
+                        <collect-btn c="{{ $job->collected_count }}" j_id="{{ $job->id }}"  is_c="{{ Auth::check() }}" @auth is_cl="{{ $is_collected }}" @endauth></collect-btn>
                         {{--<button class="btn btn-default">收藏</button>--}}
                         {{--<span><strong>{{ $job->collected_count }}</strong> 人收藏</span>--}}
                     </div>
