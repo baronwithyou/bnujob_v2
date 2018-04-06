@@ -29,6 +29,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\CollectEvent' => [
             'App\Listeners\UpdateCollectListener'
+        ],
+        'App\Events\CommentEvent' => [
+            'App\Listeners\IncrementCommentEvent'
+        ],
+        'App\Events\LikeEvent' => [
+            'App\Listeners\UpdateLikeListener',
         ]
     ];
 

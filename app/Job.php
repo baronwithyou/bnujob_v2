@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     public $fillable = [
-        'contact', 'name', 'description', 'required', 'salary', 'address', 'business_id', 'location'
+        'contact', 'name', 'description', 'required', 'salary', 'address', 'business_id', 'location',
+        'collected_count', 'delivered_count', 'commented_count', 'passes_count'
     ];
 
     public function business() {

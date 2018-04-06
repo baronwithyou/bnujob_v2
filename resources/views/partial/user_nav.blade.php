@@ -4,7 +4,7 @@
 </div>
 <hr class="no-top">
 <div class="list-group">
-    <a href="{{ route('user.index') }}" class="list-group-item {{ $active_location == 1 ? 'active' : '' }}">个人档案</a>
-    <a href="{{ route('user.deliver_status') }}" class="list-group-item {{ $active_location == 2 ? 'active' : '' }}">兼职状态</a>
-    <a href="" class="list-group-item {{ $active_location == 3 ? 'active' : '' }}">我的收藏</a>
+    <a href="{{ route('user.index') }}" class="list-group-item {{ url()->current() == route('user.index') ? 'active' : '' }}">个人档案</a>
+    <a href="{{ route('user.deliver_status') }}" class="list-group-item {{ url()->current() == route('user.deliver_status') ? 'active' : '' }}">兼职状态</a>
+    <a href="{{ route('user.collect') }}" class="list-group-item {{ url()->current() == route('user.collect') ? 'active' : '' }}">我的收藏</a>
 </div>

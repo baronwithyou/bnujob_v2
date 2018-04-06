@@ -28,10 +28,10 @@ return [
         'jinghua' => '京华',
     ],
     'operate_grade' => [
-        'deliver' => 0.4,
-        'collect' => 0.3,
-        'comment' => 0.2,
-        'like' => 0.1
+        'deliver' => 4,
+        'collect' => 3,
+        'comment' => 2,
+        'like' => 1,
     ],
     'gender' => [
         ' ' => '未知',

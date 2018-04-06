@@ -21,6 +21,7 @@
 
 <script>
     export default {
+        // name: 'zh_CN',
         data() {
             return {
                 username: '',

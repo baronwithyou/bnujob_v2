@@ -24,7 +24,7 @@
                         <record-btn ct="{{ $job->delivered_count }}" j_id="{{ $job->id }}" is_c="{{ Auth::check() }}" @auth dd="{{ $delivered }}" @endauth></record-btn>
                     </div>
                     <div class="collect-area">
-                        <collect-btn c="{{ $job->collected_count }}" j_id="{{ $job->id }}"  is_c="{{ Auth::check() }}" @auth is_cl="{{ $is_collected }}" @endauth></collect-btn>
+                        <collect-btn j_id="{{ $job->id }}"></collect-btn>
                         {{--<button class="btn btn-default">收藏</button>--}}
                         {{--<span><strong>{{ $job->collected_count }}</strong> 人收藏</span>--}}
                     </div>
@@ -57,20 +57,20 @@
                 </div>
             </div>
             <div class="hidden-xs col-md-3">
-                <div class="similar-job-detail">
-                    <div class="panel panel-default similar-search">
-                        <div class="panel-body">
-                            <button class="close">&times;</button>
-                            <span>在寻找类似兼职？</span>
-                            {!! Form::text('job', $job->name, ['class' => 'form-control search']) !!}
-                            {!! Form::button('查找', ['class' => 'btn btn-default pull-right']) !!}
-                        </div>
-                    </div>
-                    <div class="similar-job">
-                        <span class="fa fa-meh-o"></span> 相似兼职
-                        <span class="pull-right"><a href="" class="more">more <span class="fa fa-angle-double-right"></span></a></span>
-                    </div>
-                </div>
+                {{--<div class="similar-job-detail">--}}
+                    {{--<div class="panel panel-default similar-search">--}}
+                        {{--<div class="panel-body">--}}
+                            {{--<button class="close">&times;</button>--}}
+                            {{--<span>在寻找类似兼职？</span>--}}
+                            {{--{!! Form::text('job', $job->name, ['class' => 'form-control search']) !!}--}}
+                            {{--{!! Form::button('查找', ['class' => 'btn btn-default pull-right']) !!}--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="similar-job">--}}
+                        {{--<span class="fa fa-meh-o"></span> 相似兼职--}}
+                        {{--<span class="pull-right"><a href="" class="more">more <span class="fa fa-angle-double-right"></span></a></span>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>

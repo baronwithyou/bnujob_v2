@@ -13,4 +13,8 @@ class Comment extends Model
     public function poster() {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function job() {
+        return $this->belongsTo(Job::class);
+    }
 }

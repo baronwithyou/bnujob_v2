@@ -140,11 +140,13 @@ class UserController extends Controller
                 'upload_location' => substr($path, 6)
             ]);
         } else {
-            Resume::create([
+            $resume_id = Resume::insertGetId([
                 'user_id' => $user->id,
                 'resume_name' => $originName,
                 'upload_location' => substr($path, 6)
             ]);
+            $user->primary_resume_id = $resume_id;
+            $user->save();
         }
         Helpers::ajaxSuccess('', ['path' => $path, 'name' => $originName]);
         return;
@@ -183,5 +185,12 @@ class UserController extends Controller
         $resume = Resume::where('user_id', Auth::user()->id)->first();
         $location = $resume->upload_location;
         return response()->download(public_path().'/storage'.$location, $resume->resume_name);
+    }
+
+    public function collect() {
+        $user = Auth::user();
+        $resume = $user->resume;
+        $collects = $user->collects;
+        return view('collect', compact('user', 'resume', 'collects'));
     }
 }

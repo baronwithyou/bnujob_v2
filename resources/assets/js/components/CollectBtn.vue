@@ -1,23 +1,37 @@
 <template>
     <div>
-        <button class="btn btn-default" @click="click">收藏</button>
+        <button class="btn btn-default" :class="{brown: is_collected}" @click="click">收藏</button>
         <span style="margin-left: 10px;"><strong>{{ count }}</strong> 人收藏</span>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['c', 'j_id', 'is_c', 'is_cl'],
+        props: ['j_id'],
         data() {
             return {
-                count: this.c,
+                count: 0,
                 job_id: this.j_id,
-                is_check: this.is_c,
-                is_collected: this.is_cl,
+                is_check: false,
+                is_collected: false,
             }
+        },
+        mounted() {
+            // console.log(this.c, this.is_collected);
+            const self = this;
+            axios.post('/job/get/collect_config/' + self.job_id, {}).then(response => {
+                response = response.data;
+                self.count = response.count;
+                self.is_check = response.is_check;
+                self.is_collected = response.is_collected;
+            });
         },
         methods: {
             click: function () {
+                if (!this.is_check) {
+                    $('#auth-modal').modal('show');
+                    return false;
+                }
                 const self = this;
                 axios.post('/job/collect', {job_id: this.job_id}).then(response => {
                     response = response.data;
@@ -35,3 +49,9 @@
         }
     }
 </script>
+
+<style>
+    .brown {
+        background: #eee;
+    }
+</style>

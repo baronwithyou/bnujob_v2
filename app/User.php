@@ -140,4 +140,8 @@ class User extends \TCG\Voyager\Models\User
         arsort($result);
         return $result; // 返回的是['user_id' => cos(差值)]
     }
+
+    public function collects() {
+        return $this->hasMany(Collect::class);
+    }
 }

@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/resume/upload', 'UserController@resumeUpload')->name('resume.upload');
 
         Route::get('/resume/download', 'UserController@resumeDownload')->name('resume.download');
+
+        Route::get('/collect', 'UserController@collect')->name('collect');
     });
 
     Route::post('/email/verify', 'UserController@emailToVerify')->name('email.verify');
@@ -68,6 +70,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/deliver', 'JobController@deliver')->name('deliver');
 
         Route::post('/collect', 'JobController@collect')->name('collect');
+
+        Route::post('/get/collect_config/{job_id}', 'JobController@getCollectConfig')->name('get.collect_config');
     });
 
     // 后台voyager

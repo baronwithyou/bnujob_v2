@@ -14,23 +14,22 @@
         <div class="row user-content">
             <div class="col-md-2">
                 @include('partial.user_nav', ['active_location' => 1])
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        校园情况 <span class="fa fa-lock"></span>
-                        <button class="btn btn-link pull-right" style="padding: 0;"><i class="fa fa-edit"></i> 编辑</button>
-                    </div>
-                    <div class="panel-body">
-                        <small>CET4/6</small>
-                        <p class="black-sentence">592分</p>
-                        <hr>
-                        <small>绩点</small>
-                        <p class="black-sentence">4.0 / 5.0（满分）</p>
-                    </div>
-                </div>
+                {{--<div class="panel panel-default">--}}
+                    {{--<div class="panel-heading">--}}
+                        {{--校园情况 <span class="fa fa-lock"></span>--}}
+                        {{--<button class="btn btn-link pull-right" style="padding: 0;"><i class="fa fa-edit"></i> 编辑</button>--}}
+                    {{--</div>--}}
+                    {{--<div class="panel-body">--}}
+                        {{--<small>CET4/6</small>--}}
+                        {{--<p class="black-sentence">592分</p>--}}
+                        {{--<hr>--}}
+                        {{--<small>绩点</small>--}}
+                        {{--<p class="black-sentence">4.0 / 5.0（满分）</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
 
             <div class="col-md-7" id="private-info">
-                {{ $user->getResumeColumnCount() }}
                 <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     编辑校园情况、求职设置、以及各种经历即可默认创建简历！ <strong>简历越丰富，成功的几率越大!</strong>
@@ -146,26 +145,26 @@
 
             <div class="col-md-3">
                 @include('partial.user_upload')
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        求职设置 <span class="fa fa-lock"></span>
-                        <button class="btn btn-link pull-right" style="padding: 0;"><i class="fa fa-edit"></i> 编辑</button>
-                    </div>
-                    <div class="panel-body">
-                        <small>期望职位</small>
-                        <p class="black-sentence">算法工程师</p>
-                        <small>期望薪资</small>
-                        <p class="black-sentence">￥300/天</p>
-                        <small>教育情况</small>
-                        <p class="black-sentence">硕士</p>
-                        <small>一周可上班天数</small>
-                        <p class="black-sentence">5天</p>
-                        <small>求职状态</small>
-                        <p class="black-sentence">正在找工作</p>
-                        <small>求职类型</small>
-                        <p class="black-sentence">实习</p>
-                    </div>
-                </div>
+                {{--<div class="panel panel-default">--}}
+                    {{--<div class="panel-heading">--}}
+                        {{--求职设置 <span class="fa fa-lock"></span>--}}
+                        {{--<button class="btn btn-link pull-right" style="padding: 0;"><i class="fa fa-edit"></i> 编辑</button>--}}
+                    {{--</div>--}}
+                    {{--<div class="panel-body">--}}
+                        {{--<small>期望职位</small>--}}
+                        {{--<p class="black-sentence">算法工程师</p>--}}
+                        {{--<small>期望薪资</small>--}}
+                        {{--<p class="black-sentence">￥300/天</p>--}}
+                        {{--<small>教育情况</small>--}}
+                        {{--<p class="black-sentence">硕士</p>--}}
+                        {{--<small>一周可上班天数</small>--}}
+                        {{--<p class="black-sentence">5天</p>--}}
+                        {{--<small>求职状态</small>--}}
+                        {{--<p class="black-sentence">正在找工作</p>--}}
+                        {{--<small>求职类型</small>--}}
+                        {{--<p class="black-sentence">实习</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>

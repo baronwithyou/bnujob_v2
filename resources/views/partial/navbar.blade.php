@@ -30,7 +30,7 @@
                     @if($user->isAdmin())
                         <li><a href="{{ route('voyager.dashboard') }}">后台管理</a></li>
                     @endif
-                    <li><a href="#"><span class="fa fa-bell-o" style="font-size: 20px;"></span></a></li>
+                    {{--<li><a href="#"><span class="fa fa-bell-o" style="font-size: 20px;"></span></a></li>--}}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" style="padding: 10px 15px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <img src="{{ asset($user->avatar) }}" style="width: 30px" class="img img-circle" alt="">

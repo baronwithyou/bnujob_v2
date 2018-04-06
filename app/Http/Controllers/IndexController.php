@@ -52,7 +52,7 @@ class IndexController extends Controller
 
     public function test()
     {
-        $user = \Auth::user();
+//        $user = \Auth::user();
 //        $job_id = Evaluate::where('user_id', $user->id)->orderBy('job_id')->pluck('job_id');
 //        dump(Evaluate::where('user_id', 12)->whereIn('job_id', $job_id)->orderBy('job_id')->pluck('grade', 'job_id'));
 

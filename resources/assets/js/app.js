@@ -19,28 +19,27 @@ window.echarts = require('echarts');
 
 require('sweetalert');
 
-import zh_CN from '../locale/vee-validate/zh_CN';
+// import zh_CN from '../locale/vee-validate/zh_CN';
+import zh_CN from 'vee-validate/dist/locale/zh_CN';
 
 import VeeValidate, { Validator } from 'vee-validate';
 
-Validator.addLocale(zh_CN);
-
-const dictionary = {
-    zh_CN: {
-        attributes: {
-            email: '邮箱',
-            mobile: '手机号',
-            verify_code: '验证码',
-            password: '密码',
-            name: '用户名',
-            username: '用户名'
-        }
-    }
-};
-Validator.updateDictionary(dictionary);
+Validator.localize('zh_CN', zh_CN);
 
 Vue.use(VeeValidate, {
-    locale: 'zh_CN'
+    locale: 'zh_CN',
+    dictionary: {
+        zh_CN: {
+            attributes: {
+                email: '邮箱',
+                mobile: '手机号',
+                verify_code: '验证码',
+                password: '密码',
+                name: '用户名',
+                username: '用户名'
+            }
+        }
+    },
 });
 
 

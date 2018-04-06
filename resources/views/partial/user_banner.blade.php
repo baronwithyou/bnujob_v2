@@ -9,9 +9,9 @@
                 <span class="btn-reputation">声望 {{ $user->reputation }}</span>
             </div>
             <div class="edit-banner-info hidden-xs">
-                <p><span class="fa fa-map-marker"></span><a href="">填写现居城市</a></p>
-                <p><span class="fa fa-graduation-cap"></span><a href="">填写所在院校</a></p>
-                <p><span class="fa fa-building-o"></span><a href="">填写所在年级</a></p>
+                {{--<p><span class="fa fa-map-marker"></span><a href="">填写现居城市</a></p>--}}
+                {{--<p><span class="fa fa-graduation-cap"></span><a href="">填写所在院校</a></p>--}}
+                {{--<p><span class="fa fa-building-o"></span><a href="">填写所在年级</a></p>--}}
                 {{--<p><span class="fa fa-building-o"></span><a href="">填写</a></p>--}}
             </div>
         </div>

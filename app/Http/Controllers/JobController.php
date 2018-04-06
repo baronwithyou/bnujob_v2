@@ -6,7 +6,10 @@ use App\Collect;
 use App\Comment;
 use App\Deliver;
 use App\Evaluate;
+use App\Events\CollectEvent;
+use App\Events\CommentEvent;
 use App\Events\DeliverEvent;
+use App\Events\LikeEvent;
 use App\Events\UserOperate;
 use App\Like;
 use App\User;
@@ -32,6 +35,7 @@ class JobController extends Controller
             $is_collected = !empty(Collect::where('user_id', $user->id)->where('job_id', $id)->first());
         }
 
+//        dump($is_collected);
         return view('job', compact('job', 'comments', 'delivered', 'is_collected'));
     }
 
@@ -44,6 +48,7 @@ class JobController extends Controller
         }
         $data['user_id'] = Auth::user()->id;
         Comment::create($data);
+        event(new CommentEvent(Auth::user()->id, $data['job_id']));
         Helpers::ajaxSuccess('发布成功');
         return;
     }
@@ -62,12 +67,17 @@ class JobController extends Controller
         $comment = Comment::find($data['comment_id']);
         $record = Like::where('liking_id', Auth::user()->id)->where('comment_id', $data['comment_id']);
 
+        event(new LikeEvent(Auth::user()->id, $comment->job->id, $comment->id));
         if (!is_null($record->first()) && $type = $record->first()->type) { // 如果存在这条记录
             if ($type == $data['type']) { // 一条记录不能点赞两次
                 Helpers::ajaxFail();
                 return;
             }
-            event(new UserOperate($record->first(), new Like(), 'decrement'));
+//            event(new UserOperate($record->first(), new Like(), 'decrement'));
+            if ($save['type'] == 'like')
+                $comment->increment('agree_count');
+            else
+                $comment->decrement('agree_count');
             $record->delete();
         } else {
             Like::create($save);
@@ -133,8 +143,23 @@ class JobController extends Controller
                 'user_id' => $user->id
             ]);
         }
-//        event();
+        event(new CollectEvent($user->id, $job_id));
         Helpers::ajaxSuccess();
         return;
+    }
+
+    public function getCollectConfig($job_id) {
+        $job = Job::find($job_id);
+        $is_check = Auth::check();
+        $count = $job->collected_count;
+        $is_collected = false;
+        if ($is_check) {
+            $is_collected = !empty(Collect::where("user_id", Auth::user()->id)->where('job_id', $job_id)->first());
+        }
+        return [
+            'is_check' => $is_check,
+            'count' => $count,
+            'is_collected' => $is_collected,
+        ];
     }
 }
