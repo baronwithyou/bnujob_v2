@@ -18,7 +18,7 @@
                 @include('partial.business_nav')
                 <div class="row" style="margin-top: 20px;">
                     <div class="col-md-8" id="business-profile">
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-6">
                                 <div class="panel panel-default" style="background-color: #fafafb; border-radius: 0;">
                                     <div class="panel-body">
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="form-group">

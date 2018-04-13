@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-xs-8 col-md-9">
                     <h3>{{ $job->name }} <small>{{ $job->business->name }}</small></h3>
-                    <span class="label label-primary">餐饮</span>
-                    <span class="label label-primary">IT</span>
+                    <!-- <span class="label label-primary">餐饮</span>
+                    <span class="label label-primary">IT</span> -->
                     <span style="margin-left:  2%"><span class="fa fa-phone"></span> {{ $job->contact }}</span>
                     <div class="pull-right">
                         <span>￥{{ $job->salary }}元/天</span>

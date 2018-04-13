@@ -2,6 +2,14 @@
 
 @section('title', 'Welcome')
 
+@section('stylesheets')
+    <style type="text/css">
+        .footer {
+            margin-top: 5vh
+        }
+    </style>
+@endsection
+
 @section('top')
     <section class="app-red-top"></section>
     @include('partial.navbar')
