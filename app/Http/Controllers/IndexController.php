@@ -30,6 +30,7 @@ class IndexController extends Controller
         $needToActivate = $this->userRepository->needToActivate();
 
         $jobs = Job::orderBy('created_at', 'desc')->with('business')->limit(30)->get();
+        $forbidden = [];
 
         $job_ids = [];
         if (\Auth::check()) {
@@ -40,11 +41,14 @@ class IndexController extends Controller
                     break;
                 $job_ids[] = User::find($user)->getHighEvaluate();
             }
+            if (!empty(Auth::user()->resume)) {
+                $forbidden = Deliver::where('resume_id', Auth::user()->resume->id)->pluck('job_id')->toArray();
+            }
         }
         $job_ids = array_unique($job_ids);
-        $recommendation = Job::whereIn('id', $job_ids)->limit(5)->with('business')->get();
-        if (count($job_ids) < 5){
-            $recommendation = $recommendation->merge(Job::orderBy('delivered_count', 'desc')->limit(5 - count($job_ids))->with('business')->get());
+        $recommendation = Job::whereIn('id', $job_ids)->whereNotIn('id', $forbidden)->limit(5)->with('business')->get();
+        if (count($recommendation) < 5){
+            $recommendation = $recommendation->merge(Job::orderBy('delivered_count', 'desc')->whereNotIn('id', $forbidden)->limit(5 - count($job_ids))->orderBy('created_at', 'desc')->with('business')->get());
         }
 
         return view('welcome', compact('needToActivate', 'jobs', 'recommendation'));
