@@ -9,6 +9,7 @@ use App\Http\Helpers;
 use App\Http\Sms;
 use App\Http\Repositories\UserRepository;
 use App\Job;
+use App\Resume;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -151,6 +152,11 @@ class IndexController extends Controller
         session()->put('verify_code', $verify_code);
         Helpers::ajaxSuccess('发送成功，请在手机上查看', $callback);
         return;
+    }
+
+    public function resumeDownload($resume_id) {
+        $resume = Resume::find($resume_id);
+        return response()->download(public_path().'/storage'.$resume->upload_location, $resume->resume_name);
     }
 
 }

@@ -82,6 +82,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::post('/image/upload', 'IndexController@uploadImage')->name('image.upload');
+
+    Route::get('/resume/download/{resume_id}', 'IndexController@resumeDownload')->name('resume.download');
 });
 
 Route::get('/job/{id}', 'JobController@jobDetail')->name('job');
